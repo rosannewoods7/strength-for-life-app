@@ -1,0 +1,444 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(58, 43, 53, 0.04);
+  border: 1px solid rgba(232, 221, 229, 0.5);
+}
+
+.tabsHeader {
+  display: flex;
+  border-bottom: 2px solid rgba(232, 221, 229, 0.5);
+  background-color: var(--color-background);
+}
+
+.tabButton {
+  flex: 1;
+  padding: 1.25rem 1rem;
+  background: none;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-muted-plum);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+}
+
+.tabButton:hover {
+  color: var(--color-deep-plum);
+  background-color: rgba(232, 221, 229, 0.2);
+}
+
+.tabButton.activeTab {
+  color: var(--color-deep-plum);
+  border-bottom-color: var(--color-deep-plum);
+  background-color: var(--color-white);
+}
+
+.tabContent {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.demoCell {
+  width: 50px;
+  text-align: center;
+}
+
+.demoButton {
+  background: var(--color-lavender-grey);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--color-deep-plum);
+}
+
+.demoButton:hover {
+  background: var(--color-sophisticated-mauve);
+  color: var(--color-white);
+  transform: scale(1.1);
+}
+
+.demoIcon {
+  font-size: 0.8rem;
+  margin-left: 2px; /* Center the play triangle optically */
+}
+
+.movementName {
+  font-weight: 600;
+  color: var(--color-deep-plum);
+}
+
+.prescriptionTable {
+  width: 100%;
+}
+
+.prescriptionTable h3 {
+  color: var(--color-deep-espresso);
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.prescriptionTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.prescriptionTable th,
+.prescriptionTable td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(232, 221, 229, 0.5);
+}
+
+.prescriptionTable th {
+  background-color: rgba(232, 221, 229, 0.3);
+  color: var(--color-deep-plum);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.prescriptionTable tr:last-child td {
+  border-bottom: none;
+}
+
+.prescriptionTable td {
+  color: var(--color-deep-espresso);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .tabsHeader {
+    flex-direction: column;
+  }
+  
+  .tabButton {
+    border-bottom: 1px solid rgba(232, 221, 229, 0.5);
+    border-left: 3px solid transparent;
+  }
+  
+  .tabButton.activeTab {
+    border-bottom-color: rgba(232, 221, 229, 0.5);
+    border-left-color: var(--color-deep-plum);
+  }
+  
+  .prescriptionTable table, 
+  .prescriptionTable thead, 
+  .prescriptionTable tbody, 
+  .prescriptionTable th, 
+  .prescriptionTable td, 
+  .prescriptionTable tr {
+    display: block;
+  }
+  
+  .prescriptionTable thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  .prescriptionTable tr {
+    border: 1px solid rgba(232, 221, 229, 0.5);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--color-white);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  }
+  
+  .prescriptionTable td {
+    border: none;
+    border-bottom: 1px solid rgba(232, 221, 229, 0.3);
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 0.5rem;
+  }
+  
+  .prescriptionTable td:last-child {
+    border-bottom: none;
+  }
+  
+  .prescriptionTable td::before {
+    content: attr(data-label);
+    position: static;
+    font-weight: 600;
+    color: var(--color-deep-plum);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .demoCell {
+    width: auto;
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .demoButton {
+    margin-left: 0;
+  }
+  
+  .demoPlaceholder {
+    margin-left: 0;
+  }
+}
+
+.demoPlaceholder {
+  color: var(--color-muted-plum);
+  font-weight: bold;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(28, 40, 51, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modalContent {
+  background: var(--color-white);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--color-white); /* White so it shows up on top of video, or maybe place it outside iframe */
+  cursor: pointer;
+  z-index: 10;
+  line-height: 1;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.closeButton:hover {
+  color: var(--color-dusty-rose);
+}
+
+.iframeContainer {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.iframeContainer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.logWorkoutLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-white);
+  background-color: var(--color-deep-espresso);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  user-select: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.logWorkoutLabel:hover {
+  background-color: var(--color-obsidian, #1a1a1a);
+  transform: translateY(-1px);
+}
+
+.logCheckbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.logCheckmark {
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.logCheckbox:checked ~ .logCheckmark {
+  background-color: var(--color-white);
+  border-color: var(--color-white);
+}
+
+.logCheckmark:after {
+  content: "";
+  display: none;
+  width: 5px;
+  height: 10px;
+  border: solid var(--color-deep-espresso);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-bottom: 2px;
+}
+
+.logCheckbox:checked ~ .logCheckmark:after {
+  display: block;
+}
+
+.weightInput {
+  width: 100%;
+  max-width: 100px;
+  padding: 0.5rem;
+  border: 1px solid rgba(232, 221, 229, 0.8);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: var(--color-deep-espresso);
+  background-color: var(--color-white);
+  transition: all 0.2s ease;
+}
+
+.weightInput:focus {
+  outline: none;
+  border-color: var(--color-deep-plum);
+  box-shadow: 0 0 0 2px rgba(15, 36, 57, 0.12);
+}
+
+.weightInput::placeholder {
+  color: rgba(71, 85, 105, 0.45);
+}
+
+.printButton {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-white);
+  color: var(--color-deep-plum);
+  border: 1px solid var(--color-deep-plum);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.printButton:hover {
+  background-color: rgba(15, 36, 57, 0.05);
+  transform: translateY(-1px);
+}
+
+@media print {
+  .tabsHeader,
+  .printButton,
+  .logWorkoutLabel,
+  .demoCell,
+  .demoButton,
+  .demoPlaceholder,
+  .notesCell {
+    display: none !important;
+  }
+
+  .container {
+    box-shadow: none !important;
+    border: none !important;
+  }
+  
+  .prescriptionTable h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  
+  /* Force table layout to override mobile card layout */
+  .prescriptionTable table {
+    display: table !important;
+    width: 100% !important;
+  }
+  
+  .prescriptionTable thead {
+    display: table-header-group !important;
+  }
+  
+  .prescriptionTable tbody {
+    display: table-row-group !important;
+  }
+  
+  .prescriptionTable tr {
+    display: table-row !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+  
+  .prescriptionTable thead tr {
+    position: static !important;
+  }
+  
+  .prescriptionTable th,
+  .prescriptionTable td {
+    display: table-cell !important;
+    padding: 0.25rem 0.5rem !important;
+    text-align: left !important;
+  }
+  
+  .prescriptionTable td::before {
+    display: none !important;
+  }
+  
+  .prescriptionTable th {
+    font-size: 0.8rem !important;
+    background-color: #f0f0f0 !important;
+  }
+  
+  .prescriptionTable td {
+    font-size: 0.8rem !important;
+    border-bottom: 1px solid #ddd !important;
+  }
+
+  .weightInput {
+    border: 1px solid #ccc !important;
+    background: transparent !important;
+    font-size: 0.8rem !important;
+    min-width: 60px !important;
+    padding: 0.15rem !important;
+  }
+}

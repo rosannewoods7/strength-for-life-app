@@ -1,0 +1,180 @@
+.container {
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(58, 43, 53, 0.04);
+  border: 1px solid rgba(232, 221, 229, 0.5);
+  margin-top: 2rem;
+}
+
+.title {
+  color: var(--color-deep-plum);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--color-muted-plum);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.taskItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--color-lavender-grey);
+  border-radius: 8px;
+  background-color: var(--color-white);
+  transition: all 0.2s ease;
+}
+
+.completed {
+  background-color: rgba(43, 76, 111, 0.06);
+  border-color: rgba(43, 76, 111, 0.3);
+}
+
+.taskInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.taskName {
+  font-weight: 600;
+  color: var(--color-deep-espresso);
+  font-size: 1.05rem;
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.completedBadge {
+  background-color: var(--color-sophisticated-mauve);
+  color: var(--color-white);
+}
+
+.skippedBadge {
+  background-color: var(--color-muted-plum);
+  color: var(--color-white);
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actionBtn, .skipBtn {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid var(--color-lavender-grey);
+  background: var(--color-white);
+  color: var(--color-muted-plum);
+}
+
+.actionBtn:hover {
+  border-color: var(--color-sophisticated-mauve);
+  color: var(--color-deep-plum);
+}
+
+.skipBtn:hover {
+  border-color: var(--color-muted-plum);
+  color: var(--color-deep-espresso);
+}
+
+.activeBtn {
+  background-color: var(--color-sophisticated-mauve);
+  color: var(--color-white);
+  border-color: var(--color-sophisticated-mauve);
+}
+
+.activeBtn:hover {
+  background-color: var(--color-deep-plum);
+  color: var(--color-white);
+}
+
+.activeSkipBtn {
+  background-color: var(--color-muted-plum);
+  color: var(--color-white);
+  border-color: var(--color-muted-plum);
+}
+
+.activeSkipBtn:hover {
+  background-color: var(--color-deep-espresso);
+  color: var(--color-white);
+}
+
+.completionBanner {
+  margin-top: 2.5rem;
+  padding: 2rem;
+  background-color: rgba(212, 175, 55, 0.1);
+  border-radius: 12px;
+  border-left: 4px solid var(--color-soft-gold);
+  text-align: center;
+  animation: slideUp 0.4s ease-out;
+}
+
+.completionBanner h4 {
+  color: var(--color-deep-espresso);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.unlockBtn {
+  background-color: var(--color-deep-plum);
+  color: var(--color-white);
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 15px rgba(58, 43, 53, 0.2);
+}
+
+.unlockBtn:hover {
+  background-color: var(--color-deep-espresso);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(58, 43, 53, 0.3);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .taskItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .actions {
+    width: 100%;
+    display: flex;
+  }
+  
+  .actionBtn, .skipBtn {
+    flex: 1;
+    text-align: center;
+  }
+}

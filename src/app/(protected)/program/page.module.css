@@ -1,0 +1,103 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 2.25rem;
+  color: var(--color-white);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(58, 43, 53, 0.04);
+  border: 1px solid rgba(232, 221, 229, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(58, 43, 53, 0.08);
+  border-color: var(--color-sophisticated-mauve);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.weekNumber {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-deep-espresso);
+}
+
+.phaseLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-muted-plum);
+  background-color: rgba(232, 221, 229, 0.4);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  color: var(--color-deep-plum);
+  margin-bottom: 0.75rem;
+}
+
+.cardDescription {
+  font-size: 0.9rem;
+  color: var(--color-deep-espresso);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.cardFooter {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(232, 221, 229, 0.4);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actionText {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-sophisticated-mauve);
+  transition: color 0.2s;
+}
+
+.card:hover .actionText {
+  color: var(--color-deep-plum);
+}

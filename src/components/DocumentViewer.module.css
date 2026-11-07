@@ -1,0 +1,187 @@
+.container {
+  display: flex;
+  background: var(--color-white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(58, 43, 53, 0.04);
+  border: 1px solid rgba(232, 221, 229, 0.5);
+  min-height: 600px;
+}
+
+.sidebar {
+  width: 300px;
+  background-color: rgba(232, 221, 229, 0.2);
+  border-right: 1px solid rgba(232, 221, 229, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarTitle {
+  padding: 1.5rem;
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--color-deep-plum);
+  border-bottom: 1px solid rgba(232, 221, 229, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.docList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.docItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(232, 221, 229, 0.3);
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.docItem:hover {
+  background-color: rgba(232, 221, 229, 0.4);
+}
+
+.docItem.active {
+  background-color: var(--color-white);
+  border-left-color: var(--color-deep-plum);
+}
+
+.docIcon {
+  font-size: 1.25rem;
+  opacity: 0.7;
+}
+
+.active .docIcon {
+  opacity: 1;
+}
+
+.docTitle {
+  font-weight: 500;
+  color: var(--color-deep-espresso);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.active .docTitle {
+  color: var(--color-deep-plum);
+  font-weight: 600;
+}
+
+.viewerContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.viewerHeader {
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(232, 221, 229, 0.5);
+}
+
+.viewerHeader h2 {
+  margin: 0;
+  color: var(--color-deep-espresso);
+  font-size: 1.5rem;
+}
+
+.downloadButton {
+  background-color: var(--color-deep-plum);
+  color: var(--color-white);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.downloadButton:hover {
+  background-color: var(--color-deep-espresso);
+}
+
+.iframeContainer {
+  flex: 1;
+  background-color: #f5f5f5; /* Neutral grey for iframe background */
+  padding: 1rem;
+}
+
+.pdfIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--color-white);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.mobileFallback {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(232, 221, 229, 0.5);
+  }
+  
+  .docList {
+    display: flex;
+    overflow-x: auto;
+    padding: 0.5rem;
+  }
+  
+  .docItem {
+    border-bottom: none;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    min-width: 200px;
+    border-radius: 6px;
+  }
+  
+  .docItem.active {
+    border-left-color: transparent;
+    border-bottom-color: var(--color-deep-plum);
+  }
+
+  .pdfIframe {
+    display: none;
+  }
+
+  .mobileFallback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1rem;
+    gap: 1rem;
+  }
+
+  .mobileFallback p {
+    color: var(--color-deep-espresso);
+    font-size: 0.95rem;
+  }
+
+  .mobileOpenButton {
+    background-color: var(--color-deep-plum);
+    color: var(--color-white);
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+}

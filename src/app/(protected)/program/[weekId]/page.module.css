@@ -1,0 +1,484 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.backLink {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 1rem;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: var(--color-white);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--color-white);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.microLearningCard {
+  background-color: var(--color-deep-espresso);
+  color: var(--color-white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(58, 43, 53, 0.15);
+  margin-bottom: 2rem;
+}
+
+.microLearningCard h3 {
+  color: var(--color-soft-gold);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.microLearningCard p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.focusText {
+  font-size: 1.15rem;
+  color: var(--color-white);
+  margin-top: 0;
+}
+
+.pullQuote {
+  margin: 1.5rem 0 0 0;
+  padding-left: 1.5rem;
+  border-left: 4px solid var(--color-soft-gold);
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--color-soft-gold);
+}
+
+.videoSection {
+  width: 100%;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.videoPlaceholder {
+  width: 100%;
+  max-width: 640px; /* Limits the size so it's not gigantic */
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, var(--color-lavender-grey) 0%, rgba(232, 221, 229, 0.4) 100%);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed var(--color-muted-plum);
+  color: var(--color-deep-plum);
+}
+
+.playIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.videoPlaceholder p {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.coachingIntro {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 0;
+  line-height: 1.6;
+}
+
+.sectionTitle {
+  color: var(--color-white);
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 992px) {
+  .pillarsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pillarCard {
+  background-color: var(--color-white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-lavender-grey);
+}
+
+.pillarHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.pillarIcon {
+  font-size: 1.5rem;
+}
+
+.pillarHeader h3 {
+  color: var(--color-deep-plum);
+  font-size: 1.1rem;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.pillarBody {
+  color: var(--color-deep-espresso);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.coachCard {
+  background-color: var(--color-white);
+  color: var(--color-deep-espresso);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border-left: 5px solid var(--color-soft-gold);
+  margin-bottom: 2rem;
+}
+
+.coachHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.coachIcon {
+  font-size: 1.5rem;
+}
+
+.coachHeader h3 {
+  color: var(--color-deep-plum);
+  font-size: 1.3rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.coachCard p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.challengeCard {
+  background-color: var(--color-white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-lavender-grey);
+  margin-top: 2rem;
+}
+
+.challengeCard h3 {
+  color: var(--color-deep-plum);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-lavender-grey);
+  padding-bottom: 0.5rem;
+}
+
+.challengeList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.challengeItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.challengeCheckbox {
+  margin-top: 0.25rem;
+  accent-color: var(--color-dusty-rose);
+  width: 18px;
+  height: 18px;
+}
+
+.challengeItem span {
+  color: var(--color-deep-espresso);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.videoWrapper {
+  width: 100%;
+  max-width: 800px;
+}
+
+.iframeContainer {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  background: #000;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(58, 43, 53, 0.1);
+}
+
+.iframeContainer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media print {
+  .backLink,
+  .header,
+  .videoSection,
+  .sectionTitle,
+  .pillarsGrid,
+  .coachCard,
+  .sidebarContent,
+  .hideOnPrint {
+    display: none !important;
+  }
+  
+  .container {
+    gap: 0 !important;
+  }
+  
+  .grid {
+    display: block !important;
+  }
+}
+
+/* =========================================================
+   MONTHS 4-6 ADVANCED STYLES
+   ========================================================= */
+
+.phaseTag {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--color-soft-gold);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.phaseCompleteCard {
+  background: var(--color-soft-gold);
+  color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.phaseCompleteIcon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.phaseCompleteCard h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.advancedLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.contentBlock {
+  background: var(--color-lavender-grey);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.educationalText {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--color-deep-espresso);
+}
+
+.doCard {
+  background: var(--color-background);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--color-deep-plum);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.powerReadiness {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--color-lavender-grey);
+}
+
+.powerReadiness h3 {
+  color: var(--color-deep-plum);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.powerReadiness p {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.reflectCard {
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-lavender-grey);
+}
+
+.reflectPrompt {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--color-deep-plum);
+}
+
+.reflectInput {
+  width: 100%;
+  min-height: 100px;
+  padding: 1rem;
+  border: 1px solid var(--color-lavender-grey);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.rememberCard {
+  background: var(--color-dusty-rose);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.progressFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.progressIndicator {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-soft-gold);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  padding: 0.85rem 1.5rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.dotFilled, .dotEmpty {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dotFilled {
+  background-color: var(--color-soft-gold);
+}
+
+.dotEmpty {
+  background-color: rgba(232, 221, 229, 0.35);
+}
+
+.startTrainingBtn {
+  background-color: var(--color-deep-plum);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: background-color 0.2s;
+}
+
+.startTrainingBtn:hover {
+  background-color: var(--color-muted-plum);
+}
+
+.educationalText p { color: var(--color-deep-espresso) !important; }
+.doCard p, .doCard li, .doCard strong { color: var(--color-deep-espresso) !important; }
+.contentBlock .sectionTitle { color: var(--color-deep-plum) !important; border-bottom-color: rgba(15, 36, 57, 0.15); margin-top: 0; }

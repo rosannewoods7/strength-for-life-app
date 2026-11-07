@@ -1,0 +1,380 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-bottom: 4rem;
+}
+
+.header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 2.25rem;
+  color: var(--color-white);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+}
+
+.tabContainer {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.tabContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.tabButton {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tabButton:hover {
+  color: var(--color-white);
+}
+
+.tabButton.activeTab {
+  color: var(--color-white);
+  border-bottom-color: var(--color-white);
+}
+
+.protocolSection {
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: 3rem;
+  box-shadow: 0 4px 15px rgba(58, 43, 53, 0.04);
+  border: 1px solid rgba(232, 221, 229, 0.5);
+}
+
+.protocolHeader {
+  margin-bottom: 2rem;
+}
+
+.protocolHeader h2 {
+  font-size: 1.75rem;
+  color: var(--color-deep-espresso);
+  margin-bottom: 0.5rem;
+}
+
+.protocolHeader p {
+  color: var(--color-muted-plum);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  max-width: 800px;
+}
+
+.protocolContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.videoPlaceholder {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  background-color: var(--color-deep-espresso);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  gap: 1rem;
+}
+
+.playIcon {
+  font-size: 3.5rem;
+  color: var(--color-lavender-grey);
+}
+
+.protocolSteps {
+  display: flex;
+  flex-direction: column;
+}
+
+.protocolSteps h3 {
+  color: var(--color-deep-plum);
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.protocolSteps ol {
+  padding-left: 1.5rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.protocolSteps li {
+  color: var(--color-deep-espresso);
+  line-height: 1.5;
+  font-size: 1.05rem;
+}
+
+.protocolSteps li strong {
+  color: var(--color-deep-plum);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 992px) {
+  .protocolContent {
+    gap: 2rem;
+  }
+}
+
+/* Recovery Protocols */
+.protocolsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.protocolCard {
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: 3rem;
+  box-shadow: 0 4px 15px rgba(58, 43, 53, 0.04);
+  border: 1px solid rgba(232, 221, 229, 0.5);
+}
+
+.stepBlock {
+  margin-bottom: 2rem;
+}
+
+.stepBlock h3 {
+  color: var(--color-deep-plum);
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.stepBlock p {
+  color: var(--color-deep-espresso);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.stepBlock ul {
+  padding-left: 1.5rem;
+  color: var(--color-muted-plum);
+  line-height: 1.5;
+}
+
+.stepBlock li {
+  margin-bottom: 0.5rem;
+}
+
+/* Readiness Audit */
+.auditContainer {
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: 3rem;
+  box-shadow: 0 4px 15px rgba(58, 43, 53, 0.04);
+  border: 1px solid rgba(232, 221, 229, 0.5);
+}
+
+.auditHeader {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.auditHeader h2 {
+  font-size: 2rem;
+  color: var(--color-deep-plum);
+  margin-bottom: 1rem;
+}
+
+.auditHeader p {
+  color: var(--color-muted-plum);
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.questionBlock {
+  margin-bottom: 3rem;
+}
+
+.questionBlock h3 {
+  font-size: 1.25rem;
+  color: var(--color-deep-espresso);
+  margin-bottom: 0.5rem;
+}
+
+.questionSubtext {
+  color: var(--color-muted-plum);
+  margin-bottom: 1.5rem;
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.optionButton {
+  background: var(--color-white);
+  border: 2px solid rgba(232, 221, 229, 0.5);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.optionButton:hover {
+  border-color: var(--color-sophisticated-mauve);
+  transform: translateY(-2px);
+}
+
+.optionButton strong {
+  font-size: 1.2rem;
+  color: var(--color-deep-plum);
+}
+
+.optionButton span {
+  color: var(--color-deep-espresso);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.selectedOption {
+  border-color: var(--color-deep-plum);
+  background-color: var(--color-deep-plum);
+  box-shadow: 0 4px 12px rgba(58, 43, 53, 0.15);
+}
+
+.selectedOption strong,
+.selectedOption span {
+  color: var(--color-white) !important;
+}
+
+.resultContainer {
+  margin-top: 4rem;
+  padding: 2.5rem;
+  border-radius: 12px;
+  background: var(--color-white);
+  border-top: 6px solid;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.resultScore {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-muted-plum);
+  margin-bottom: 1rem;
+}
+
+.resultContainer h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.resultDescription {
+  font-size: 1.1rem;
+  color: var(--color-deep-espresso);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.actionBox {
+  padding: 1.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  text-align: left;
+  color: var(--color-deep-espresso);
+}
+
+.resetButton {
+  background: var(--color-deep-espresso);
+  color: var(--color-white);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.resetButton:hover {
+  background: var(--color-deep-plum);
+}
+
+@media (max-width: 992px) {
+  .optionsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .protocolCard,
+  .auditContainer {
+    padding: 1.5rem;
+  }
+  
+  .auditHeader h2 {
+    font-size: 1.6rem;
+  }
+
+  .resultContainer {
+    padding: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .resultContainer h2 {
+    font-size: 1.8rem;
+  }
+
+  .actionBox {
+    padding: 1.25rem;
+    font-size: 1rem;
+  }
+
+  .optionButton {
+    padding: 1.25rem;
+  }
+}

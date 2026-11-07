@@ -1,0 +1,226 @@
+.wrapper {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.75rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1.5px solid var(--color-soft-gold);
+  box-shadow: 0 4px 15px rgba(28, 40, 51, 0.06);
+}
+
+.headerBlock {
+  margin-bottom: 1.25rem;
+}
+
+.heading {
+  color: var(--color-deep-plum);
+  font-size: 1.35rem;
+  margin: 0 0 0.45rem 0;
+}
+
+.instruction {
+  color: var(--color-deep-espresso) !important;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  margin: 0 !important;
+}
+
+.tracksGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.trackCard {
+  background: var(--color-background);
+  border: 1.5px solid var(--color-lavender-grey);
+  border-radius: 10px;
+  padding: 1.25rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.trackCardMatched {
+  background: #fdfaf0;
+  border-color: var(--color-soft-gold);
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.2);
+}
+
+.trackHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--color-lavender-grey);
+}
+
+.trackTitle {
+  color: var(--color-deep-plum);
+  font-size: 1.05rem;
+  margin: 0 0 0.2rem 0;
+}
+
+.trackSubtitle {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-muted-plum);
+  font-weight: 600;
+}
+
+.countBadge {
+  background: var(--color-lavender-grey);
+  color: var(--color-deep-plum);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.countBadgeMatched {
+  background: var(--color-deep-plum);
+  color: var(--color-soft-gold);
+}
+
+.checkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.checkLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-size: 0.94rem;
+  line-height: 1.45;
+  color: var(--color-deep-espresso);
+}
+
+.checkbox {
+  margin-top: 0.22rem;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-deep-plum);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.matchBanner {
+  margin-top: 1rem;
+  background: var(--color-deep-plum);
+  color: #ffffff;
+  font-size: 0.85rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 6px;
+  text-align: center;
+  border: 1px solid var(--color-soft-gold);
+}
+
+.summaryResult {
+  background: linear-gradient(135deg, var(--color-deep-plum) 0%, var(--color-sophisticated-mauve) 100%);
+  color: #ffffff;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-soft-gold);
+  font-size: 0.98rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.summaryResult strong {
+  color: #f3e5ab !important;
+}
+
+.footerNote {
+  font-size: 0.94rem;
+  color: var(--color-deep-plum) !important;
+  margin: 0 !important;
+  line-height: 1.5;
+  text-align: center;
+}
+
+
+.sectionDivider {
+  border: none;
+  border-top: 2px solid var(--color-lavender-grey);
+  margin: 1.75rem 0;
+}
+
+.trafficSection {
+  margin-top: 0.5rem;
+}
+
+.trafficGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.trafficCard {
+  border-radius: 10px;
+  padding: 1.2rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1.5px solid var(--color-lavender-grey);
+}
+
+.greenCard {
+  background: #f2fbf5;
+  border-color: #34a853;
+}
+
+.yellowCard {
+  background: #fffdf0;
+  border-color: #e6a800;
+}
+
+.redCard {
+  background: #fdf3f3;
+  border-color: #d93025;
+}
+
+.trafficHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.trafficIcon {
+  font-size: 1.25rem;
+}
+
+.trafficTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--color-deep-espresso);
+}
+
+.trafficList {
+  margin: 0 0 1rem 0;
+  padding-left: 1.2rem;
+  color: var(--color-deep-espresso);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.trafficAction {
+  font-size: 0.92rem;
+  color: var(--color-deep-espresso) !important;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(28, 40, 51, 0.12);
+}

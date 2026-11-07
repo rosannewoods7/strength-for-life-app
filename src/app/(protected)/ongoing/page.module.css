@@ -1,0 +1,229 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 1.5rem;
+}
+
+.cycleTag {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-soft-gold);
+  margin-bottom: 0.45rem;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: 2.25rem;
+  color: var(--color-white);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+
+/* Optional Top Membership Upgrade Card for Non-Subscribers */
+.paywallCard {
+  background-color: var(--color-white);
+  border-radius: 14px;
+  padding: 2rem;
+  border: 2px solid var(--color-soft-gold);
+  box-shadow: 0 10px 30px rgba(58, 43, 53, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.paywallHeaderRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.iconWrapper {
+  width: 60px;
+  height: 60px;
+  background-color: var(--color-lavender-grey);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.85rem;
+  color: var(--color-deep-plum);
+  flex-shrink: 0;
+}
+
+.paywallHeaderRow h2 {
+  color: var(--color-deep-plum);
+  font-size: 1.5rem;
+  margin: 0 0 0.45rem 0;
+}
+
+.paywallHeaderRow p {
+  color: var(--color-deep-espresso);
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.paywallCtaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(232, 221, 229, 0.6);
+}
+
+.priceCallout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: var(--color-deep-espresso);
+  font-size: 1.1rem;
+}
+
+.priceCallout strong {
+  color: var(--color-deep-plum);
+}
+
+.priceCallout span {
+  font-size: 0.85rem;
+  color: var(--color-muted-plum);
+}
+
+.subscribeButton {
+  background-color: var(--color-deep-plum);
+  color: var(--color-white);
+  padding: 0.9rem 2rem;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: 2px solid var(--color-soft-gold);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(74, 21, 75, 0.25);
+}
+
+.subscribeButton:hover:not(:disabled) {
+  background-color: var(--color-sophisticated-mauve);
+  transform: translateY(-2px);
+}
+
+.subscribeButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* 12-Card Grid Matching My Program */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(58, 43, 53, 0.04);
+  border: 1px solid rgba(232, 221, 229, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(58, 43, 53, 0.08);
+  border-color: var(--color-sophisticated-mauve);
+}
+
+.cardLocked {
+  opacity: 0.88;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.weekNumber {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-deep-espresso);
+}
+
+.phaseLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-muted-plum);
+  background-color: rgba(232, 221, 229, 0.4);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  color: var(--color-deep-plum);
+  margin-bottom: 0.75rem;
+}
+
+.cardDescription {
+  font-size: 0.9rem;
+  color: var(--color-deep-espresso);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.cardFooter {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(232, 221, 229, 0.4);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actionText {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-sophisticated-mauve);
+  transition: color 0.2s;
+}
+
+.card:hover .actionText {
+  color: var(--color-deep-plum);
+}
+
+@media (max-width: 768px) {
+  .paywallHeaderRow {
+    flex-direction: column;
+  }
+
+  .paywallCtaRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .subscribeButton {
+    width: 100%;
+    text-align: center;
+  }
+}

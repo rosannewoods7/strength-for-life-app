@@ -1,0 +1,87 @@
+.sidebar {
+  background-color: var(--color-deep-espresso);
+  width: 280px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  color: var(--color-white);
+}
+
+.logoContainer {
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(232, 221, 229, 0.1); /* subtle lavender-grey border */
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.logoSubtitle {
+  font-size: 0.85rem;
+  color: var(--color-lavender-grey); /* Accent requested by user */
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.navItem {
+  padding: 1rem;
+  border-radius: 8px;
+  color: var(--color-white);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.navItem:hover {
+  background-color: rgba(232, 221, 229, 0.05);
+}
+
+.navItem.active {
+  background-color: rgba(232, 221, 229, 0.1);
+  border-left-color: var(--color-lavender-grey); /* Accent requested by user */
+  color: var(--color-lavender-grey);
+}
+
+.sidebarFooter {
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.logoutButton {
+  background: none;
+  border: none;
+  color: var(--color-muted-plum);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s;
+  width: 100%;
+  text-align: left;
+}
+
+.logoutButton:hover {
+  color: var(--color-white);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    padding: 1.5rem;
+  }
+}

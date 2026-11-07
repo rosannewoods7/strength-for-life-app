@@ -1,0 +1,172 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--color-white);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 992px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.videoSection {
+  width: 100%;
+}
+
+
+
+.textBlock {
+  background: var(--color-white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-lavender-grey);
+}
+
+.textBlock h2 {
+  color: var(--color-deep-plum);
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--color-dusty-rose);
+  padding-bottom: 0.5rem;
+}
+
+.textBlock p {
+  color: var(--color-deep-espresso);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.benefitsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.benefitItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.checkIcon {
+  background-color: var(--color-dusty-rose);
+  color: var(--color-white);
+  min-width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+.benefitItem strong {
+  display: block;
+  color: var(--color-deep-plum);
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.benefitItem p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-deep-espresso);
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.manageCard {
+  background: linear-gradient(135deg, var(--color-deep-espresso) 0%, var(--color-obsidian) 100%);
+  color: var(--color-white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(28, 40, 51, 0.2);
+}
+
+.manageCard h3 {
+  color: var(--color-soft-gold);
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  padding-bottom: 0.5rem;
+}
+
+.manageCard p {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.manageButton {
+  width: 100%;
+  background-color: var(--color-soft-gold);
+  color: var(--color-deep-espresso);
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  margin-bottom: 1rem;
+}
+
+.manageButton:hover {
+  background-color: #f0c950;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
+}
+
+.finePrint {
+  font-size: 0.8rem !important;
+  opacity: 0.6 !important;
+  font-style: italic;
+  margin: 0 !important;
+}
