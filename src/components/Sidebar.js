@@ -12,11 +12,14 @@ export default function Sidebar() {
   const pathname = usePathname();
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isTrialOnly, setIsTrialOnly] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const supabase = createClient();
 
   useEffect(() => {
     async function checkSubscription() {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
       if (user?.user_metadata?.subscription_status === 'active') {
         setIsSubscribed(true);
       }
@@ -26,12 +29,23 @@ export default function Sidebar() {
     checkSubscription();
   }, [supabase.auth]);
 
+  // Close mobile menu automatically when route changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
   const navItems = [
     { name: 'Dashboard', path: '/dashboard' },
     { name: 'Getting Started', path: '/getting-started' },
     { name: 'My Program', path: '/program' },
-    { name: isTrialOnly ? 'Cardiorespiratory 🔒' : 'Cardiorespiratory', path: '/jump-training' },
-    { name: isTrialOnly ? 'Flexibility/Mobility 🔒' : 'Flexibility/Mobility', path: '/sit-training' },
+    {
+      name: isTrialOnly ? 'Cardiorespiratory 🔒' : 'Cardiorespiratory',
+      path: '/jump-training',
+    },
+    {
+      name: isTrialOnly ? 'Flexibility/Mobility 🔒' : 'Flexibility/Mobility',
+      path: '/sit-training',
+    },
     { name: 'My Progress', path: '/progress' },
     { name: 'The Framework', path: '/framework' },
     { name: isTrialOnly ? 'Recovery Vault 🔒' : 'Recovery Vault', path: '/vault' },
@@ -40,34 +54,61 @@ export default function Sidebar() {
 
   return (
     <aside className={styles.sidebar}>
-      <div className={styles.logoContainer}>
-        <h2 className={styles.logo}>Strength for Life</h2>
-        <span className={styles.logoSubtitle}>Strength &amp; Longevity</span>
+      <div className={styles.topBar}>
+        <div className={styles.logoContainer}>
+          <h2 className={styles.logo}>Strength for Life</h2>
+          <span className={styles.logoSubtitle}>Strength &amp; Longevity</span>
+        </div>
+
+        <button
+          type="button"
+          className={styles.mobileToggleBtn}
+          onClick={() => setMobileMenuOpen((prev) => !prev)}
+          aria-expanded={mobileMenuOpen}
+          aria-label="Toggle navigation menu"
+        >
+          <span className={styles.hamburgerIcon}>
+            {mobileMenuOpen ? '✕' : '☰'}
+          </span>
+          <span className={styles.menuLabel}>
+            {mobileMenuOpen ? 'Close' : 'Menu'}
+          </span>
+        </button>
       </div>
 
-      <div style={{ padding: '0 1.5rem', marginBottom: '1.5rem' }}>
-        <GlobalSearch />
-      </div>
+      <div
+        className={`${styles.collapsibleArea} ${
+          mobileMenuOpen ? styles.mobileOpen : ''
+        }`}
+      >
+        <div className={styles.searchBox}>
+          <GlobalSearch />
+        </div>
 
-      <nav className={styles.nav}>
-        {navItems.map((item) => {
-          const isActive = pathname === item.path || pathname.startsWith(`${item.path}/`);
-          return (
-            <Link 
-              key={item.name} 
-              href={item.path}
-              className={`${styles.navItem} ${isActive ? styles.active : ''}`}
-            >
-              {item.name}
-            </Link>
-          );
-        })}
-      </nav>
+        <nav className={styles.nav}>
+          {navItems.map((item) => {
+            const isActive =
+              pathname === item.path || pathname.startsWith(`${item.path}/`);
+            return (
+              <Link
+                key={item.name}
+                href={item.path}
+                className={`${styles.navItem} ${isActive ? styles.active : ''}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
+        </nav>
 
-      <div className={styles.sidebarFooter}>
-        <form action="/auth/signout" method="POST">
-          <button type="submit" className={styles.logoutButton}>Sign Out</button>
-        </form>
+        <div className={styles.sidebarFooter}>
+          <form action="/auth/signout" method="POST">
+            <button type="submit" className={styles.logoutButton}>
+              Sign Out
+            </button>
+          </form>
+        </div>
       </div>
     </aside>
   );
