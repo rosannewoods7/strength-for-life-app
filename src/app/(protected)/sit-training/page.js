@@ -10,11 +10,10 @@ export default function FlexibilityMobilityTrainingPage() {
         <p className={styles.subtitle}>For Joint Resilience, Movement Freedom, Posture &amp; Injury Prevention</p>
       </header>
 
-      <section className={styles.fullWidthProtocol} style={{ marginTop: '1rem', paddingTop: '2rem' }}>
+      <section className={styles.fullWidthProtocol}>
         <h2 className={styles.sectionTitle}>The Strength for Life Flexibility &amp; Mobility Protocol</h2>
         <p className={styles.protocolIntro}>
-          Perform dedicated flexibility and mobility training <strong>1–2 times per week</strong> (15–25 minutes per session),<br/>
-          or weave 5–10 minute mobility flows into your warm-ups, cool-downs, and active recovery days.
+          Perform dedicated flexibility and mobility training <strong>1–2 times per week</strong> (15–25 minutes per session), or weave 5–10 minute mobility flows into your warm-ups, cool-downs, and active recovery days.
         </p>
 
         <div className={styles.protocolGrid}>
@@ -55,55 +54,45 @@ export default function FlexibilityMobilityTrainingPage() {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '2rem' }}>
-          <div>
-            <h4 className={styles.miniHeading}>Execution Guidelines</h4>
-            <p><strong>Move With Control, Not Force:</strong> Never force a joint past a pinch or sharp pain. Aim for a gentle-to-moderate sensation of tension (5–6 out of 10) while maintaining slow, relaxed breathing.</p>
-            <p><strong>Pair Breath With Range:</strong> Inhale for 4 seconds through your nose, and exhale slowly for 6–8 seconds as you sink into end-range stretches. Slow exhalations signal your nervous system to release protective muscle guarding.</p>
-          </div>
-          <div>
-            <div className={styles.highlightBox} style={{ margin: '0 0 1rem 0' }}>
-              <p><strong>Flexibility vs. Mobility:</strong> <em>Flexibility</em> is the passive range of motion a muscle allows. <em>Mobility</em> is your ability to actively control a joint through that range of motion. Strength for Life trains both so your joints are not just loose—they are strong and stable at every angle.</p>
-            </div>
-            <p><strong>Remember:</strong> Better mobility directly unlocks better strength. When your hips, ankles, and thoracic spine move freely, your squats, hinges, and overhead presses become safer, stronger, and more effective.</p>
-          </div>
+        <h3 className={styles.subheading}>Execution Guidelines</h3>
+        <p><strong>Move With Control, Not Force:</strong> Never force a joint past a pinch or sharp pain. Aim for a gentle-to-moderate sensation of tension (5–6 out of 10) while maintaining slow, relaxed breathing.</p>
+        <p><strong>Pair Breath With Range:</strong> Inhale for 4 seconds through your nose, and exhale slowly for 6–8 seconds as you sink into end-range stretches. Slow exhalations signal your nervous system to release protective muscle guarding.</p>
+
+        <div className={styles.highlightBox}>
+          <p style={{ margin: 0 }}><strong>Flexibility vs. Mobility:</strong> <em>Flexibility</em> is the passive range of motion a muscle allows. <em>Mobility</em> is your ability to actively control a joint through that range of motion. Strength for Life trains both so your joints are not just loose—they are strong and stable at every angle.</p>
         </div>
+
+        <p style={{ marginBottom: 0 }}><strong>Remember:</strong> Better mobility directly unlocks better strength. When your hips, ankles, and thoracic spine move freely, your squats, hinges, and overhead presses become safer, stronger, and more effective.</p>
       </section>
 
-      <article className={styles.scienceSection} style={{ marginTop: '3rem' }}>
+      <article className={styles.scienceSection} style={{ marginTop: '2.5rem' }}>
         <h2 className={styles.sectionTitle}>Why Flexibility &amp; Mobility Matter as We Age</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '3rem' }}>
-          <div>
-            <p>As we move through our 40s, 50s, 60s, and beyond, collagen fibers in our tendons, ligaments, and fascia naturally experience increased cross-linking and reduced hydration. Combined with modern desk postures and repetitive daily patterns, joints gradually lose their usable range of motion.</p>
-            <p>When a joint loses mobility—most commonly the <strong>ankles, hips, and thoracic (mid-back) spine</strong>—neighbouring joints are forced to compensate. Stiff hips and thoracic spine often show up as lower-back discomfort; stiff ankles often show up as knee strain; stiff shoulders and mid-backs often show up as neck or rotator cuff irritation.</p>
+        
+        <p>As we move through our 40s, 50s, 60s, and beyond, collagen fibers in our tendons, ligaments, and fascia naturally experience increased cross-linking and reduced hydration. Combined with modern desk postures and repetitive daily patterns, joints gradually lose their usable range of motion.</p>
+        <p>When a joint loses mobility—most commonly the <strong>ankles, hips, and thoracic (mid-back) spine</strong>—neighbouring joints are forced to compensate. Stiff hips and thoracic spine often show up as lower-back discomfort; stiff ankles often show up as knee strain; stiff shoulders and mid-backs often show up as neck or rotator cuff irritation.</p>
 
-            <h3 className={styles.subheading}>The Science of Joint Longevity</h3>
-            <p>Joint cartilage has no direct blood supply of its own. Instead, it relies on <strong>synovial fluid diffusion</strong>—which is stimulated when you move a joint through its full, controlled range of motion.</p>
-            <p>Dedicated mobility and flexibility sessions provide three critical adaptations:</p>
-            <ul className={styles.checkList}>
-              <li><strong>Joint Lubrication:</strong> Moving joints through full arcs circulates synovial fluid, nourishing articular cartilage.</li>
-              <li><strong>Fascial &amp; Tendon Remodeling:</strong> Slow, controlled loading and stretching maintain tissue elasticity and slide-and-glide between muscle layers.</li>
-              <li><strong>Nervous System Down-Regulation:</strong> Combining mobility work with slow nasal breathing shifts your body out of sympathetic (&ldquo;fight-or-flight&rdquo;) stress and into parasympathetic recovery.</li>
-            </ul>
-          </div>
+        <h3 className={styles.subheading}>The Science of Joint Longevity</h3>
+        <p>Joint cartilage has no direct blood supply of its own. Instead, it relies on <strong>synovial fluid diffusion</strong>—which is stimulated when you move a joint through its full, controlled range of motion. Dedicated mobility and flexibility sessions provide three critical adaptations:</p>
+        <ul className={styles.checkList}>
+          <li><strong>Joint Lubrication:</strong> Moving joints through full arcs circulates synovial fluid, nourishing articular cartilage.</li>
+          <li><strong>Fascial &amp; Tendon Remodeling:</strong> Slow, controlled loading and stretching maintain tissue elasticity and slide-and-glide between muscle layers.</li>
+          <li><strong>Nervous System Down-Regulation:</strong> Combining mobility work with slow nasal breathing shifts your body out of sympathetic (&ldquo;fight-or-flight&rdquo;) stress and into parasympathetic recovery.</li>
+        </ul>
 
-          <div>
-            <h3 className={styles.subheading} style={{ marginTop: 0 }}>Benefits of 1–2x Weekly Mobility Training</h3>
-            <ul className={styles.benefitList}>
-              <li>✓ Greater joint comfort and reduced morning stiffness</li>
-              <li>✓ Improved squat depth, hip hinge mechanics, and overhead reach</li>
-              <li>✓ Better posture, spinal alignment, and balance</li>
-              <li>✓ Reduced risk of compensatory strains and overuse injuries</li>
-              <li>✓ Faster recovery between strength training workouts</li>
-              <li>✓ Long-term physical independence—getting down to and up from the floor with ease</li>
-            </ul>
+        <h3 className={styles.subheading}>Benefits of 1–2x Weekly Mobility Training</h3>
+        <ul className={styles.benefitList}>
+          <li>✓ Greater joint comfort and reduced morning stiffness</li>
+          <li>✓ Improved squat depth, hip hinge mechanics, and overhead reach</li>
+          <li>✓ Better posture, spinal alignment, and balance</li>
+          <li>✓ Reduced risk of compensatory strains and overuse injuries</li>
+          <li>✓ Faster recovery between strength training workouts</li>
+          <li>✓ Long-term physical independence—getting down to and up from the floor with ease</li>
+        </ul>
 
-            <h3 className={styles.subheading}>How to Schedule Your Sessions</h3>
-            <p>You don&apos;t need an hour-long class to see dramatic improvements in how your body feels and moves. Choose the approach that fits your week best:</p>
-            <p><strong>Option A (Dedicated Sessions):</strong> Complete one or two 15–20 minute full-body mobility &amp; stretching sessions on your non-lifting days or in the evening before bed to improve sleep quality.</p>
-            <p><strong>Option B (Post-Workout Integration):</strong> Add 10–15 minutes of targeted mobility and static stretching immediately after two of your weekly strength or cardio sessions while your tissues are warm.</p>
-          </div>
-        </div>
+        <h3 className={styles.subheading}>How to Schedule Your Sessions</h3>
+        <p>You don&apos;t need an hour-long class to see dramatic improvements in how your body feels and moves. Choose the approach that fits your week best:</p>
+        <p><strong>Option A (Dedicated Sessions):</strong> Complete one or two 15–20 minute full-body mobility &amp; stretching sessions on your non-lifting days or in the evening before bed to improve sleep quality.</p>
+        <p><strong>Option B (Post-Workout Integration):</strong> Add 10–15 minutes of targeted mobility and static stretching immediately after two of your weekly strength or cardio sessions while your tissues are warm.</p>
 
         <div className={styles.coachNote} style={{ marginBottom: 0 }}>
           Strength without mobility feels rigid. Mobility without strength lacks stability.<br/><br/>

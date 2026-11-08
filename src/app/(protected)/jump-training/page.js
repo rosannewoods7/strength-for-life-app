@@ -12,11 +12,10 @@ export default function CardiorespiratoryTrainingPage() {
         <p className={styles.subtitle}>For VO₂ Max, Heart Health, Metabolic Efficiency &amp; Longevity</p>
       </header>
 
-      <section className={styles.fullWidthProtocol} style={{ marginTop: '1rem', paddingTop: '2rem' }}>
+      <section className={styles.fullWidthProtocol}>
         <h2 className={styles.sectionTitle}>The Strength for Life Cardiorespiratory Protocol</h2>
         <p className={styles.protocolIntro}>
-          Perform cardiorespiratory training <strong>2–3 times per week</strong> on non-lifting days or after strength sessions.<br/>
-          Combine foundational aerobic conditioning (Zone 2) with targeted higher-intensity intervals to build both your aerobic base and peak cardiovascular capacity.
+          Perform cardiorespiratory training <strong>2–3 times per week</strong> on non-lifting days or after your strength sessions. Combine foundational aerobic conditioning (Zone 2) with targeted higher-intensity intervals to build both your aerobic base and peak cardiovascular capacity.
         </p>
 
         <div className={styles.protocolGrid}>
@@ -55,60 +54,50 @@ export default function CardiorespiratoryTrainingPage() {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '2rem' }}>
-          <div>
-            <h4 className={styles.miniHeading}>How to Gauge Your Intensity</h4>
-            <ul className={styles.cuesList}>
-              <li><strong>Zone 2 (Steady Aerobic):</strong> You can speak in full sentences, but someone on the phone would know you are exercising. Nasal breathing should feel sustainable.</li>
-              <li><strong>Intervals (VO₂ Max / Threshold):</strong> Breathing is deep and rapid; only a few words can be spoken at a time.</li>
-              <li><strong>Recovery Matters:</strong> Cardiorespiratory work should support—not compete with—your 3 weekly strength workouts.</li>
-            </ul>
-          </div>
-          <div>
-            <div className={styles.highlightBox} style={{ margin: '0 0 1rem 0' }}>
-              <p><strong>Choose Joint-Friendly Modalities:</strong> Your heart and mitochondria do not care whether you are walking uphill, cycling, rowing, swimming, or rucking. Choose the modalities that feel best on your joints and that you can perform consistently.</p>
-            </div>
-            <p className={styles.disclaimer}>*Disclaimer: If you have cardiovascular conditions, uncontrolled blood pressure, or are returning from medical treatment, consult your healthcare provider to establish appropriate heart-rate guidelines.</p>
-          </div>
+        <h3 className={styles.subheading}>How to Gauge Your Intensity</h3>
+        <ul className={styles.cuesList}>
+          <li><strong>Zone 2 (Steady Aerobic):</strong> You can speak in full sentences, but someone on the phone would know you are exercising. Nasal breathing should feel sustainable throughout the session.</li>
+          <li><strong>Intervals (VO₂ Max / Threshold):</strong> Breathing is deep and rapid; only a few words can be spoken at a time during the work intervals.</li>
+          <li><strong>Recovery Matters:</strong> Cardiorespiratory work should support—not compete with—your 3 weekly progressive strength workouts.</li>
+        </ul>
+
+        <div className={styles.highlightBox}>
+          <p style={{ margin: 0 }}><strong>Choose Joint-Friendly Modalities:</strong> Your heart and mitochondria do not care whether you are walking uphill, cycling, rowing, swimming, or rucking. Choose the modalities that feel best on your joints and that you can perform consistently week after week.</p>
         </div>
+
+        <p className={styles.disclaimer}>*Disclaimer: If you have cardiovascular conditions, uncontrolled blood pressure, or are returning from medical treatment, consult your healthcare provider to establish appropriate heart-rate guidelines.</p>
       </section>
 
-      <article className={styles.scienceSection} style={{ marginTop: '3rem' }}>
+      <article className={styles.scienceSection} style={{ marginTop: '2.5rem' }}>
         <h2 className={styles.sectionTitle}>Why Cardiorespiratory Fitness Is Essential for Longevity</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '3rem' }}>
-          <div>
-            <p>While progressive strength training is the foundation for preserving muscle and bone, <strong>cardiorespiratory fitness (measured by VO₂ max) is one of the single strongest predictors of lifespan and healthspan in both men and women.</strong></p>
-            <p>Research consistently shows that moving from low cardiorespiratory fitness to even moderate-to-high fitness is associated with a dramatic reduction in all-cause mortality and cardiovascular disease risk.</p>
-            <p>Better yet, cardiorespiratory training directly enhances your strength workouts: a stronger aerobic system helps you recover faster between heavy sets, clears metabolic byproducts more efficiently, and improves daily energy levels.</p>
+        
+        <p>While progressive strength training is the foundation for preserving muscle and bone, <strong>cardiorespiratory fitness (measured by VO₂ max) is one of the single strongest predictors of lifespan and healthspan in both men and women.</strong></p>
+        <p>Research consistently shows that moving from low cardiorespiratory fitness to moderate-to-high fitness is associated with a dramatic reduction in all-cause mortality and cardiovascular disease risk. Better yet, cardiorespiratory training directly enhances your strength workouts: a stronger aerobic system helps you recover faster between heavy sets, clears metabolic byproducts more efficiently, and improves daily energy levels.</p>
 
-            <h3 className={styles.subheading}>The Science of Zone 2 &amp; VO₂ Max</h3>
-            <p>A complete cardiorespiratory strategy trains two complementary energy systems:</p>
-            <ul className={styles.checkList}>
-              <li><strong>Mitochondrial Density (Zone 2):</strong> Steady, moderate-intensity aerobic work stimulates mitochondrial biogenesis—creating more and healthier cellular powerhouses that burn fat efficiently and stabilize blood glucose.</li>
-              <li><strong>Stroke Volume &amp; Oxygen Delivery (VO₂ Max):</strong> Brief bouts of higher-intensity effort challenge the heart muscle to pump more blood per beat and improve your muscles' capacity to extract and utilize oxygen.</li>
-              <li><strong>Vascular Elasticity:</strong> Regular aerobic conditioning keeps arteries flexible, supporting healthy blood pressure and cerebral blood flow as we age.</li>
-            </ul>
-          </div>
+        <h3 className={styles.subheading}>The Science of Zone 2 &amp; VO₂ Max</h3>
+        <p>A complete cardiorespiratory strategy trains two complementary energy systems:</p>
+        <ul className={styles.checkList}>
+          <li><strong>Mitochondrial Density (Zone 2):</strong> Steady, moderate-intensity aerobic work stimulates mitochondrial biogenesis—creating more and healthier cellular powerhouses that burn fat efficiently and stabilize blood glucose.</li>
+          <li><strong>Stroke Volume &amp; Oxygen Delivery (VO₂ Max):</strong> Brief bouts of higher-intensity effort challenge the heart muscle to pump more blood per beat and improve your muscles&apos; capacity to extract and utilize oxygen.</li>
+          <li><strong>Vascular Elasticity:</strong> Regular aerobic conditioning keeps arteries flexible, supporting healthy blood pressure and cerebral blood flow as we age.</li>
+        </ul>
 
-          <div>
-            <h3 className={styles.subheading} style={{ marginTop: 0 }}>Key Benefits of 2–3x Weekly Cardio</h3>
-            <ul className={styles.benefitList}>
-              <li>✓ Higher VO₂ max and cardiovascular reserve</li>
-              <li>✓ Improved insulin sensitivity and blood sugar regulation</li>
-              <li>✓ Enhanced mitochondrial health and metabolic flexibility</li>
-              <li>✓ Faster recovery between strength training sets and sessions</li>
-              <li>✓ Reduced resting heart rate and improved heart rate variability (HRV)</li>
-              <li>✓ Improved cognitive health, mood, and deep sleep quality</li>
-            </ul>
+        <h3 className={styles.subheading}>Key Benefits of 2–3x Weekly Cardiorespiratory Training</h3>
+        <ul className={styles.benefitList}>
+          <li>✓ Higher VO₂ max and cardiovascular reserve</li>
+          <li>✓ Improved insulin sensitivity and blood sugar regulation</li>
+          <li>✓ Enhanced mitochondrial health and metabolic flexibility</li>
+          <li>✓ Faster recovery between strength training sets and sessions</li>
+          <li>✓ Reduced resting heart rate and improved heart rate variability (HRV)</li>
+          <li>✓ Improved cognitive health, mood, and deep sleep quality</li>
+        </ul>
 
-            <h3 className={styles.subheading}>Cardio Without Muscle Loss</h3>
-            <p>A common mistake is performing excessive, grueling "gray-zone" cardio every day while under-eating protein—which elevates cortisol, increases fatigue, and compromises lean muscle mass.</p>
-            <p>In <strong>Strength for Life</strong>, we pair 3 days of progressive resistance training with <strong>2–3 strategic cardiorespiratory sessions per week</strong>. This gives you the full cardiovascular and metabolic benefits of aerobic conditioning while protecting your recovery and muscle gains.</p>
-          </div>
-        </div>
+        <h3 className={styles.subheading}>Cardio Without Muscle Loss</h3>
+        <p>A common mistake is performing excessive, grueling &ldquo;gray-zone&rdquo; cardio every day while under-eating protein—which elevates cortisol, increases fatigue, and compromises lean muscle mass.</p>
+        <p>In <strong>Strength for Life</strong>, we pair 3 days of progressive resistance training with <strong>2–3 strategic cardiorespiratory sessions per week</strong>. This gives you the full cardiovascular and metabolic benefits of aerobic conditioning while protecting your recovery and muscle gains.</p>
 
         <div className={styles.coachNote} style={{ marginBottom: 0 }}>
-          <strong>Coach's Note:</strong> We don't do cardio as punishment for what we ate, and we don't grind ourselves down with endless hours of exhaustion. We train our cardiorespiratory system to build a resilient heart, sharper energy, and the endurance to enjoy every decade of life.<br/><br/>
+          <strong>Coach&apos;s Note:</strong> We don&apos;t do cardio as punishment for what we ate, and we don&apos;t grind ourselves down with endless hours of exhaustion. We train our cardiorespiratory system to build a resilient heart, sharper energy, and the endurance to enjoy every decade of life.<br/><br/>
           <strong>Strength builds the chassis. Cardiorespiratory fitness builds the engine. Together, you are Built for Strength. Built for Life.</strong>
         </div>
       </article>

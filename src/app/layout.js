@@ -1,8 +1,8 @@
-import { Inter, Dancing_Script } from "next/font/google";
+import { Inter, Kaushan_Script } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-const scriptFont = Dancing_Script({ subsets: ["latin"], variable: "--font-script" });
+const scriptFont = Kaushan_Script({ weight: "400", subsets: ["latin"], variable: "--font-script" });
 
 export const metadata = {
   title: 'Strength for Life | 12-Week Strength & Longevity Protocol',
