@@ -82,6 +82,15 @@ export default function RootLayout({ children }) {
         {/* End Meta Pixel Code */}
 
         {children}
+        <Script id="register-sw" strategy="afterInteractive">
+          {`
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').catch(function() {});
+              });
+            }
+          `}
+        </Script>
         <Analytics />
         <Chatbot />
       </body>

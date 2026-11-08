@@ -1,21 +1,38 @@
 {
+  "id": "/",
   "name": "Strength for Life",
   "short_name": "Strength for Life",
   "description": "The definitive adult strength, power, and metabolic resilience protocol.",
-  "start_url": "/",
+  "start_url": "/dashboard",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "background_color": "#0f2439",
   "theme_color": "#0f2439",
   "icons": [
     {
-      "src": "/icon-192x192.png",
+      "src": "/icon-192x192.png?v=4",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/icon-512x512.png",
+      "src": "/icon-192x192.png?v=4",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512x512.png?v=4",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512x512.png?v=4",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
