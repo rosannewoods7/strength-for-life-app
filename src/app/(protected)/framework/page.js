@@ -13,14 +13,15 @@ export default function FrameworkPage() {
       content: (
         <>
           <p>
-            The adult metabolic shift is a physiological transition point, not simply a chronological milestone. Many adults enter their 40s, 50s, and beyond feeling as though their body has suddenly become unpredictable. This is not a failure of effort; it is the result of a coordinated shift across multiple biological systems.
+            The adult metabolic shift is a physiological transition point, not simply a chronological milestone. Many adults enter their 40s, 50s, and beyond feeling as though their body has suddenly become unpredictable. This is not a failure of effort; it is the result of a coordinated shift across multiple biological systems—especially how our bodies process and regulate blood glucose.
           </p>
           <div className={styles.detailBox}>
-            <p><strong>The Biological Realities:</strong></p>
+            <p><strong>The Biological Realities &amp; The Power of Glucose Control:</strong></p>
             <ul>
-              <li><strong>Anabolic Resistance &amp; Hormonal Shifts:</strong> As we age and hormone profiles shift, the body becomes less efficient at stimulating muscle protein synthesis and managing blood sugar, leading to a greater tendency to lose lean tissue and store visceral fat around the midline.</li>
-              <li><strong>Cortisol Sensitivity:</strong> The stress response system becomes highly sensitive. Chronic stress elevates cortisol, further disrupting fat metabolism, glucose regulation, and sleep.</li>
-              <li><strong>Muscle as the Engine:</strong> This hierarchy demonstrates how prioritizing muscle preservation is the ultimate countermeasure. Muscle is the primary site for glucose disposal and metabolic regulation. Building it creates the foundation for metabolic resilience and sustainable body composition, completely shifting the focus away from traditional restrictive dieting.</li>
+              <li><strong>Glucose Control &amp; Insulin Sensitivity:</strong> As we get older, gradual declines in muscle mass and mitochondrial efficiency make our cells more resistant to insulin. When blood sugar spikes and crashes frequently, excess glucose is preferentially stored as visceral (deep abdominal) fat, inflammation rises, and advanced glycation end-products (AGEs) accelerate tissue aging.</li>
+              <li><strong>Why Managing Blood Sugar Changes Everything:</strong> Stabilizing blood glucose as we age delivers immediate and long-term benefits—eliminating mid-afternoon energy crashes and brain fog, curbing cravings, protecting cardiovascular and cognitive health, reducing chronic inflammation, and allowing the body to access stored fat for fuel.</li>
+              <li><strong>Cortisol &amp; Sleep Connection:</strong> Chronic stress and fragmented sleep directly elevate fasting blood glucose and cortisol, making glucose regulation harder even when your diet hasn&apos;t changed.</li>
+              <li><strong>Muscle as Your Primary Glucose Sink:</strong> Skeletal muscle is responsible for clearing up to 80% of post-meal glucose from your bloodstream. By combining progressive strength training with protein-forward, blood-sugar-stabilizing nutrition, you build a larger &ldquo;metabolic sink&rdquo; that naturally masters glucose control for life.</li>
             </ul>
           </div>
         </>
@@ -34,14 +35,14 @@ export default function FrameworkPage() {
       content: (
         <>
           <p>
-            Adult health is often approached in isolation. People are told to focus on diet, or hormones, or exercise—rarely are these systems addressed together. This framework integrates our five core pillars because you cannot optimize one pillar while neglecting the others.
+            Adult health is often approached in isolation. People are told to focus on diet, or blood sugar, or exercise—rarely are these systems addressed together. This framework integrates our five core pillars because you cannot optimize one pillar while neglecting the others.
           </p>
           <div className={styles.detailBox}>
             <p><strong>The Five Pillars:</strong></p>
             <ul>
               <li><strong>Strength Training &amp; Muscle Preservation:</strong> Muscle is the primary driver of metabolic health and physical function. As we age, preserving muscle and power is not optional—it is foundational.</li>
-              <li><strong>Nutrition &amp; Metabolic Health:</strong> Nutrition provides the raw materials. It emphasizes adequate protein to overcome anabolic resistance and stable blood sugar through balanced meals.</li>
-              <li><strong>Physiology &amp; Hormonal Optimization:</strong> Understanding how age-related hormonal and metabolic shifts work allows you to differentiate between what is physiologically driven and what is influenced by lifestyle.</li>
+              <li><strong>Nutrition &amp; Metabolic Health:</strong> Nutrition provides the raw materials, emphasizing adequate protein to overcome anabolic resistance and support lean tissue repair.</li>
+              <li><strong>Glucose Control &amp; Insulin Sensitivity:</strong> Managing blood sugar spikes through muscle contraction, meal composition, and movement timing protects vascular health, sustains daily energy, and prevents visceral fat accumulation as we age.</li>
               <li><strong>Stress &amp; Sleep Optimization:</strong> Stress and recovery determine how effectively the body can repair. Poor sleep disrupts appetite regulation, insulin sensitivity, and fat storage.</li>
               <li><strong>Longevity &amp; Healthy Aging:</strong> This integrates the outcomes of the first four pillars into a long-term vision for healthspan.</li>
             </ul>
