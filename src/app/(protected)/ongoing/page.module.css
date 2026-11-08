@@ -213,6 +213,24 @@
 }
 
 @media (max-width: 768px) {
+  .title {
+    font-size: 1.55rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .card,
+  .paywallCard {
+    padding: 1.15rem 1rem;
+  }
+
   .paywallHeaderRow {
     flex-direction: column;
   }

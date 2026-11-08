@@ -46,7 +46,7 @@ export default function GettingStartedPage() {
           <p style={{ fontSize: '0.95rem', margin: '0 0 1rem 0', color: 'var(--color-deep-espresso)', lineHeight: '1.5' }}>
             <strong>First, open this webpage on your phone's internet browser.</strong> For the best experience, save this dashboard directly to your phone's home screen so it functions exactly like a native app:
           </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1.25rem' }}>
             <div>
               <h4 style={{ fontSize: '1rem', color: 'var(--color-deep-plum)', marginBottom: '0.25rem', marginTop: 0 }}>iPhone (Safari)</h4>
               <ol style={{ paddingLeft: '1.2rem', margin: 0, fontSize: '0.9rem', color: 'var(--color-deep-espresso)', lineHeight: '1.5' }}>

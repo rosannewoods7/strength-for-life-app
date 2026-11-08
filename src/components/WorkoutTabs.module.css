@@ -207,22 +207,47 @@
 }
 
 @media (max-width: 768px) {
+  .container {
+    width: 100%;
+    min-width: 0;
+  }
+
   .tabContent {
-    padding: 0.9rem;
-    gap: 1rem;
+    padding: 0.75rem 0.65rem;
+    gap: 0.75rem;
+    min-width: 0;
   }
 
   .tabButton {
-    padding: 0.75rem 0.4rem;
-    font-size: 0.88rem;
+    padding: 0.65rem 0.3rem;
+    font-size: 0.82rem;
   }
 
+  .topActionBar {
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prescriptionTable h3 {
+    font-size: 1.05rem;
+  }
+
+  .openPageButton,
+  .printButton,
+  .logWorkoutLabel {
+    font-size: 0.8rem;
+    padding: 0.38rem 0.65rem;
+  }
+
+  .prescriptionTable,
   .prescriptionTable table,
   .prescriptionTable thead,
   .prescriptionTable tbody,
   .prescriptionTable th,
   .prescriptionTable td {
     display: block;
+    width: 100%;
+    min-width: 0;
   }
 
   .prescriptionTable thead tr {
@@ -234,16 +259,19 @@
   /* Compact grid card per exercise on mobile */
   .prescriptionTable tr.exerciseRow {
     display: grid;
-    grid-template-columns: auto 1fr;
-    column-gap: 0.65rem;
-    row-gap: 0.45rem;
-    align-items: center;
+    grid-template-columns: 28px minmax(0, 1fr);
+    column-gap: 0.55rem;
+    row-gap: 0.4rem;
+    align-items: start;
     border: 1px solid rgba(203, 213, 225, 0.85);
     border-radius: 10px;
-    margin-bottom: 0.65rem;
-    padding: 0.7rem 0.8rem;
+    margin-bottom: 0.6rem;
+    padding: 0.65rem 0.65rem;
     background: var(--color-white);
     box-shadow: 0 1px 4px rgba(15, 36, 57, 0.04);
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
 
   .prescriptionTable td {
@@ -259,26 +287,46 @@
   .demoCell {
     grid-column: 1;
     grid-row: 1;
-    width: auto;
+    width: 28px;
     display: flex;
     align-items: center;
+    padding-top: 2px;
+  }
+
+  .demoButton {
+    width: 28px;
+    height: 28px;
   }
 
   /* Row 1 Right: Exercise Name + Sets x Reps badge */
   .movementName {
     grid-column: 2;
     grid-row: 1;
-    font-size: 0.95rem;
-    line-height: 1.25;
+    font-size: 0.88rem;
+    line-height: 1.3;
+    min-width: 0;
+  }
+
+  .movementHeaderMobile {
+    flex-wrap: wrap;
+    gap: 0.3rem 0.5rem;
+    min-width: 0;
+  }
+
+  .movementTitleText {
+    font-size: 0.88rem;
+    line-height: 1.3;
+    word-break: break-word;
+    min-width: 0;
   }
 
   .mobilePrescriptionBadge {
     display: inline-block;
     background: rgba(15, 36, 57, 0.08);
     color: var(--color-deep-plum);
-    font-size: 0.76rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    padding: 0.2rem 0.5rem;
+    padding: 0.15rem 0.45rem;
     border-radius: 999px;
     white-space: nowrap;
     flex-shrink: 0;
@@ -296,8 +344,9 @@
     grid-row: 2;
     display: flex !important;
     align-items: center;
-    gap: 0.5rem;
-    padding-top: 0.2rem !important;
+    gap: 0.45rem;
+    padding-top: 0.15rem !important;
+    min-width: 0;
   }
 
   .weightCell::before {
@@ -305,16 +354,16 @@
     content: "Weight:";
     font-weight: 700;
     color: var(--color-deep-plum);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.04em;
     flex-shrink: 0;
   }
 
   .weightInput {
-    max-width: 140px !important;
-    padding: 0.35rem 0.55rem !important;
-    font-size: 0.85rem !important;
+    max-width: 130px !important;
+    padding: 0.3rem 0.5rem !important;
+    font-size: 0.82rem !important;
   }
 
   /* Row 3 Full Width: Coach cue + personal note input */
@@ -322,7 +371,19 @@
     grid-column: 1 / -1;
     grid-row: 3;
     border-top: 1px solid rgba(226, 232, 240, 0.8) !important;
-    padding-top: 0.4rem !important;
+    padding-top: 0.35rem !important;
+    min-width: 0;
+  }
+
+  .coachCueText {
+    font-size: 0.8rem;
+    line-height: 1.38;
+    word-break: break-word;
+  }
+
+  .userNoteInput {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.5rem;
   }
 }
 

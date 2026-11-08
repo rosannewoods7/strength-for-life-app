@@ -106,13 +106,19 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   gap: 2rem;
+  min-width: 0;
+}
+
+.mainContent,
+.sidebarContent {
+  min-width: 0;
 }
 
 @media (max-width: 992px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -510,3 +516,77 @@
 .educationalText p { color: var(--color-deep-espresso) !important; }
 .doCard p, .doCard li, .doCard strong { color: var(--color-deep-espresso) !important; }
 .contentBlock .sectionTitle { color: var(--color-deep-plum) !important; border-bottom-color: rgba(15, 36, 57, 0.15); margin-top: 0; }
+
+@media (max-width: 768px) {
+  .container {
+    gap: 1.25rem;
+    min-width: 0;
+  }
+
+  .header {
+    gap: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.55rem;
+    line-height: 1.25;
+  }
+
+  .coachingIntro {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .openWorkoutHeroBtn {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
+
+  .sectionTitle {
+    font-size: 1.25rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .pillarsGrid {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .pillarCard,
+  .coachCard,
+  .microLearningCard,
+  .contentBlock {
+    padding: 1.15rem 1rem;
+    min-width: 0;
+  }
+
+  .pillarHeader h3 {
+    font-size: 1rem;
+  }
+
+  .pillarBody {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .coachHeader h3 {
+    font-size: 1.1rem;
+  }
+
+  .coachCard p,
+  .microLearningCard p,
+  .educationalText,
+  .doCard {
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .rememberCard {
+    font-size: 1rem;
+    padding: 1.1rem;
+  }
+}

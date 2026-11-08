@@ -361,23 +361,45 @@
 }
 
 @media (max-width: 768px) {
+  .dashboardContainer {
+    gap: 1.25rem;
+  }
+
   .header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 0.65rem;
+    padding-bottom: 1rem;
+  }
+
+  .welcomeTitle {
+    font-size: 1.55rem;
+  }
+
+  .welcomeSubtitle {
+    font-size: 0.95rem;
   }
 
   .card {
-    padding: 1.25rem;
+    padding: 1.1rem 0.95rem;
+    min-width: 0;
   }
 
   .miniProgressCard {
-    padding: 1.25rem;
+    padding: 1rem;
+  }
+
+  .miniProgressTitle {
+    font-size: 1.05rem;
+  }
+
+  .miniProgressPhase {
+    font-size: 0.88rem;
   }
 
   .miniProgressHeader {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.35rem;
+    gap: 0.25rem;
   }
 }
