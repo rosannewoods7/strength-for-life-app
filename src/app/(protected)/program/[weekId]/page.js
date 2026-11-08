@@ -107,6 +107,11 @@ export default async function WeeklyModulePage({ params }) {
         {isAdvancedPhase && <div className={styles.phaseTag}>MONTH {Math.ceil(weekNumber / 4)} — PHASE {data.phase}</div>}
         <h1 className={styles.title}>Week {weekNumber}: {data.title}</h1>
         {data.coachingIntro && <p className={styles.coachingIntro}>{data.coachingIntro}</p>}
+        <div className={styles.quickWorkoutBar}>
+          <Link href={`/program/week-${weekNumber}/workout`} className={styles.openWorkoutHeroBtn}>
+            🏋️ Open Dedicated Workout Page (Workout A, B &amp; C) &rarr;
+          </Link>
+        </div>
       </header>
 
       {isAdvancedPhase ? (
@@ -156,9 +161,9 @@ export default async function WeeklyModulePage({ params }) {
                 ))}
               </div>
             </div>
-            <a href="#train-section" className={styles.startTrainingBtn}>
-              START THIS WEEK'S TRAINING &rarr;
-            </a>
+            <Link href={`/program/week-${weekNumber}/workout`} className={styles.startTrainingBtn}>
+              OPEN THIS WEEK'S WORKOUTS &rarr;
+            </Link>
           </div>
 
           <div className={styles.contentBlock} id="train-section">

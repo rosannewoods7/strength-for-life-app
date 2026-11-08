@@ -20,6 +20,7 @@ const generateDefaultProgress = () => {
 export function useProgress() {
   const [progress, setProgress] = useState(generateDefaultProgress());
   const [weights, setWeights] = useState({});
+  const [exerciseNotes, setExerciseNotes] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -27,6 +28,15 @@ export function useProgress() {
 
   useEffect(() => {
     async function loadProgress() {
+      try {
+        const localNotes = localStorage.getItem('sfl_exercise_notes');
+        if (localNotes) {
+          setExerciseNotes(JSON.parse(localNotes));
+        }
+      } catch (e) {
+        // ignore localStorage parse error
+      }
+
       const { data: { user } } = await supabase.auth.getUser();
       if (user && user.user_metadata) {
         if (user.user_metadata.subscription_status === 'active') {
@@ -46,6 +56,10 @@ export function useProgress() {
         }
         if (user.user_metadata.weights) {
           setWeights(JSON.parse(JSON.stringify(user.user_metadata.weights)));
+        }
+        if (user.user_metadata.exercise_notes) {
+          const remoteNotes = JSON.parse(JSON.stringify(user.user_metadata.exercise_notes));
+          setExerciseNotes((prev) => ({ ...prev, ...remoteNotes }));
         }
       }
       setIsLoading(false);
@@ -90,6 +104,29 @@ export function useProgress() {
     }
   };
 
+  const updateExerciseNote = async (week, workoutId, exerciseName, value) => {
+    const key = `${week}-${workoutId}-${exerciseName}`;
+    const newNotes = { ...exerciseNotes, [key]: value };
+    setExerciseNotes(newNotes);
+    try {
+      localStorage.setItem('sfl_exercise_notes', JSON.stringify(newNotes));
+    } catch (e) {
+      // ignore storage quota errors
+    }
+    setIsSaving(true);
+
+    try {
+      const { error } = await supabase.auth.updateUser({
+        data: { exercise_notes: newNotes }
+      });
+      if (error) throw error;
+    } catch (err) {
+      console.error("Error saving exercise notes:", err);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   const resetWeek = async (week) => {
     const newProgress = { ...progress };
     newProgress[week] = JSON.parse(JSON.stringify(DEFAULT_WEEK));
@@ -110,11 +147,13 @@ export function useProgress() {
   return {
     progress,
     weights,
+    exerciseNotes,
     isLoading,
     isSaving,
     isSubscribed,
     updateProgress,
     updateWeight,
+    updateExerciseNote,
     resetWeek
   };
 }

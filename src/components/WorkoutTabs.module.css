@@ -16,10 +16,10 @@
 
 .tabButton {
   flex: 1;
-  padding: 1.25rem 1rem;
+  padding: 1rem 0.75rem;
   background: none;
   border: none;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--color-muted-plum);
   cursor: pointer;
@@ -39,10 +39,46 @@
 }
 
 .tabContent {
-  padding: 2rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
+}
+
+.topActionBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.tableActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.openPageButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--color-deep-plum);
+  color: var(--color-white);
+  text-decoration: none;
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(15, 36, 57, 0.15);
+}
+
+.openPageButton:hover {
+  background-color: var(--color-muted-plum);
+  transform: translateY(-1px);
 }
 
 .demoCell {
@@ -62,6 +98,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   color: var(--color-deep-plum);
+  flex-shrink: 0;
 }
 
 .demoButton:hover {
@@ -72,12 +109,29 @@
 
 .demoIcon {
   font-size: 0.8rem;
-  margin-left: 2px; /* Center the play triangle optically */
+  margin-left: 2px;
 }
 
 .movementName {
   font-weight: 600;
   color: var(--color-deep-plum);
+}
+
+.movementHeaderMobile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.movementTitleText {
+  font-weight: 700;
+  color: var(--color-deep-plum);
+}
+
+.mobilePrescriptionBadge {
+  display: none;
 }
 
 .prescriptionTable {
@@ -86,8 +140,8 @@
 
 .prescriptionTable h3 {
   color: var(--color-deep-espresso);
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
+  margin-bottom: 0;
+  font-size: 1.2rem;
 }
 
 .prescriptionTable table {
@@ -97,9 +151,10 @@
 
 .prescriptionTable th,
 .prescriptionTable td {
-  padding: 1rem;
+  padding: 0.85rem 0.75rem;
   text-align: left;
   border-bottom: 1px solid rgba(232, 221, 229, 0.5);
+  vertical-align: top;
 }
 
 .prescriptionTable th {
@@ -107,7 +162,7 @@
   color: var(--color-deep-plum);
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   letter-spacing: 0.05em;
 }
 
@@ -117,87 +172,157 @@
 
 .prescriptionTable td {
   color: var(--color-deep-espresso);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+}
+
+.coachCueText {
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: var(--color-deep-espresso);
+  margin-bottom: 0.4rem;
+}
+
+.userNoteInput {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border: 1px dashed rgba(43, 76, 111, 0.35);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: var(--color-deep-espresso);
+  background-color: rgba(248, 250, 252, 0.9);
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.userNoteInput:focus {
+  outline: none;
+  border-style: solid;
+  border-color: var(--color-deep-plum);
+  background-color: var(--color-white);
+  box-shadow: 0 0 0 2px rgba(15, 36, 57, 0.1);
+}
+
+.userNoteInput::placeholder {
+  color: rgba(71, 85, 105, 0.55);
 }
 
 @media (max-width: 768px) {
-  .tabsHeader {
-    flex-direction: column;
+  .tabContent {
+    padding: 0.9rem;
+    gap: 1rem;
   }
-  
+
   .tabButton {
-    border-bottom: 1px solid rgba(232, 221, 229, 0.5);
-    border-left: 3px solid transparent;
+    padding: 0.75rem 0.4rem;
+    font-size: 0.88rem;
   }
-  
-  .tabButton.activeTab {
-    border-bottom-color: rgba(232, 221, 229, 0.5);
-    border-left-color: var(--color-deep-plum);
-  }
-  
-  .prescriptionTable table, 
-  .prescriptionTable thead, 
-  .prescriptionTable tbody, 
-  .prescriptionTable th, 
-  .prescriptionTable td, 
-  .prescriptionTable tr {
+
+  .prescriptionTable table,
+  .prescriptionTable thead,
+  .prescriptionTable tbody,
+  .prescriptionTable th,
+  .prescriptionTable td {
     display: block;
   }
-  
+
   .prescriptionTable thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
-  
-  .prescriptionTable tr {
-    border: 1px solid rgba(232, 221, 229, 0.5);
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
+
+  /* Compact grid card per exercise on mobile */
+  .prescriptionTable tr.exerciseRow {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.65rem;
+    row-gap: 0.45rem;
+    align-items: center;
+    border: 1px solid rgba(203, 213, 225, 0.85);
+    border-radius: 10px;
+    margin-bottom: 0.65rem;
+    padding: 0.7rem 0.8rem;
     background: var(--color-white);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-  }
-  
-  .prescriptionTable td {
-    border: none;
-    border-bottom: 1px solid rgba(232, 221, 229, 0.3);
-    padding: 1rem 0.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    gap: 0.5rem;
-  }
-  
-  .prescriptionTable td:last-child {
-    border-bottom: none;
-  }
-  
-  .prescriptionTable td::before {
-    content: attr(data-label);
-    position: static;
-    font-weight: 600;
-    color: var(--color-deep-plum);
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    box-shadow: 0 1px 4px rgba(15, 36, 57, 0.04);
   }
 
+  .prescriptionTable td {
+    border: none;
+    padding: 0;
+  }
+
+  .prescriptionTable td::before {
+    display: none;
+  }
+
+  /* Row 1 Left: Play Demo button */
   .demoCell {
+    grid-column: 1;
+    grid-row: 1;
     width: auto;
-    text-align: left;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
   }
 
-  .demoButton {
-    margin-left: 0;
+  /* Row 1 Right: Exercise Name + Sets x Reps badge */
+  .movementName {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 0.95rem;
+    line-height: 1.25;
   }
-  
-  .demoPlaceholder {
-    margin-left: 0;
+
+  .mobilePrescriptionBadge {
+    display: inline-block;
+    background: rgba(15, 36, 57, 0.08);
+    color: var(--color-deep-plum);
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Hide separate Sets & Reps rows on mobile since badge shows both */
+  .setsCell,
+  .repsCell {
+    display: none !important;
+  }
+
+  /* Row 2 Full Width: Weight input */
+  .weightCell {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex !important;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 0.2rem !important;
+  }
+
+  .weightCell::before {
+    display: inline-block !important;
+    content: "Weight:";
+    font-weight: 700;
+    color: var(--color-deep-plum);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+
+  .weightInput {
+    max-width: 140px !important;
+    padding: 0.35rem 0.55rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* Row 3 Full Width: Coach cue + personal note input */
+  .notesCell {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    border-top: 1px solid rgba(226, 232, 240, 0.8) !important;
+    padding-top: 0.4rem !important;
   }
 }
 
@@ -237,11 +362,11 @@
   background: none;
   border: none;
   font-size: 2rem;
-  color: var(--color-white); /* White so it shows up on top of video, or maybe place it outside iframe */
+  color: var(--color-white);
   cursor: pointer;
   z-index: 10;
   line-height: 1;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .closeButton:hover {
@@ -250,7 +375,7 @@
 
 .iframeContainer {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
   background: #000;
@@ -270,13 +395,14 @@
   gap: 0.5rem;
   cursor: pointer;
   font-weight: 600;
+  font-size: 0.9rem;
   color: var(--color-white);
   background-color: var(--color-deep-espresso);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
   transition: all 0.2s ease;
   user-select: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logWorkoutLabel:hover {
@@ -293,8 +419,8 @@
 }
 
 .logCheckmark {
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
   background-color: transparent;
   border: 2px solid rgba(255, 255, 255, 0.7);
   border-radius: 4px;
@@ -313,7 +439,7 @@
   content: "";
   display: none;
   width: 5px;
-  height: 10px;
+  height: 9px;
   border: solid var(--color-deep-espresso);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
@@ -326,9 +452,9 @@
 
 .weightInput {
   width: 100%;
-  max-width: 100px;
-  padding: 0.5rem;
-  border: 1px solid rgba(232, 221, 229, 0.8);
+  max-width: 110px;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid rgba(203, 213, 225, 0.95);
   border-radius: 6px;
   font-size: 0.9rem;
   color: var(--color-deep-espresso);
@@ -368,11 +494,12 @@
 @media print {
   .tabsHeader,
   .printButton,
+  .openPageButton,
   .logWorkoutLabel,
   .demoCell,
   .demoButton,
   .demoPlaceholder,
-  .notesCell {
+  .mobilePrescriptionBadge {
     display: none !important;
   }
 
@@ -380,27 +507,27 @@
     box-shadow: none !important;
     border: none !important;
   }
-  
+
   .prescriptionTable h3 {
     font-size: 1.1rem !important;
     margin-bottom: 0.25rem !important;
   }
-  
-  /* Force table layout to override mobile card layout */
+
   .prescriptionTable table {
     display: table !important;
     width: 100% !important;
   }
-  
+
   .prescriptionTable thead {
     display: table-header-group !important;
   }
-  
+
   .prescriptionTable tbody {
     display: table-row-group !important;
   }
-  
-  .prescriptionTable tr {
+
+  .prescriptionTable tr,
+  .prescriptionTable tr.exerciseRow {
     display: table-row !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -408,33 +535,36 @@
     border: none !important;
     border-radius: 0 !important;
   }
-  
+
   .prescriptionTable thead tr {
     position: static !important;
   }
-  
+
   .prescriptionTable th,
-  .prescriptionTable td {
+  .prescriptionTable td,
+  .setsCell,
+  .repsCell {
     display: table-cell !important;
     padding: 0.25rem 0.5rem !important;
     text-align: left !important;
   }
-  
+
   .prescriptionTable td::before {
     display: none !important;
   }
-  
+
   .prescriptionTable th {
     font-size: 0.8rem !important;
     background-color: #f0f0f0 !important;
   }
-  
+
   .prescriptionTable td {
     font-size: 0.8rem !important;
     border-bottom: 1px solid #ddd !important;
   }
 
-  .weightInput {
+  .weightInput,
+  .userNoteInput {
     border: 1px solid #ccc !important;
     background: transparent !important;
     font-size: 0.8rem !important;

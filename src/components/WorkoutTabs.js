@@ -1,13 +1,29 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useProgress } from '@/hooks/useProgress';
 import styles from './WorkoutTabs.module.css';
 
-export default function WorkoutTabs({ workouts, weekNumber }) {
-  const [activeTab, setActiveTab] = useState(0);
+export default function WorkoutTabs({
+  workouts,
+  weekNumber,
+  initialTab = 0,
+  fullPage = false,
+}) {
+  const safeInitialTab =
+    initialTab >= 0 && initialTab < workouts.length ? initialTab : 0;
+  const [activeTab, setActiveTab] = useState(safeInitialTab);
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const { progress, weights, isLoading, updateProgress, updateWeight } = useProgress();
+  const {
+    progress,
+    weights,
+    exerciseNotes,
+    isLoading,
+    updateProgress,
+    updateWeight,
+    updateExerciseNote,
+  } = useProgress();
 
   const openVideo = (url) => setSelectedVideo(url);
   const closeVideo = () => setSelectedVideo(null);
@@ -25,26 +41,36 @@ export default function WorkoutTabs({ workouts, weekNumber }) {
           </button>
         ))}
       </div>
-      
+
       <div className={styles.tabContent}>
         <div className={styles.prescriptionTable}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-            <h3 style={{ margin: 0 }}>Prescription</h3>
+          <div className={styles.topActionBar}>
+            <h3 style={{ margin: 0 }}>{workouts[activeTab].title}</h3>
             {!isLoading && weekNumber && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }} className={styles.tableActions}>
-                <button 
-                  onClick={() => window.print()} 
+              <div className={styles.tableActions}>
+                {!fullPage && (
+                  <Link
+                    href={`/program/week-${weekNumber}/workout?tab=${activeTab}`}
+                    className={styles.openPageButton}
+                  >
+                    <span>📱</span> Open Workout View &rarr;
+                  </Link>
+                )}
+                <button
+                  onClick={() => window.print()}
                   className={styles.printButton}
                   title="Print or Save as PDF"
                 >
                   <span style={{ marginRight: '6px' }}>🖨️</span>
-                  Print Workout
+                  Print
                 </button>
                 <label className={styles.logWorkoutLabel}>
-                  <input 
-                    type="checkbox" 
+                  <input
+                    type="checkbox"
                     checked={progress[weekNumber]?.strength[activeTab] || false}
-                    onChange={(e) => updateProgress(weekNumber, 'strength', activeTab, e.target.checked)}
+                    onChange={(e) =>
+                      updateProgress(weekNumber, 'strength', activeTab, e.target.checked)
+                    }
                     className={styles.logCheckbox}
                   />
                   <span className={styles.logCheckmark}></span>
@@ -53,6 +79,7 @@ export default function WorkoutTabs({ workouts, weekNumber }) {
               </div>
             )}
           </div>
+
           <table>
             <thead>
               <tr>
@@ -69,42 +96,66 @@ export default function WorkoutTabs({ workouts, weekNumber }) {
                 const workoutId = workouts[activeTab].id;
                 const weightKey = `${weekNumber}-${workoutId}-${ex.name}`;
                 return (
-                  <tr key={i}>
+                  <tr key={i} className={styles.exerciseRow}>
                     <td className={styles.demoCell} data-label="Demo">
                       {ex.videoUrl ? (
-                        <button 
-                          className={styles.demoButton} 
+                        <button
+                          className={styles.demoButton}
                           title="Watch exercise demo"
                           onClick={() => openVideo(ex.videoUrl)}
                         >
                           <span className={styles.demoIcon}>▶</span>
                         </button>
                       ) : (
-                        <span className={styles.demoPlaceholder} title="Demo coming soon">-</span>
+                        <span className={styles.demoPlaceholder} title="Demo coming soon">
+                          -
+                        </span>
                       )}
                     </td>
-                    <td className={styles.movementName} data-label="Movement">{ex.name}</td>
-                    <td data-label="Sets">{ex.sets}</td>
-                    <td data-label="Reps">{ex.reps}</td>
-                    <td data-label="Weight">
-                      <input 
-                        type="text" 
-                        className={styles.weightInput} 
+                    <td className={styles.movementName} data-label="Movement">
+                      <div className={styles.movementHeaderMobile}>
+                        <span className={styles.movementTitleText}>{ex.name}</span>
+                        <span className={styles.mobilePrescriptionBadge}>
+                          {ex.sets} Sets &times; {ex.reps} Reps
+                        </span>
+                      </div>
+                    </td>
+                    <td className={styles.setsCell} data-label="Sets">
+                      {ex.sets}
+                    </td>
+                    <td className={styles.repsCell} data-label="Reps">
+                      {ex.reps}
+                    </td>
+                    <td className={styles.weightCell} data-label="Weight">
+                      <input
+                        type="text"
+                        className={styles.weightInput}
                         placeholder="e.g. 15 lbs"
                         value={weights?.[weightKey] || ''}
-                        onChange={(e) => updateWeight(weekNumber, workoutId, ex.name, e.target.value)}
+                        onChange={(e) =>
+                          updateWeight(weekNumber, workoutId, ex.name, e.target.value)
+                        }
                         disabled={isLoading}
                       />
                     </td>
                     <td className={styles.notesCell} data-label="Notes">
-                      {ex.notes
-                        ? ex.notes.split('\n').map((line, lineIdx) => {
+                      {ex.notes ? (
+                        <div className={styles.coachCueText}>
+                          {ex.notes.split('\n').map((line, lineIdx) => {
                             const colonIdx = line.indexOf(':');
                             const hasTrackLabel =
                               colonIdx > -1 &&
                               /^(Foundational|Standard|Advanced)/i.test(line.trim());
                             return (
-                              <div key={lineIdx} style={{ marginBottom: lineIdx < ex.notes.split('\n').length - 1 ? '0.35rem' : 0 }}>
+                              <div
+                                key={lineIdx}
+                                style={{
+                                  marginBottom:
+                                    lineIdx < ex.notes.split('\n').length - 1
+                                      ? '0.25rem'
+                                      : 0,
+                                }}
+                              >
                                 {hasTrackLabel ? (
                                   <>
                                     <strong>{line.slice(0, colonIdx + 1)}</strong>
@@ -115,8 +166,24 @@ export default function WorkoutTabs({ workouts, weekNumber }) {
                                 )}
                               </div>
                             );
-                          })
-                        : null}
+                          })}
+                        </div>
+                      ) : null}
+                      <input
+                        type="text"
+                        className={styles.userNoteInput}
+                        placeholder="+ Add personal note..."
+                        value={exerciseNotes?.[weightKey] || ''}
+                        onChange={(e) =>
+                          updateExerciseNote(
+                            weekNumber,
+                            workoutId,
+                            ex.name,
+                            e.target.value
+                          )
+                        }
+                        disabled={isLoading}
+                      />
                     </td>
                   </tr>
                 );
@@ -129,12 +196,14 @@ export default function WorkoutTabs({ workouts, weekNumber }) {
       {selectedVideo && (
         <div className={styles.modalOverlay} onClick={closeVideo}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.closeButton} onClick={closeVideo}>&times;</button>
+            <button className={styles.closeButton} onClick={closeVideo}>
+              &times;
+            </button>
             <div className={styles.iframeContainer}>
-              <iframe 
-                src={selectedVideo} 
-                frameBorder="0" 
-                allow="autoplay; fullscreen; picture-in-picture" 
+              <iframe
+                src={selectedVideo}
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
               ></iframe>
             </div>
