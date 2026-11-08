@@ -64,9 +64,9 @@ export default function FrameworkPage() {
             <p><strong>The Interconnection in Action:</strong></p>
             <ul>
               <li><strong>Strength ↔ Nutrition:</strong> Strength training creates the stimulus for muscle adaptation, but nutrition determines whether the body has the resources to respond. If protein is insufficient, recovery is delayed.</li>
-              <li><strong>Nutrition ↔ Hormones:</strong> Inadequate caloric intake or unstable blood sugar can elevate cortisol and increase stress hormones, accelerating muscle loss.</li>
-              <li><strong>Recovery ↔ Sleep:</strong> Physiological stress disrupts sleep architecture, while poor sleep worsens hormonal balance and recovery capacity, creating a feedback loop of fatigue.</li>
-              <li><strong>Stress ↔ Metabolism:</strong> Chronic stress elevates cortisol, impairing insulin sensitivity and promoting visceral fat storage. Stress management is a key metabolic intervention.</li>
+              <li><strong>Nutrition ↔ Glucose Control:</strong> Unstable blood sugar and inadequate protein intake trigger insulin spikes, energy crashes, and elevated cortisol—accelerating visceral fat storage and muscle breakdown.</li>
+              <li><strong>Recovery ↔ Sleep:</strong> Physiological stress disrupts sleep architecture, while poor sleep worsens glucose tolerance, insulin sensitivity, and recovery capacity, creating a feedback loop of fatigue.</li>
+              <li><strong>Stress ↔ Metabolism:</strong> Chronic stress elevates cortisol and blood glucose, impairing insulin sensitivity and promoting visceral fat storage. Stress management is a key metabolic intervention.</li>
             </ul>
           </div>
         </>
@@ -74,9 +74,9 @@ export default function FrameworkPage() {
     },
     {
       id: 'longevity',
-      title: 'The Longevity Curve',
+      title: 'The Longevity Ecosystem',
       src: '/longevity.png',
-      alt: 'Graph showing the trajectory of longevity based on interventions.',
+      alt: 'The Strength for Life Longevity Ecosystem showing how all five pillars integrate.',
       content: (
         <>
           <p>
