@@ -63,7 +63,7 @@ export function LockedFeatureGate({
       <div className={styles.lockedPerks}>
         <span>✓ All 12 Weeks of Progressive Strength Training</span>
         <span>✓ Full Cardiorespiratory &amp; Flexibility/Mobility Modules</span>
-        <span>✓ Complete Recovery Vault &amp; Live Check-Ins</span>
+        <span>✓ Complete Recovery Vault &amp; PDF Guides</span>
       </div>
       <UnlockProgramButton
         label="Unlock Full 12-Week Program ($297 CAD) →"
@@ -88,11 +88,6 @@ const LOCKED_ROUTE_MESSAGES = {
     title: 'The Recovery Vault is Locked 🔒',
     description:
       'The Recovery Vault PDF guides, Weight Selection Guide, Common Mistakes Guide, and Recovery Protocols are reserved for full program members. Unlock the Full 12-Week Strength for Life Program to access the entire vault!',
-  },
-  '/check-ins': {
-    title: 'Live Community Check-Ins are Locked 🔒',
-    description:
-      'Live coaching check-ins and community Q&As are reserved for full 12-Week Strength for Life members. Upgrade today to join us!',
   },
 };
 

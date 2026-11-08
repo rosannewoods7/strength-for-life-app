@@ -1,6 +1,5 @@
 import styles from './page.module.css'
 import Link from 'next/link'
-import VimeoFacade from '@/components/VimeoFacade'
 
 export const metadata = {
   title: 'Getting Started | Strength for Life',
@@ -28,7 +27,6 @@ export default function GettingStartedPage() {
         </p>
         
         <ol style={{ paddingLeft: '1.5rem', marginBottom: '2rem', lineHeight: '1.8', color: 'var(--color-deep-espresso)', fontSize: '1.05rem' }}>
-          <li style={{ marginBottom: '0.75rem' }}><strong>Watch the Videos:</strong> Start with the Quick Start Guide and your First Coaching Session below to learn how the Paced Completion System ensures you build a sustainable foundation without burning out.</li>
           <li style={{ marginBottom: '0.75rem' }}><strong>Go to the Dashboard:</strong> This is your home base for tracking your progress throughout the 12 weeks.</li>
           <li style={{ marginBottom: '0.75rem' }}><strong>Take the Daily Readiness Audit:</strong> Complete this quick assessment before every workout to determine your optimal training intensity for the day.</li>
           <li style={{ marginBottom: '0.75rem' }}><strong>Visit the Recovery Vault:</strong> Review the "What is Active Recovery?" guidelines so you know exactly how to manage your non-lifting days without overtraining.</li>
@@ -73,22 +71,6 @@ export default function GettingStartedPage() {
           rebuilding your physical resilience from the ground up. You are entirely capable 
           of doing hard things, and I'll be right here with you every step of the way.
         </p>
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
-        <div>
-          <h3 style={{ color: 'var(--color-white)', marginBottom: '1rem', textAlign: 'center' }}>1. Quick Start Guide</h3>
-          <div className={styles.videoContainer} style={{ marginBottom: 0 }}>
-            <VimeoFacade videoUrl="https://player.vimeo.com/video/1210672540" title="Quick Start Guide" />
-          </div>
-        </div>
-        
-        <div>
-          <h3 style={{ color: 'var(--color-white)', marginBottom: '1rem', textAlign: 'center' }}>2. First Coaching Session & Tour</h3>
-          <div className={styles.videoContainer} style={{ marginBottom: 0 }}>
-            <VimeoFacade videoUrl="https://player.vimeo.com/video/1205276620" title="First Coaching Session & Visual Tour" />
-          </div>
-        </div>
       </div>
 
       <div className={styles.actionContainer}>

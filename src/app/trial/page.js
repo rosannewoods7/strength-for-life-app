@@ -137,7 +137,7 @@ export default function TrialSignupPage() {
           </button>
 
           <ul className={styles.perksList}>
-            <li>✓ Instant access to Week 1 Workouts, Video Demos &amp; Coaching</li>
+            <li>✓ Instant access to Week 1 Workouts, Exercise Demos &amp; Weight Tracking</li>
             <li>✓ Full Daily Readiness &amp; Recovery Audit</li>
             <li>✓ No credit card required today — upgrade anytime for $297 CAD</li>
           </ul>

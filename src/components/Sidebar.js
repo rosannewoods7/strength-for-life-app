@@ -35,7 +35,6 @@ export default function Sidebar() {
     { name: 'My Progress', path: '/progress' },
     { name: 'The Framework', path: '/framework' },
     { name: isTrialOnly ? 'Recovery Vault 🔒' : 'Recovery Vault', path: '/vault' },
-    { name: isTrialOnly ? 'Live Check-Ins 🔒' : 'Live Check-Ins', path: '/check-ins' },
     { name: isSubscribed ? 'Month 4+ 🔓' : 'Month 4+ 🔒', path: '/ongoing' },
   ];
 

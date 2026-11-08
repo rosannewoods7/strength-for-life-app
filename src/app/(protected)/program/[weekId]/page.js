@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import WorkoutTabs from '@/components/WorkoutTabs';
 import WeeklyChecklist from '@/components/WeeklyChecklist';
-import VimeoFacade from '@/components/VimeoFacade';
 import SyncWeekTracker from '@/components/SyncWeekTracker';
 import WeeklyChallengeCard from '@/components/WeeklyChallengeCard';
 import PowerTrackChecklist from '@/components/PowerTrackChecklist';
@@ -31,7 +30,7 @@ export default async function WeeklyModulePage({ params }) {
         </Link>
         <LockedFeatureGate
           title={`Week ${weekNumber}: ${data.title} is Locked`}
-          description={`Your 7-Day Free Trial gives you full access to Week 1 so you can experience the workouts, video coaching, and weight tracking firsthand. Unlock the complete 12-Week Strength for Life Program today to access Weeks 2–12!`}
+          description={`Your 7-Day Free Trial gives you full access to Week 1 so you can experience the workouts, exercise video demos, and weight tracking firsthand. Unlock the complete 12-Week Strength for Life Program today to access Weeks 2–12!`}
         />
       </div>
     );
@@ -109,21 +108,6 @@ export default async function WeeklyModulePage({ params }) {
         <h1 className={styles.title}>Week {weekNumber}: {data.title}</h1>
         {data.coachingIntro && <p className={styles.coachingIntro}>{data.coachingIntro}</p>}
       </header>
-
-      {/* WATCH */}
-      {isAdvancedPhase && <h2 className={styles.sectionTitle}>WATCH</h2>}
-      <div className={styles.videoSection}>
-        {data.coachingVideoUrl ? (
-          <div className={styles.videoWrapper}>
-            <VimeoFacade videoUrl={data.coachingVideoUrl} weekNumber={weekNumber} />
-          </div>
-        ) : (
-          <div className={styles.videoPlaceholder}>
-            <div className={styles.playIcon}>▶</div>
-            <p>Coaching Video Coming Soon</p>
-          </div>
-        )}
-      </div>
 
       {isAdvancedPhase ? (
         /* =========================================================
