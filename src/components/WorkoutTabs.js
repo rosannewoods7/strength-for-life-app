@@ -10,6 +10,7 @@ export default function WorkoutTabs({
   weekNumber,
   initialTab = 0,
   fullPage = false,
+  isCustomized = false,
 }) {
   const safeInitialTab =
     initialTab >= 0 && initialTab < workouts.length ? initialTab : 0;
@@ -45,7 +46,24 @@ export default function WorkoutTabs({
       <div className={styles.tabContent}>
         <div className={styles.prescriptionTable}>
           <div className={styles.topActionBar}>
-            <h3 style={{ margin: 0 }}>{workouts[activeTab].title}</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+              <h3 style={{ margin: 0 }}>{workouts[activeTab].title}</h3>
+              {isCustomized && (
+                <span
+                  style={{
+                    backgroundColor: '#fef3c7',
+                    color: '#92400e',
+                    border: '1px solid #f59e0b',
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    padding: '0.2rem 0.55rem',
+                    borderRadius: '999px',
+                  }}
+                >
+                  ✨ Personalized Plan
+                </span>
+              )}
+            </div>
             {!isLoading && weekNumber && (
               <div className={styles.tableActions}>
                 {!fullPage && (

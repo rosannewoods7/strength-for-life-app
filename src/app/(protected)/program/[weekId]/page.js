@@ -36,7 +36,13 @@ export default async function WeeklyModulePage({ params }) {
     );
   }
 
-  const workouts = getWorkoutsForWeek(weekNumber);
+  const customWorkouts = user?.user_metadata?.custom_workouts || null;
+  const isCustomized = Boolean(
+    customWorkouts &&
+      Array.isArray(customWorkouts[weekNumber]) &&
+      customWorkouts[weekNumber].length > 0
+  );
+  const workouts = getWorkoutsForWeek(weekNumber, customWorkouts);
 
   // Helper to format text with line breaks
   const formatText = (text) => {
@@ -168,7 +174,7 @@ export default async function WeeklyModulePage({ params }) {
 
           <div className={styles.contentBlock} id="train-section">
             <h2 className={styles.sectionTitle}>TRAIN</h2>
-            <WorkoutTabs workouts={workouts} weekNumber={weekNumber} />
+            <WorkoutTabs workouts={workouts} weekNumber={weekNumber} isCustomized={isCustomized} />
           </div>
 
         </div>
@@ -214,7 +220,7 @@ export default async function WeeklyModulePage({ params }) {
                 <p>{formatText(data.coachsCorner)}</p>
               </div>
               
-              <WorkoutTabs workouts={workouts} weekNumber={weekNumber} />
+              <WorkoutTabs workouts={workouts} weekNumber={weekNumber} isCustomized={isCustomized} />
             </div>
             
             <aside className={styles.sidebarContent}>

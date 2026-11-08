@@ -36,7 +36,13 @@ export default async function DedicatedWorkoutPage({ params, searchParams }) {
     );
   }
 
-  const workouts = getWorkoutsForWeek(weekNumber);
+  const customWorkouts = user?.user_metadata?.custom_workouts || null;
+  const isCustomized = Boolean(
+    customWorkouts &&
+      Array.isArray(customWorkouts[weekNumber]) &&
+      customWorkouts[weekNumber].length > 0
+  );
+  const workouts = getWorkoutsForWeek(weekNumber, customWorkouts);
 
   return (
     <div className={styles.container} style={{ gap: '1rem' }}>
@@ -71,6 +77,7 @@ export default async function DedicatedWorkoutPage({ params, searchParams }) {
         weekNumber={weekNumber}
         initialTab={initialTab}
         fullPage={true}
+        isCustomized={isCustomized}
       />
     </div>
   );

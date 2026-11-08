@@ -1,0 +1,503 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 1.25rem;
+}
+
+.adminBadge {
+  display: inline-block;
+  background-color: var(--color-soft-gold);
+  color: var(--color-deep-espresso);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.6rem;
+}
+
+.title {
+  font-size: 2.1rem;
+  color: var(--color-white);
+  margin-bottom: 0.4rem;
+}
+
+.subtitle {
+  font-size: 1.02rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+
+.errorBanner {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #f87171;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.successBanner {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #34d399;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.card {
+  background-color: var(--color-white);
+  color: var(--color-deep-espresso);
+  border-radius: 12px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 16px rgba(15, 36, 57, 0.08);
+}
+
+.cardTitle {
+  font-size: 1.3rem;
+  color: var(--color-deep-plum);
+  margin-bottom: 0.75rem;
+}
+
+.helperText {
+  font-size: 0.9rem;
+  color: var(--color-muted-plum);
+  margin-bottom: 1rem;
+}
+
+.searchRow {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.emailInput {
+  flex: 1;
+  min-width: 240px;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--color-lavender-grey);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--color-deep-espresso);
+}
+
+.emailInput:focus {
+  outline: none;
+  border-color: var(--color-deep-plum);
+}
+
+.primaryBtn {
+  background-color: var(--color-deep-plum);
+  color: var(--color-white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.primaryBtn:hover:not(:disabled) {
+  background-color: var(--color-sophisticated-mauve);
+}
+
+.rosterSection {
+  margin-top: 1.25rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--color-lavender-grey);
+}
+
+.rosterLabel {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-muted-plum);
+  margin-bottom: 0.75rem;
+}
+
+.memberPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.memberPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: var(--color-background);
+  border: 1.5px solid var(--color-lavender-grey);
+  border-radius: 8px;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.86rem;
+  color: var(--color-deep-espresso);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.memberPill:hover {
+  border-color: var(--color-sophisticated-mauve);
+}
+
+.memberPillActive {
+  background-color: var(--color-deep-plum);
+  border-color: var(--color-deep-plum);
+  color: var(--color-white);
+}
+
+.pillName {
+  font-weight: 600;
+}
+
+.badgeFull {
+  background-color: #dcfce7;
+  color: #166534;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+}
+
+.badgeTrial {
+  background-color: #e0f2fe;
+  color: #075985;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+}
+
+.badgeCustom {
+  background-color: #fef3c7;
+  color: #92400e;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+}
+
+.memberSummaryCard {
+  background: linear-gradient(135deg, var(--color-deep-plum), var(--color-deep-espresso));
+  color: var(--color-white);
+  padding: 1.35rem 1.75rem;
+  border-radius: 12px;
+  border: 1.5px solid var(--color-soft-gold);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.memberSummaryInfo h3 {
+  color: var(--color-white);
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.memberSummaryInfo h3 span {
+  color: var(--color-soft-gold);
+}
+
+.memberSummaryInfo p {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.grantAccessBtn {
+  background-color: var(--color-soft-gold);
+  color: var(--color-deep-espresso);
+  border: none;
+  padding: 0.6rem 1.15rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.weekSelectorHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.customActiveTag {
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #f59e0b;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+}
+
+.weekGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.weekBtn {
+  background-color: var(--color-background);
+  border: 1.5px solid var(--color-lavender-grey);
+  border-radius: 8px;
+  padding: 0.5rem 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-deep-espresso);
+  cursor: pointer;
+}
+
+.weekBtnCustom {
+  border-color: #f59e0b;
+  background-color: #fffbeb;
+}
+
+.weekBtnActive {
+  background-color: var(--color-deep-plum);
+  border-color: var(--color-deep-plum);
+  color: var(--color-white);
+}
+
+.workoutTabsRow {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 2px solid var(--color-lavender-grey);
+  margin-bottom: 1.25rem;
+}
+
+.workoutTabBtn {
+  flex: 1;
+  background: var(--color-background);
+  border: 1px solid var(--color-lavender-grey);
+  border-bottom: none;
+  padding: 0.75rem 0.5rem;
+  border-radius: 8px 8px 0 0;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-muted-plum);
+  cursor: pointer;
+}
+
+.workoutTabBtnActive {
+  background: var(--color-deep-plum);
+  color: var(--color-white);
+  border-color: var(--color-deep-plum);
+}
+
+.workoutTitleEditRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.workoutTitleEditRow label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-deep-plum);
+}
+
+.exercisesList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.exerciseEditorCard {
+  background-color: var(--color-background);
+  border: 1.5px solid var(--color-lavender-grey);
+  border-radius: 10px;
+  padding: 1.15rem;
+}
+
+.exerciseCardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+
+.exerciseNumberBadge {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-deep-plum);
+  background: rgba(15, 36, 57, 0.08);
+  padding: 0.22rem 0.6rem;
+  border-radius: 6px;
+}
+
+.exerciseOrderBtns {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.smallIconBtn {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-lavender-grey);
+  border-radius: 6px;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--color-deep-espresso);
+}
+
+.deleteBtn {
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+.exerciseFieldsGrid {
+  display: grid;
+  grid-template-columns: 2fr 1.6fr 0.8fr 1fr;
+  gap: 0.75rem;
+}
+
+.fieldGroupWide,
+.fieldGroup,
+.fieldGroupSmall,
+.fieldGroupFull {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.fieldGroupFull {
+  grid-column: 1 / -1;
+}
+
+.exerciseFieldsGrid label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted-plum);
+}
+
+.textInput,
+.selectInput,
+.textareaInput {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: var(--color-deep-espresso);
+  background-color: var(--color-white);
+  font-family: inherit;
+}
+
+.memberLoggedBox {
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  background-color: #eff6ff;
+  border-left: 3px solid #2563eb;
+  border-radius: 6px;
+  font-size: 0.84rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  color: #1e3a8a;
+}
+
+.addExerciseBtn {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--color-background);
+  border: 2px dashed var(--color-sophisticated-mauve);
+  border-radius: 8px;
+  color: var(--color-deep-plum);
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.addExerciseBtn:hover {
+  background-color: rgba(43, 76, 111, 0.06);
+}
+
+.saveActionBar {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--color-lavender-grey);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.savePrimaryBtn {
+  background-color: var(--color-deep-plum);
+  color: var(--color-white);
+  border: none;
+  padding: 0.85rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.savePhaseBtn {
+  background-color: #d97706;
+  color: var(--color-white);
+  border: none;
+  padding: 0.85rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.resetDefaultBtn {
+  background-color: var(--color-white);
+  color: #b91c1c;
+  border: 1.5px solid #fca5a5;
+  padding: 0.85rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1.15rem 1rem;
+  }
+
+  .title {
+    font-size: 1.55rem;
+  }
+
+  .exerciseFieldsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .fieldGroupWide,
+  .fieldGroup {
+    grid-column: 1 / -1;
+  }
+
+  .savePrimaryBtn,
+  .savePhaseBtn,
+  .resetDefaultBtn {
+    width: 100%;
+    text-align: center;
+  }
+}

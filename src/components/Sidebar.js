@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
-import { getAccessStatus } from '@/lib/access';
+import { getAccessStatus, isAdminUser } from '@/lib/access';
 import GlobalSearch from '@/components/GlobalSearch';
 import styles from './Sidebar.module.css';
 
@@ -12,6 +12,7 @@ export default function Sidebar() {
   const pathname = usePathname();
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isTrialOnly, setIsTrialOnly] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const supabase = createClient();
 
@@ -23,6 +24,7 @@ export default function Sidebar() {
       if (user?.user_metadata?.subscription_status === 'active') {
         setIsSubscribed(true);
       }
+      setIsAdmin(isAdminUser(user));
       const access = getAccessStatus(user);
       setIsTrialOnly(!access.hasFullAccess);
     }
@@ -50,6 +52,7 @@ export default function Sidebar() {
     { name: 'The Framework', path: '/framework' },
     { name: isTrialOnly ? 'Recovery Vault 🔒' : 'Recovery Vault', path: '/vault' },
     { name: isSubscribed ? 'Month 4+ 🔓' : 'Month 4+ 🔒', path: '/ongoing' },
+    ...(isAdmin ? [{ name: '⚙️ Coach Portal', path: '/coach' }] : []),
   ];
 
   return (

@@ -4,6 +4,12 @@
 
 const GRANDFATHER_CUTOFF = new Date('2026-11-01T00:00:00Z');
 const TRIAL_DURATION_DAYS = 7;
+export const ADMIN_EMAILS = ['rosannewoods7@gmail.com'];
+
+export function isAdminUser(user) {
+  if (!user?.email) return false;
+  return ADMIN_EMAILS.includes(user.email.trim().toLowerCase());
+}
 
 export function getAccessStatus(user) {
   if (!user) {
@@ -12,6 +18,15 @@ export function getAccessStatus(user) {
       isTrialActive: false,
       isTrialExpired: false,
       daysRemaining: 0,
+    };
+  }
+
+  if (isAdminUser(user)) {
+    return {
+      hasFullAccess: true,
+      isTrialActive: false,
+      isTrialExpired: false,
+      daysRemaining: null,
     };
   }
 

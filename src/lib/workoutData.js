@@ -1,4 +1,36 @@
-export const getWorkoutsForWeek = (weekNumber) => {
+export const EXERCISE_VIDEO_LIBRARY = [
+  { name: 'Goblet Squat', videoUrl: 'https://player.vimeo.com/video/1200233550' },
+  { name: 'Romanian Deadlift', videoUrl: 'https://player.vimeo.com/video/1200235000' },
+  { name: 'Push-Up or Chest Press', videoUrl: 'https://player.vimeo.com/video/1200240565' },
+  { name: 'One-Arm Row', videoUrl: 'https://player.vimeo.com/video/1200241458' },
+  { name: "Farmer's Carry", videoUrl: 'https://player.vimeo.com/video/1200235585' },
+  { name: 'Plank Shoulder Taps', videoUrl: 'https://player.vimeo.com/video/1199963557' },
+  { name: 'Cat-Cow Mobility', videoUrl: 'https://player.vimeo.com/video/1199964093' },
+  { name: 'Weighted Step-Up', videoUrl: 'https://player.vimeo.com/video/1200628797' },
+  { name: 'Overhead Shoulder Press', videoUrl: 'https://player.vimeo.com/video/1200241899' },
+  { name: 'Dumbbell Pullover', videoUrl: 'https://player.vimeo.com/video/1200242299' },
+  { name: 'Weighted Glute Bridge', videoUrl: 'https://player.vimeo.com/video/1200236672' },
+  { name: 'Dead Bug', videoUrl: 'https://player.vimeo.com/video/1199964415' },
+  { name: 'Supine Weighted 90 Degree Toe Touches', videoUrl: 'https://player.vimeo.com/video/1199965056' },
+  { name: '90/90 Hip Stretch', videoUrl: 'https://player.vimeo.com/video/1200629533' },
+  { name: 'Sumo Squat', videoUrl: 'https://player.vimeo.com/video/1200628467' },
+  { name: 'Single-Leg Deadlift', videoUrl: 'https://player.vimeo.com/video/1200236229' },
+  { name: 'Low-to-High Band Press', videoUrl: 'https://player.vimeo.com/video/1200243786' },
+  { name: 'Face Pull', videoUrl: 'https://player.vimeo.com/video/1200243512' },
+  { name: 'Bird-Dog', videoUrl: 'https://player.vimeo.com/video/1199964747' },
+  { name: 'Weighted Russian Twists', videoUrl: 'https://player.vimeo.com/video/1199965229' },
+  { name: 'Thoracic Rotations', videoUrl: 'https://player.vimeo.com/video/1200629767' },
+];
+
+export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
+  if (
+    customWorkouts &&
+    Array.isArray(customWorkouts[weekNumber]) &&
+    customWorkouts[weekNumber].length > 0
+  ) {
+    return customWorkouts[weekNumber];
+  }
+
   // ---------------------------------------------------------
   // MONTHS 1-3 (WEEKS 1-12)
   // ---------------------------------------------------------
