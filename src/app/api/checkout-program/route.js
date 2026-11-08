@@ -12,7 +12,7 @@ const supabase = createClient(
 );
 
 const PROGRAM_PRICE_ID = (
-  process.env.NEXT_PUBLIC_STRIPE_PROGRAM_PRICE_ID || 'price_1UWkgQEPjK96BF6Bpl81gfsp'
+  process.env.NEXT_PUBLIC_STRIPE_PROGRAM_PRICE_ID || 'price_1UZK04EPjK96BF6B8QEfRCeB'
 ).trim();
 
 export async function POST(request) {
