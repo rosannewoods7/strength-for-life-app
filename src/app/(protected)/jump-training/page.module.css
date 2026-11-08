@@ -6,7 +6,7 @@
 
 .header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .title {
@@ -17,7 +17,7 @@
 
 .subtitle {
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.92);
   font-weight: 500;
 }
 
@@ -33,33 +33,27 @@
 }
 
 .sectionTitle {
-  color: var(--color-white);
-  font-size: 1.6rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding-bottom: 0.5rem;
-}
-
-.scienceSection .sectionTitle,
-.fullWidthProtocol .sectionTitle,
-.videoSection .sectionTitle,
-.stickyDemo .sectionTitle {
   color: var(--color-deep-plum);
-  border-bottom-color: rgba(0, 0, 0, 0.1);
+  font-size: 1.6rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid var(--color-lavender-grey);
+  padding-bottom: 0.6rem;
 }
 
 .subheading {
   color: var(--color-deep-plum);
-  font-size: 1.4rem;
+  font-size: 1.35rem;
+  font-weight: 700;
   margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .miniHeading {
-  font-size: 1.1rem;
-  color: var(--color-deep-espresso);
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-deep-plum);
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .videoWrapper {
@@ -78,12 +72,6 @@
   overflow: hidden;
 }
 
-@media (max-width: 768px) {
-  .coachingVideoWrapper {
-    width: 100%;
-  }
-}
-
 .contentGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -91,28 +79,48 @@
   align-items: stretch;
 }
 
+.fullWidthProtocol,
 .scienceSection {
   background-color: var(--color-white);
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  line-height: 1.7;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  line-height: 1.75;
   color: var(--color-deep-espresso);
+  width: 100%;
 }
 
-.scienceSection p {
-  margin-bottom: 1rem;
+.scienceSection {
+  margin-top: 2.5rem;
+}
+
+.scienceSection p,
+.fullWidthProtocol p {
+  margin-bottom: 1.15rem;
+  color: var(--color-deep-espresso);
+  max-width: 100%;
+}
+
+.protocolIntro {
+  font-size: 1.08rem;
+  color: var(--color-deep-espresso);
+  margin-bottom: 1.75rem;
+  line-height: 1.7;
+  max-width: 100%;
 }
 
 .checkList, .benefitList, .cuesList {
   list-style-type: none;
-  padding-left: 1rem;
+  padding-left: 1.25rem;
   margin-bottom: 1.5rem;
+  color: var(--color-deep-espresso);
 }
 
 .checkList li, .benefitList li, .cuesList li {
   position: relative;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.85rem;
+  line-height: 1.65;
+  color: var(--color-deep-espresso);
 }
 
 .checkList li::before, .cuesList li::before {
@@ -125,27 +133,30 @@
 }
 
 .highlightBox {
-  background-color: rgba(217, 119, 6, 0.08);
+  background-color: #fef3c7;
   border-left: 4px solid var(--color-dusty-rose);
-  padding: 1rem 1.5rem;
+  padding: 1.25rem 1.5rem;
   margin: 1.5rem 0;
   border-radius: 0 8px 8px 0;
+  color: var(--color-deep-espresso);
 }
 
 .coachNote {
-  background-color: rgba(15, 36, 57, 0.05);
-  border: 1px solid rgba(15, 36, 57, 0.2);
-  padding: 1.5rem;
+  background-color: var(--color-sand);
+  border: 1px solid var(--color-lavender-grey);
+  border-left: 4px solid var(--color-deep-plum);
+  padding: 1.5rem 1.75rem;
   border-radius: 8px;
-  margin: 2rem 0;
-  font-style: italic;
+  margin: 2rem 0 0 0;
+  color: var(--color-deep-espresso);
+  line-height: 1.7;
 }
 
 .protocolGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
-  margin: 2rem 0;
+  margin: 1.75rem 0 2rem 0;
 }
 
 .protocolCard {
@@ -154,6 +165,12 @@
   padding: 1.5rem;
   border-radius: 8px;
   border-top: 4px solid var(--color-dusty-rose);
+  border-right: 1px solid var(--color-lavender-grey);
+  border-bottom: 1px solid var(--color-lavender-grey);
+  border-left: 1px solid var(--color-lavender-grey);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .protocolCard h4 {
@@ -166,74 +183,49 @@
 .protocolCard ul {
   padding-left: 1.2rem;
   margin-bottom: 1rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  color: var(--color-deep-espresso);
+}
+
+.protocolCard li {
+  margin-bottom: 0.4rem;
 }
 
 .setsReps {
-  font-weight: bold;
-  color: var(--color-dusty-rose);
-  font-size: 0.9rem;
+  font-weight: 700;
+  color: #b45309;
+  font-size: 0.92rem;
   text-align: center;
   margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--color-lavender-grey);
 }
 
 .disclaimer {
   font-size: 0.9rem;
   color: var(--color-muted-plum);
   margin-top: 1.25rem;
+  margin-bottom: 0 !important;
   font-style: italic;
 }
 
-.demoSidebar {
-  position: relative;
-  height: 100%;
-}
-
-.stickyDemo {
-  position: sticky;
-  top: 2rem;
-  background-color: var(--color-white);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.demoDescription {
-  font-size: 0.95rem;
-  color: var(--color-muted-plum);
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
-
-.fullWidthProtocol {
-  background-color: var(--color-white);
+.guidelineCard {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-lavender-grey);
+  border-left: 4px solid var(--color-sophisticated-mauve);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
   color: var(--color-deep-espresso);
-  padding: 2.25rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  line-height: 1.7;
-  margin-top: 1.5rem;
 }
 
-.protocolIntro {
-  font-size: 1.08rem;
-  color: var(--color-deep-espresso);
-  margin-bottom: 2rem;
-  line-height: 1.65;
-}
-
-@media (max-width: 992px) {
-  .contentGrid {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .fullWidthProtocol,
+  .scienceSection {
+    padding: 1.5rem;
   }
-  
-  .stickyDemo {
-    position: relative;
-    top: 0;
+
+  .title {
+    font-size: 2rem;
   }
 }
