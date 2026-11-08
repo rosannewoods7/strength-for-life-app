@@ -6,9 +6,9 @@ export const getWorkoutsForWeek = (weekNumber) => {
     const phaseNum = weekNumber <= 4 ? 1 : (weekNumber <= 8 ? 2 : 3);
     
     const getReps = () => {
-      if (phaseNum === 1) return '12-15 Reps (Focus on Form)';
-      if (phaseNum === 2) return '8-12 Reps (Build Muscle)';
-      return '6-8 Reps (Explosive Power)';
+      if (phaseNum === 1) return '12-15';
+      if (phaseNum === 2) return '8-12';
+      return '6-8';
     };
 
     return [
@@ -22,7 +22,7 @@ export const getWorkoutsForWeek = (weekNumber) => {
           { name: 'One-Arm Row', sets: phaseNum === 1 ? 2 : 3, reps: getReps(), notes: 'Pull elbow to hip.', videoUrl: 'https://player.vimeo.com/video/1200241458' },
           { name: 'Farmer\'s Carry', sets: phaseNum === 1 ? 2 : 3, reps: phaseNum === 1 ? '30 Sec' : '60 Sec', notes: 'Heavy as possible, ribs tucked.', videoUrl: 'https://player.vimeo.com/video/1200235585' },
           { name: 'Plank Shoulder Taps', sets: phaseNum === 1 ? 2 : 3, reps: '10-12/side', notes: 'Keep hips completely still.', videoUrl: 'https://player.vimeo.com/video/1199963557' },
-          { name: 'Cat-Cow Mobility', sets: 2, reps: '10 Reps', notes: 'Cool down and spinal flexion.', videoUrl: 'https://player.vimeo.com/video/1199964093' }
+          { name: 'Cat-Cow Mobility', sets: 2, reps: '10', notes: 'Cool down and spinal flexion.', videoUrl: 'https://player.vimeo.com/video/1199964093' }
         ]
       },
       {
@@ -34,7 +34,7 @@ export const getWorkoutsForWeek = (weekNumber) => {
           { name: 'Dumbbell Pullover', sets: phaseNum === 1 ? 2 : 3, reps: getReps(), notes: 'Slow negative, stretch the lats.', videoUrl: 'https://player.vimeo.com/video/1200242299' },
           { name: 'Weighted Glute Bridge', sets: phaseNum === 1 ? 2 : 3, reps: getReps(), notes: 'Squeeze glutes at the top.', videoUrl: 'https://player.vimeo.com/video/1200236672' },
           { name: 'Dead Bug', sets: phaseNum === 1 ? 2 : 3, reps: '10-15/side', notes: 'Lower back glued to floor.', videoUrl: 'https://player.vimeo.com/video/1199964415' },
-          { name: 'Supine Weighted 90 Degree Toe Touches', sets: phaseNum === 1 ? 2 : 3, reps: '12-15 Reps', notes: 'Crunch up to touch toes, legs straight.', videoUrl: 'https://player.vimeo.com/video/1199965056' },
+          { name: 'Supine Weighted 90 Degree Toe Touches', sets: phaseNum === 1 ? 2 : 3, reps: '12-15', notes: 'Crunch up to touch toes, legs straight.', videoUrl: 'https://player.vimeo.com/video/1199965056' },
           { name: '90/90 Hip Stretch', sets: 2, reps: '60 Sec/side', notes: 'Hip mobility finisher.', videoUrl: 'https://player.vimeo.com/video/1200629533' }
         ]
       },

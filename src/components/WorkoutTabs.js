@@ -116,7 +116,8 @@ export default function WorkoutTabs({
                       <div className={styles.movementHeaderMobile}>
                         <span className={styles.movementTitleText}>{ex.name}</span>
                         <span className={styles.mobilePrescriptionBadge}>
-                          {ex.sets} Sets &times; {ex.reps} Reps
+                          {ex.sets} Sets &times; {ex.reps}
+                          {!/sec|m\b|trips|reps/i.test(String(ex.reps)) ? ' Reps' : ''}
                         </span>
                       </div>
                     </td>
