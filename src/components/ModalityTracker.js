@@ -33,7 +33,7 @@ export default function ModalityTracker() {
       
       <div className={styles.modalitySection}>
         <div className={styles.modalityHeader}>
-          <h4>Jump Training</h4>
+          <h4>Cardiorespiratory Training</h4>
           <span className={styles.target}>(Target: 2-3x / week)</span>
         </div>
         <div className={styles.checkboxGroup}>
@@ -54,7 +54,7 @@ export default function ModalityTracker() {
 
       <div className={styles.modalitySection}>
         <div className={styles.modalityHeader}>
-          <h4>SIT Training</h4>
+          <h4>Flexibility/Mobility Training</h4>
           <span className={styles.target}>(Target: 1-2x / week)</span>
         </div>
         <div className={styles.checkboxGroup}>

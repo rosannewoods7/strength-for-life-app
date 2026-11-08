@@ -151,7 +151,7 @@ export default function TrialSignupPage() {
 
         <div className={styles.secondaryBox}>
           <p className={styles.secondaryText}>
-            Want immediate access to all 12 Weeks, Jump Training, SIT Intervals &amp; the Recovery Vault?
+            Want immediate access to all 12 Weeks, Cardiorespiratory Training, Flexibility/Mobility Training &amp; the Recovery Vault?
           </p>
           <button
             type="button"

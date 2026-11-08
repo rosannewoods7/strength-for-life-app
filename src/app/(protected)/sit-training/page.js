@@ -1,166 +1,114 @@
 'use client';
 
-import { useState } from 'react';
-import VimeoFacade from '@/components/VimeoFacade';
 import styles from '../jump-training/page.module.css';
 
-const DEMOS = [
-  { id: 'ropes', title: 'Battle Ropes', videoId: '1204039587' },
-  { id: 'slamballs', title: 'Slam Balls', videoId: '1204039425' },
-  { id: 'kettlebells', title: 'Kettlebell Swings', videoId: '1204039718' },
-  { id: 'squatjumps', title: 'Squat Jumps', videoId: '1204040067' },
-];
-
-export default function SitTrainingPage() {
-  const [activeTab, setActiveTab] = useState(0);
-
+export default function FlexibilityMobilityTrainingPage() {
   return (
     <div className={styles.pageContainer}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Sprint Interval Training (SIT)</h1>
-        <p className={styles.subtitle}>For Metabolic Health & Longevity</p>
+        <h1 className={styles.title}>Flexibility &amp; Mobility Training</h1>
+        <p className={styles.subtitle}>For Joint Resilience, Movement Freedom, Posture &amp; Injury Prevention</p>
       </header>
 
-      <div className={styles.contentGrid}>
-        {/* Left Side: Coaching Video */}
-        <section className={styles.videoSection} style={{ marginBottom: 0 }}>
-          <h2 className={styles.sectionTitle}>SIT Coaching Video</h2>
-          <p className={styles.demoDescription}>
-            Watch this coaching session first to understand the purpose of SIT, how to manage your intensity, and how to scale your effort appropriately.
-          </p>
-          <div className={styles.coachingVideoWrapper}>
-            <VimeoFacade 
-              videoId="1203114486" 
-              title="SIT Coaching Video" 
-            />
-          </div>
-        </section>
-
-        {/* Right Side: Exercise Demos */}
-        <aside className={styles.demoSidebar}>
-          <div className={styles.stickyDemo}>
-            <h2 className={styles.sectionTitle}>Exercise Demos</h2>
-            <p className={styles.demoDescription}>Select a modality to view the technique demonstration.</p>
-            
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
-              {DEMOS.map((demo, index) => (
-                <button
-                  key={demo.id}
-                  onClick={() => setActiveTab(index)}
-                  style={{
-                    padding: '0.5rem 1rem',
-                    borderRadius: '8px',
-                    border: 'none',
-                    backgroundColor: activeTab === index ? 'var(--color-dusty-rose)' : 'var(--color-lavender-grey)',
-                    color: activeTab === index ? 'var(--color-white)' : 'var(--color-deep-plum)',
-                    cursor: 'pointer',
-                    fontWeight: activeTab === index ? '600' : 'normal',
-                    transition: 'all 0.2s ease',
-                    flex: '1 1 calc(50% - 0.5rem)',
-                    textAlign: 'center'
-                  }}
-                >
-                  {demo.title}
-                </button>
-              ))}
-            </div>
-
-            <div className={styles.videoWrapper} key={DEMOS[activeTab].id}>
-              <VimeoFacade 
-                videoId={DEMOS[activeTab].videoId} 
-                title={`${DEMOS[activeTab].title} Demo`}
-              />
-            </div>
-          </div>
-        </aside>
-      </div>
-
-      <section className={styles.fullWidthProtocol} style={{ marginTop: '2rem', paddingTop: '2rem' }}>
-        <h2 className={styles.sectionTitle}>The Strength for Life SIT Protocol</h2>
+      <section className={styles.fullWidthProtocol} style={{ marginTop: '1rem', paddingTop: '2rem' }}>
+        <h2 className={styles.sectionTitle}>The Strength for Life Flexibility &amp; Mobility Protocol</h2>
         <p className={styles.protocolIntro}>
-          Perform SIT training 1-2 times per week on non-consecutive days.<br/>
-          Choose one movement and work as hard as you safely can during each interval.
+          Perform dedicated flexibility and mobility training <strong>1–2 times per week</strong> (15–25 minutes per session),<br/>
+          or weave 5–10 minute mobility flows into your warm-ups, cool-downs, and active recovery days.
         </p>
 
         <div className={styles.protocolGrid}>
           <div className={styles.protocolCard}>
-            <h4>Beginner Protocol</h4>
-            <div className={styles.setsReps}>
-              <strong>20s work</strong><br/>
-              120s recovery<br/><br/>
-              Repeat 4-6 times
-            </div>
+            <h4>Pillar 1: Thoracic Spine &amp; Shoulders</h4>
+            <ul>
+              <li>Quadruped thoracic rotations (Open Books)</li>
+              <li>Cat-Cow segmental spinal articulation</li>
+              <li>Wall slides &amp; scapular controlled rotations</li>
+              <li>Doorway / floor pec &amp; lat openers</li>
+              <li>Overhead dowel or band pass-throughs</li>
+            </ul>
+            <div className={styles.setsReps}>1–2 sets of 6–8 slow, controlled reps or 30–45s holds</div>
           </div>
-          
+
           <div className={styles.protocolCard}>
-            <h4>Intermediate Protocol</h4>
-            <div className={styles.setsReps}>
-              <strong>30s work</strong><br/>
-              90s recovery<br/><br/>
-              Repeat 5-8 times
-            </div>
+            <h4>Pillar 2: Hips, Pelvis &amp; Lumbar Spine</h4>
+            <ul>
+              <li>90/90 hip switches &amp; internal/external rotations</li>
+              <li>Half-kneeling hip flexor &amp; psoas stretch</li>
+              <li>World&apos;s Greatest Stretch (lunge + rotation)</li>
+              <li>Deep squat pry &amp; adductor rock-backs</li>
+              <li>Supine figure-4 glute &amp; piriformis release</li>
+            </ul>
+            <div className={styles.setsReps}>1–2 sets of 6–8 controlled reps or 45–60s breathing holds</div>
           </div>
-          
+
           <div className={styles.protocolCard}>
-            <h4>Advanced Protocol</h4>
-            <div className={styles.setsReps}>
-              <strong>30s work</strong><br/>
-              60-90s recovery<br/><br/>
-              Repeat 8-10 times
-            </div>
+            <h4>Pillar 3: Ankles, Knees &amp; Connective Tissue</h4>
+            <ul>
+              <li>Knee-to-wall ankle dorsiflexion rocks</li>
+              <li>Active hamstring sweeps &amp; supine nerve glides</li>
+              <li>Standing calf &amp; soleus eccentric stretches</li>
+              <li>Foot intrinsic mobilization &amp; toe yoga</li>
+              <li>Parasympathetic nasal breathing down-regulation</li>
+            </ul>
+            <div className={styles.setsReps}>15–25 minutes total • 1–2x per week</div>
           </div>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '2rem' }}>
           <div>
-            <h4 className={styles.miniHeading}>Effort Guidelines</h4>
-            <p><strong>During the work interval:</strong> Effort should feel like 9-10 out of 10. You should be breathing heavily. Conversation should be difficult or impossible.</p>
-            <p><strong>During recovery:</strong> Slow your breathing. Allow heart rate to decrease. Prepare for the next interval. The recovery period is part of the protocol. It allows you to produce high-quality effort every round.</p>
+            <h4 className={styles.miniHeading}>Execution Guidelines</h4>
+            <p><strong>Move With Control, Not Force:</strong> Never force a joint past a pinch or sharp pain. Aim for a gentle-to-moderate sensation of tension (5–6 out of 10) while maintaining slow, relaxed breathing.</p>
+            <p><strong>Pair Breath With Range:</strong> Inhale for 4 seconds through your nose, and exhale slowly for 6–8 seconds as you sink into end-range stretches. Slow exhalations signal your nervous system to release protective muscle guarding.</p>
           </div>
           <div>
             <div className={styles.highlightBox} style={{ margin: '0 0 1rem 0' }}>
-              <p><strong>The Objective:</strong> The goal is not to survive the workout. The objective is to produce repeated bursts of high-quality effort. A few minutes of true sprint interval training can create powerful adaptations that support metabolic health, cardiovascular fitness, and healthy aging.</p>
+              <p><strong>Flexibility vs. Mobility:</strong> <em>Flexibility</em> is the passive range of motion a muscle allows. <em>Mobility</em> is your ability to actively control a joint through that range of motion. Strength for Life trains both so your joints are not just loose—they are strong and stable at every angle.</p>
             </div>
-            <p><strong>Remember:</strong> Strength training builds the engine. Sprint interval training improves the horsepower. Together, they create a stronger, healthier, more resilient body for life.</p>
+            <p><strong>Remember:</strong> Better mobility directly unlocks better strength. When your hips, ankles, and thoracic spine move freely, your squats, hinges, and overhead presses become safer, stronger, and more effective.</p>
           </div>
         </div>
       </section>
 
       <article className={styles.scienceSection} style={{ marginTop: '3rem' }}>
-        <h2 className={styles.sectionTitle}>Why SIT?</h2>
+        <h2 className={styles.sectionTitle}>Why Flexibility &amp; Mobility Matter as We Age</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '3rem' }}>
           <div>
-            <p>Most people believe sprint interval training means running as fast as possible on a treadmill. It doesn't.</p>
-            <p>Sprint Interval Training is simply brief periods of maximal effort followed by recovery. <strong>The goal isn't running. The goal is intensity.</strong></p>
-            <p>You can achieve that intensity using battle ropes, kettlebell swings, slam balls, cycling, rowing, stairs, ski erg, assault bike, or squat jumps.</p>
-            <p>If you can work very hard for a short period of time, you're performing SIT. As long as your heart rate spikes and you are generating your maximum power output, the specific modality you choose simply does not matter.</p>
-            
-            <h3 className={styles.subheading}>The Sprint Myth</h3>
-            <p>Sprint Interval Training does NOT require running. The body responds to intensity, not the exercise mode. A kettlebell swing performed with maximum effort can create the same physiological adaptations as a running sprint. What matters is how hard you work—not whether your feet are moving.</p>
-            <p>This is especially valuable for anyone who dislikes running, has joint concerns, is returning to exercise, or prefers resistance-based conditioning.</p>
+            <p>As we move through our 40s, 50s, 60s, and beyond, collagen fibers in our tendons, ligaments, and fascia naturally experience increased cross-linking and reduced hydration. Combined with modern desk postures and repetitive daily patterns, joints gradually lose their usable range of motion.</p>
+            <p>When a joint loses mobility—most commonly the <strong>ankles, hips, and thoracic (mid-back) spine</strong>—neighbouring joints are forced to compensate. Stiff hips and thoracic spine often show up as lower-back discomfort; stiff ankles often show up as knee strain; stiff shoulders and mid-backs often show up as neck or rotator cuff irritation.</p>
+
+            <h3 className={styles.subheading}>The Science of Joint Longevity</h3>
+            <p>Joint cartilage has no direct blood supply of its own. Instead, it relies on <strong>synovial fluid diffusion</strong>—which is stimulated when you move a joint through its full, controlled range of motion.</p>
+            <p>Dedicated mobility and flexibility sessions provide three critical adaptations:</p>
+            <ul className={styles.checkList}>
+              <li><strong>Joint Lubrication:</strong> Moving joints through full arcs circulates synovial fluid, nourishing articular cartilage.</li>
+              <li><strong>Fascial &amp; Tendon Remodeling:</strong> Slow, controlled loading and stretching maintain tissue elasticity and slide-and-glide between muscle layers.</li>
+              <li><strong>Nervous System Down-Regulation:</strong> Combining mobility work with slow nasal breathing shifts your body out of sympathetic (&ldquo;fight-or-flight&rdquo;) stress and into parasympathetic recovery.</li>
+            </ul>
           </div>
 
           <div>
-            <h3 className={styles.subheading} style={{ marginTop: 0 }}>The Science</h3>
-            <p>Sprint Interval Training is one of the most time-efficient methods for improving:</p>
+            <h3 className={styles.subheading} style={{ marginTop: 0 }}>Benefits of 1–2x Weekly Mobility Training</h3>
             <ul className={styles.benefitList}>
-              <li>✓ Cardiovascular fitness &amp; VO₂ max</li>
-              <li>✓ Mitochondrial function &amp; Insulin sensitivity</li>
-              <li>✓ Blood sugar control &amp; Metabolic flexibility</li>
-              <li>✓ Fat oxidation &amp; Longevity markers</li>
+              <li>✓ Greater joint comfort and reduced morning stiffness</li>
+              <li>✓ Improved squat depth, hip hinge mechanics, and overhead reach</li>
+              <li>✓ Better posture, spinal alignment, and balance</li>
+              <li>✓ Reduced risk of compensatory strains and overuse injuries</li>
+              <li>✓ Faster recovery between strength training workouts</li>
+              <li>✓ Long-term physical independence—getting down to and up from the floor with ease</li>
             </ul>
-            <p>Research shows that improving cardiorespiratory fitness is one of the strongest predictors of long-term health and mortality reduction.</p>
 
-            <h3 className={styles.subheading}>The Longevity Advantage</h3>
-            <p>Many people believe they need long hours of steady-state cardio to improve fitness or body composition. In reality, excessive endurance volume can increase fatigue, recovery demands, and time commitment without producing superior metabolic results.</p>
-            <p>Short, intense intervals allow you to build VO₂ max, improve metabolic health, and preserve lean muscle mass while saving time and increasing daily energy.</p>
+            <h3 className={styles.subheading}>How to Schedule Your Sessions</h3>
+            <p>You don&apos;t need an hour-long class to see dramatic improvements in how your body feels and moves. Choose the approach that fits your week best:</p>
+            <p><strong>Option A (Dedicated Sessions):</strong> Complete one or two 15–20 minute full-body mobility &amp; stretching sessions on your non-lifting days or in the evening before bed to improve sleep quality.</p>
+            <p><strong>Option B (Post-Workout Integration):</strong> Add 10–15 minutes of targeted mobility and static stretching immediately after two of your weekly strength or cardio sessions while your tissues are warm.</p>
           </div>
         </div>
 
         <div className={styles.coachNote} style={{ marginBottom: 0 }}>
-          We don't jump to burn calories. We jump to build strong bones and powerful muscles.<br/><br/>
-          We don't do sprint intervals to shrink ourselves. We do them to build a stronger heart, healthier metabolism, and a body that remains capable for decades to come.<br/><br/>
-          <strong>That's what we mean when we say "Built for Strength. Built for Life."</strong>
+          Strength without mobility feels rigid. Mobility without strength lacks stability.<br/><br/>
+          When you combine progressive resistance training, cardiorespiratory conditioning, and 1–2 weekly sessions of intentional flexibility and mobility work, you build a body that is strong, capable, and pain-free in every plane of motion.<br/><br/>
+          <strong>That&apos;s what we mean when we say &ldquo;Built for Strength. Built for Life.&rdquo;</strong>
         </div>
       </article>
     </div>

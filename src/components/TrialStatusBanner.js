@@ -52,7 +52,7 @@ export function UnlockProgramButton({ label = 'Unlock Full 12-Week Program ($297
 
 export function LockedFeatureGate({
   title = 'Included in the Full 12-Week Strength for Life Program',
-  description = 'Your 7-Day Free Trial includes full access to Week 1, Getting Started, and your Daily Readiness Audit. Upgrade anytime to unlock Weeks 2–12, Jump Training, SIT Intervals, and the Recovery Vault!',
+  description = 'Your 7-Day Free Trial includes full access to Week 1, Getting Started, and your Daily Readiness Audit. Upgrade anytime to unlock Weeks 2–12, Cardiorespiratory Training, Flexibility/Mobility Training, and the Recovery Vault!',
 }) {
   return (
     <div className={styles.lockedCard}>
@@ -62,7 +62,7 @@ export function LockedFeatureGate({
       <p className={styles.lockedDesc}>{description}</p>
       <div className={styles.lockedPerks}>
         <span>✓ All 12 Weeks of Progressive Strength Training</span>
-        <span>✓ Full Jump Training &amp; Sprint Interval (SIT) Modules</span>
+        <span>✓ Full Cardiorespiratory &amp; Flexibility/Mobility Modules</span>
         <span>✓ Complete Recovery Vault &amp; Live Check-Ins</span>
       </div>
       <UnlockProgramButton
@@ -75,14 +75,14 @@ export function LockedFeatureGate({
 
 const LOCKED_ROUTE_MESSAGES = {
   '/jump-training': {
-    title: 'Jump Training is Locked 🔒',
+    title: 'Cardiorespiratory Training is Locked 🔒',
     description:
-      'The complete 12-Week Progressive Jump Training Protocol, coaching videos, and technique demonstrations are included in the Full 12-Week Strength for Life Program. Unlock full access today to start building bone density and explosive power!',
+      'The complete 12-Week Cardiorespiratory Training Protocol, aerobic & interval guidelines, and heart-health longevity strategies are included in the Full 12-Week Strength for Life Program. Unlock full access today to start building your VO₂ max and cardiovascular resilience!',
   },
   '/sit-training': {
-    title: 'Sprint Interval Training (SIT) is Locked 🔒',
+    title: 'Flexibility/Mobility Training is Locked 🔒',
     description:
-      'The Strength for Life Sprint Interval Training (SIT) Coaching, video demos, and Beginner-to-Advanced protocols are included in the Full 12-Week Program. Upgrade today to unlock all SIT workouts!',
+      'The Strength for Life Flexibility & Mobility Training protocols, joint-health strategies, and movement longevity guides are included in the Full 12-Week Program. Upgrade today to unlock all mobility sessions!',
   },
   '/vault': {
     title: 'The Recovery Vault is Locked 🔒',
@@ -116,7 +116,7 @@ export default function TrialStatusBanner({ accessStatus, children }) {
         </p>
         <div className={styles.lockedPerks}>
           <span>✓ Immediate access to Weeks 1–12 Progressive Workouts</span>
-          <span>✓ Full Jump Training &amp; Sprint Interval (SIT) Modules</span>
+          <span>✓ Full Cardiorespiratory &amp; Flexibility/Mobility Modules</span>
           <span>✓ Complete Recovery Vault, Mobility &amp; Nutrition Guides</span>
           <span>✓ Keep all your logged weights &amp; progress history</span>
         </div>
@@ -140,7 +140,7 @@ export default function TrialStatusBanner({ accessStatus, children }) {
             {accessStatus.daysRemaining === 1 ? 'Day' : 'Days'} Left in Free Trial
           </span>
           <span className={styles.trialText}>
-            You have full access to <strong>Week 1 &amp; Daily Readiness</strong>. Ready for Weeks 2–12, Jump, SIT &amp; the Recovery Vault?
+            You have full access to <strong>Week 1 &amp; Daily Readiness</strong>. Ready for Weeks 2–12, Cardiorespiratory, Mobility &amp; the Recovery Vault?
           </span>
         </div>
         <UnlockProgramButton

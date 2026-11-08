@@ -63,7 +63,7 @@ export default function Home() {
 
           <div className={styles.demoBlock}>
             <h3 className={styles.demoTitle}>Progress Tracking</h3>
-            <p className={styles.demoDesc}>Visualize your consistency across Strength, Jump Training, and SIT (Sprint Interval Training).</p>
+            <p className={styles.demoDesc}>Visualize your consistency across Strength, Cardiorespiratory Training, and Flexibility/Mobility Training.</p>
             <div className={styles.mockupCard}>
               <div className={styles.mockupHeader}>
                 <span>Your Progress: Week 4 of 12</span>
@@ -71,7 +71,7 @@ export default function Home() {
               <div className={styles.mockupBody}>
                 <div className={styles.progressStats}>
                   <div className={styles.statMini}><strong>11</strong> Workouts Logged</div>
-                  <div className={styles.statMini}><strong>6</strong> Jump Sessions</div>
+                  <div className={styles.statMini}><strong>9</strong> Cardio Sessions</div>
                 </div>
                 <div className={styles.progressBar}>
                   <div className={styles.progressFill} style={{ width: '33%' }}></div>
@@ -86,8 +86,9 @@ export default function Home() {
                     </div>
                   </div>
                   <div className={styles.modalityItem}>
-                    <span>Jump (2x)</span>
+                    <span>Cardio (2-3x)</span>
                     <div className={styles.dots}>
+                      <span className={`${styles.dot} ${styles.dotFilled}`}></span>
                       <span className={`${styles.dot} ${styles.dotFilled}`}></span>
                       <span className={styles.dot}></span>
                     </div>

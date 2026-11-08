@@ -12,8 +12,10 @@ export default function GlobalSearch() {
   const wrapperRef = useRef(null);
   const router = useRouter();
 
-  // Hardcoded vault index since the vault is relatively static.
+  // Hardcoded vault & modality index since the vault is relatively static.
   const vaultData = [
+    { id: 'cardio-training', title: 'Cardiorespiratory Training Protocol (2-3x/week)', url: '/jump-training' },
+    { id: 'flexibility-mobility', title: 'Flexibility & Mobility Training Protocol (1-2x/week)', url: '/sit-training' },
     { id: 'recovery-vault', title: 'The Recovery Vault (Reading Room)', url: '/vault' },
     { id: 'common-mistakes', title: 'Common Mistakes Guide (Reading Room)', url: '/vault' },
     { id: 'choosing-weights', title: 'How To Choose Your Weights (Reading Room)', url: '/vault' },

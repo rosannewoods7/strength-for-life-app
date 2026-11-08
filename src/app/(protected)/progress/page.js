@@ -83,13 +83,13 @@ export default function ProgressPage() {
               </div>
 
               <div className={styles.modalityRow}>
-                <span className={styles.modalityName}>Jump (2-3x)</span>
+                <span className={styles.modalityName}>Cardio (2-3x)</span>
                 <div className={styles.dotsContainer}>
                   {weekData.jump.map((isDone, idx) => (
                     <div 
                       key={`jump-${idx}`} 
                       className={`${styles.dot} ${styles.jump} ${isDone ? styles.completed : ''} ${styles.interactiveDot}`} 
-                      title={`Jump Session ${idx + 1}`} 
+                      title={`Cardiorespiratory Session ${idx + 1}`} 
                       onClick={() => updateProgress(w, 'jump', idx, !isDone)}
                     />
                   ))}
@@ -97,13 +97,13 @@ export default function ProgressPage() {
               </div>
 
               <div className={styles.modalityRow}>
-                <span className={styles.modalityName}>SIT (1-2x)</span>
+                <span className={styles.modalityName}>Mobility (1-2x)</span>
                 <div className={styles.dotsContainer}>
                   {weekData.sit.map((isDone, idx) => (
                     <div 
                       key={`sit-${idx}`} 
                       className={`${styles.dot} ${styles.sit} ${isDone ? styles.completed : ''} ${styles.interactiveDot}`} 
-                      title={`SIT Session ${idx + 1}`} 
+                      title={`Flexibility/Mobility Session ${idx + 1}`} 
                       onClick={() => updateProgress(w, 'sit', idx, !isDone)}
                     />
                   ))}
@@ -121,11 +121,11 @@ export default function ProgressPage() {
         </div>
         <div className={styles.statBox}>
           <div className={styles.statNumber}>{totalJump}</div>
-          <div className={styles.statLabel}>Jump Sessions</div>
+          <div className={styles.statLabel}>Cardio Sessions</div>
         </div>
         <div className={styles.statBox}>
           <div className={styles.statNumber}>{totalSit}</div>
-          <div className={styles.statLabel}>SIT Sessions</div>
+          <div className={styles.statLabel}>Mobility Sessions</div>
         </div>
       </div>
     </div>
