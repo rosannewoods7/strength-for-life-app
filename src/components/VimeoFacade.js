@@ -35,7 +35,7 @@ export default function VimeoFacade({ videoUrl, videoId, weekNumber, title }) {
   return (
     <div className={styles.facadeContainer} onClick={() => { if (finalUrl) setIsPlaying(true); }}>
       <div className={styles.facadeContent}>
-        <img src="/icon-512x512.png" alt="Strength for Life Logo" className={styles.logo} />
+        <img src="/icon-512x512.png?v=4" alt="Strength for Life Logo" className={styles.logo} />
         <h2 className={styles.title}>{displayTitle}</h2>
       </div>
       <div className={styles.playOverlay}>

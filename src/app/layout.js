@@ -15,9 +15,9 @@ export const metadata = {
     siteName: 'Strength for Life',
     images: [
       {
-        url: 'https://www.drrosannewoods.com/favicon.ico',
-        width: 1200,
-        height: 630,
+        url: '/icon-512x512.png?v=4',
+        width: 512,
+        height: 512,
         alt: 'Strength for Life',
       },
     ],
@@ -30,8 +30,8 @@ export const metadata = {
     description: 'Build metabolic resilience, power, and functional longevity. Test drive the interactive strength protocol today.',
   },
   icons: {
-    icon: '/icon-192x192.png?v=3',
-    apple: '/icon-512x512.png?v=3',
+    icon: '/icon-192x192.png?v=4',
+    apple: '/icon-512x512.png?v=4',
   },
   appleWebApp: {
     capable: true,
