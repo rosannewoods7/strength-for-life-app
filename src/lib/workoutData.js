@@ -107,13 +107,13 @@ export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
         id: 'A',
         title: 'Workout A: Squat + Horizontal Push/Pull',
         exercises: [
-          { name: 'DB Front/Goblet Squat', sets: getSets(), reps: '12-15', notes: getRPE() },
-          { name: 'DB Bench Press', sets: getSets(), reps: '10-15', notes: getRPE() },
+          { name: 'DB Front/Goblet Squat', sets: getSets(), reps: '12-15', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1200233550' },
+          { name: 'DB Bench Press', sets: getSets(), reps: '10-15', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1200240565' },
           { name: 'Seated Cable Row', sets: getSets(), reps: '12-15', notes: getRPE() },
-          { name: 'DB Romanian Deadlift', sets: '3', reps: '12', notes: getRPE() },
+          { name: 'DB Romanian Deadlift', sets: '3', reps: '12', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1200235000' },
           { name: 'Reverse Lunge', sets: '3', reps: '10/side', notes: getRPE() },
           { name: 'Pallof Press', sets: '3', reps: '10-12/side', notes: getRPE() },
-          { name: 'Farmer Carry', sets: '3', reps: '30-45 sec', notes: getRPE() },
+          { name: 'Farmer Carry', sets: '3', reps: '30-45 sec', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1200235585' },
           { name: 'Finisher: Rower or SkiErg', sets: '5', reps: '30 sec', notes: '30 sec purposeful / 30 sec easy.' }
         ]
       },
@@ -121,12 +121,12 @@ export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
         id: 'B',
         title: 'Workout B: Unilateral + Vertical Push/Pull',
         exercises: [
-          { name: 'DB Step-Up', sets: '3', reps: '10-12/side', notes: getRPE() },
+          { name: 'DB Step-Up', sets: '3', reps: '10-12/side', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1200628797' },
           { name: 'Half-Kneeling Single-Arm Cable Pulldown', sets: '3', reps: '12/side', notes: getRPE() },
-          { name: 'DB Shoulder Press', sets: '3', reps: '10-12', notes: getRPE() },
+          { name: 'DB Shoulder Press', sets: '3', reps: '10-12', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1200241899' },
           { name: 'Hip Thrust', sets: '3', reps: '12-15', notes: getRPE() },
-          { name: 'Supported Single-Arm DB Row', sets: '3', reps: '12/side', notes: getRPE() },
-          { name: 'Dead Bug with Pullover', sets: '3', reps: '8-10/side', notes: getRPE() },
+          { name: 'Supported Single-Arm DB Row', sets: '3', reps: '12/side', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1200241458' },
+          { name: 'Dead Bug with Pullover', sets: '3', reps: '8-10/side', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1199964415' },
           { name: 'Suitcase Carry', sets: '3', reps: '30 sec/side', notes: getRPE() },
           { name: 'Finisher: Sled push', sets: '4-6', reps: 'trips', notes: 'Moderate weight.' }
         ]
@@ -175,13 +175,13 @@ export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
         id: 'A',
         title: 'Workout A: Squat Strength',
         exercises: [
-          { name: 'Squat variation or Leg Press', sets: getSets(), reps: getPrimaryReps(), notes: `Primary Lift. ${getRPE()}. Rest 2-3 mins.` },
-          { name: 'DB/Barbell Bench Press', sets: getSets(), reps: getPrimaryReps(), notes: `Primary Lift. ${getRPE()}. Rest 2-3 mins.` },
+          { name: 'Squat variation or Leg Press', sets: getSets(), reps: getPrimaryReps(), notes: `Primary Lift. ${getRPE()}. Rest 2-3 mins.`, videoUrl: 'https://player.vimeo.com/video/1200233550' },
+          { name: 'DB/Barbell Bench Press', sets: getSets(), reps: getPrimaryReps(), notes: `Primary Lift. ${getRPE()}. Rest 2-3 mins.`, videoUrl: 'https://player.vimeo.com/video/1200240565' },
           { name: 'Seated Cable Row', sets: getSets(), reps: '5-6', notes: `Accessory. Rest 90-120s.` },
-          { name: 'Romanian Deadlift', sets: '3', reps: '6', notes: `Accessory. Rest 90-120s.` },
+          { name: 'Romanian Deadlift', sets: '3', reps: '6', notes: `Accessory. Rest 90-120s.`, videoUrl: 'https://player.vimeo.com/video/1200235000' },
           { name: 'Rear-Foot Elevated Split Squat', sets: '3', reps: '6-8/side', notes: `Accessory. Rest 90-120s.` },
           { name: 'Pallof Press', sets: '3', reps: '8/side', notes: `Accessory. Rest 90-120s.` },
-          { name: 'Heavy Farmer Carry', sets: '3', reps: '20-30 m', notes: `Accessory. Rest 90-120s.` }
+          { name: 'Heavy Farmer Carry', sets: '3', reps: '20-30 m', notes: `Accessory. Rest 90-120s.`, videoUrl: 'https://player.vimeo.com/video/1200235585' }
         ]
       },
       {
@@ -189,11 +189,11 @@ export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
         title: 'Workout B: Hinge Strength',
         exercises: [
           { name: 'Trap-Bar Deadlift', sets: getSets(), reps: getPrimaryReps(), notes: `Primary Lift. ${getRPE()}. Rest 2-3 mins. (DB/KB regression if needed)` },
-          { name: 'DB Shoulder Press', sets: getSets(), reps: '5-6', notes: `Primary Lift. ${getRPE()}. Rest 2-3 mins.` },
+          { name: 'DB Shoulder Press', sets: getSets(), reps: '5-6', notes: `Primary Lift. ${getRPE()}. Rest 2-3 mins.`, videoUrl: 'https://player.vimeo.com/video/1200241899' },
           { name: 'Lat Pulldown/Assisted Pull-Up', sets: '4', reps: '5-6', notes: `Accessory. Rest 90-120s.` },
           { name: 'Hip Thrust', sets: '4', reps: '5-6', notes: `Accessory. Rest 90-120s.` },
-          { name: 'Step-Up', sets: '3', reps: '6-8/side', notes: `Accessory. Rest 90-120s.` },
-          { name: 'Weighted Dead Bug', sets: '3', reps: '8/side', notes: `Accessory. Rest 90-120s.` },
+          { name: 'Step-Up', sets: '3', reps: '6-8/side', notes: `Accessory. Rest 90-120s.`, videoUrl: 'https://player.vimeo.com/video/1200628797' },
+          { name: 'Weighted Dead Bug', sets: '3', reps: '8/side', notes: `Accessory. Rest 90-120s.`, videoUrl: 'https://player.vimeo.com/video/1199964415' },
           { name: 'Heavy Suitcase Carry', sets: '3', reps: '20-30 m/side', notes: `Accessory. Rest 90-120s.` }
         ]
       },
@@ -201,10 +201,10 @@ export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
         id: 'C',
         title: 'Workout C: Total-Body Strength',
         exercises: [
-          { name: 'Front/Goblet Squat', sets: '4', reps: '5-6', notes: `Primary Lift. ${getRPE()}. Rest 2-3 mins.` },
+          { name: 'Front/Goblet Squat', sets: '4', reps: '5-6', notes: `Primary Lift. ${getRPE()}. Rest 2-3 mins.`, videoUrl: 'https://player.vimeo.com/video/1200233550' },
           { name: 'Incline DB Press', sets: '4', reps: '5-6', notes: `Primary Lift. ${getRPE()}. Rest 2-3 mins.` },
           { name: 'One-Arm Cable Row', sets: '4', reps: '6/side', notes: `Accessory. Rest 90-120s.` },
-          { name: 'Single-Leg RDL', sets: '3', reps: '6-8/side', notes: `Accessory. Rest 90-120s.` },
+          { name: 'Single-Leg RDL', sets: '3', reps: '6-8/side', notes: `Accessory. Rest 90-120s.`, videoUrl: 'https://player.vimeo.com/video/1200236229' },
           { name: 'Reverse Lunge', sets: '3', reps: '6-8/side', notes: `Accessory. Rest 90-120s.` },
           { name: 'Cable Anti-Rotation Hold', sets: '3', reps: '20-30 sec/side', notes: `Accessory. Rest 90-120s.` },
           { name: 'Front-Rack Carry', sets: '3', reps: '20-30 m', notes: `Accessory. Rest 90-120s.` }
@@ -266,11 +266,11 @@ export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
         exercises: [
           { name: 'POWER 1 — Lower Vertical (Choose Track):', sets: powerSets, reps: powerReps, notes: wkPower.A1 },
           { name: 'POWER 2 — Upper Push (Choose Track):', sets: weekNumber === 21 ? '3' : '4', reps: weekNumber === 21 ? '5' : '4-5', notes: wkPower.A2 },
-          { name: 'Squat or Leg Press', sets: '4', reps: '5', notes: `Strength. FAST up, CONTROL down.` },
+          { name: 'Squat or Leg Press', sets: '4', reps: '5', notes: `Strength. FAST up, CONTROL down.`, videoUrl: 'https://player.vimeo.com/video/1200233550' },
           { name: 'Seated Row', sets: '3', reps: '6-8', notes: `Strength.` },
-          { name: 'Romanian Deadlift', sets: '3', reps: '6', notes: `Strength.` },
+          { name: 'Romanian Deadlift', sets: '3', reps: '6', notes: `Strength.`, videoUrl: 'https://player.vimeo.com/video/1200235000' },
           { name: 'Reverse Lunge', sets: '3', reps: '6/side', notes: `Strength.` },
-          { name: 'Farmer Carry', sets: '3', reps: '30 m', notes: `Strength.` }
+          { name: 'Farmer Carry', sets: '3', reps: '30 m', notes: `Strength.`, videoUrl: 'https://player.vimeo.com/video/1200235585' }
         ]
       },
       {
@@ -281,7 +281,7 @@ export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
           { name: 'POWER 2 — Vertical/Overhead (Choose Track):', sets: weekNumber === 21 ? '3' : '4', reps: weekNumber === 21 ? '5' : '4', notes: wkPower.B2 },
           { name: 'Trap-Bar/DB Deadlift', sets: '3', reps: '4-5', notes: `Strength.` },
           { name: 'Lat Pulldown', sets: '3', reps: '6', notes: `Strength.` },
-          { name: 'Step-Up + Knee Drive', sets: '3', reps: '6/side', notes: `Strength.` },
+          { name: 'Step-Up + Knee Drive', sets: '3', reps: '6/side', notes: `Strength.`, videoUrl: 'https://player.vimeo.com/video/1200628797' },
           { name: 'Pallof Press', sets: '3', reps: '8/side', notes: `Strength.` },
           { name: 'Suitcase Carry', sets: '3', reps: '30 m/side', notes: `Strength.` }
         ]
@@ -292,10 +292,10 @@ export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
         exercises: [
           { name: 'POWER 1 — Lateral (Choose Track):', sets: weekNumber === 21 ? '3' : '4', reps: weekNumber === 21 ? '5/side' : '4/side', notes: wkPower.C1 },
           { name: 'POWER 2 — Rotational (Choose Track):', sets: weekNumber === 21 ? '3' : '4', reps: weekNumber === 21 ? '5/side' : '4/side', notes: wkPower.C2 },
-          { name: 'Goblet/Front Squat', sets: '3', reps: '5-6', notes: `Strength.` },
-          { name: 'DB Bench Press', sets: '3', reps: '5-6', notes: `Strength.` },
-          { name: 'Single-Arm Row', sets: '3', reps: '6/side', notes: `Strength.` },
-          { name: 'Single-Leg RDL', sets: '3', reps: '6/side', notes: `Strength.` },
+          { name: 'Goblet/Front Squat', sets: '3', reps: '5-6', notes: `Strength.`, videoUrl: 'https://player.vimeo.com/video/1200233550' },
+          { name: 'DB Bench Press', sets: '3', reps: '5-6', notes: `Strength.`, videoUrl: 'https://player.vimeo.com/video/1200240565' },
+          { name: 'Single-Arm Row', sets: '3', reps: '6/side', notes: `Strength.`, videoUrl: 'https://player.vimeo.com/video/1200241458' },
+          { name: 'Single-Leg RDL', sets: '3', reps: '6/side', notes: `Strength.`, videoUrl: 'https://player.vimeo.com/video/1200236229' },
           { name: 'Cable Chop', sets: '3', reps: '6-8/side', notes: `Strength.` }
         ]
       }
