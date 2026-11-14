@@ -9,6 +9,7 @@ import { createClient } from '@/utils/supabase/server';
 import { getAccessStatus } from '@/lib/access';
 import { weeklyData } from '@/lib/weeklyData';
 import { getWorkoutsForWeek } from '@/lib/workoutData';
+import { getUserCustomWorkouts } from '@/lib/customWorkoutsStore';
 import styles from './page.module.css';
 
 export default async function WeeklyModulePage({ params }) {
@@ -36,7 +37,7 @@ export default async function WeeklyModulePage({ params }) {
     );
   }
 
-  const customWorkouts = user?.user_metadata?.custom_workouts || null;
+  const customWorkouts = await getUserCustomWorkouts(user);
   const isCustomized = Boolean(
     customWorkouts &&
       Array.isArray(customWorkouts[weekNumber]) &&

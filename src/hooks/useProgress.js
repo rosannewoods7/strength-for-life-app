@@ -88,13 +88,18 @@ export function useProgress() {
 
   const updateWeight = async (week, workoutId, exerciseName, value) => {
     const key = `${week}-${workoutId}-${exerciseName}`;
-    const newWeights = { ...weights, [key]: value };
+    const newWeights = { ...weights };
+    if (value && value.trim()) {
+      newWeights[key] = value;
+    } else {
+      delete newWeights[key];
+    }
     setWeights(newWeights);
     setIsSaving(true);
 
     try {
       const { error } = await supabase.auth.updateUser({
-        data: { weights: newWeights }
+        data: { weights: newWeights, custom_workouts: null }
       });
       if (error) throw error;
     } catch (err) {
@@ -106,7 +111,12 @@ export function useProgress() {
 
   const updateExerciseNote = async (week, workoutId, exerciseName, value) => {
     const key = `${week}-${workoutId}-${exerciseName}`;
-    const newNotes = { ...exerciseNotes, [key]: value };
+    const newNotes = { ...exerciseNotes };
+    if (value && value.trim()) {
+      newNotes[key] = value;
+    } else {
+      delete newNotes[key];
+    }
     setExerciseNotes(newNotes);
     try {
       localStorage.setItem('sfl_exercise_notes', JSON.stringify(newNotes));
@@ -117,7 +127,7 @@ export function useProgress() {
 
     try {
       const { error } = await supabase.auth.updateUser({
-        data: { exercise_notes: newNotes }
+        data: { exercise_notes: newNotes, custom_workouts: null }
       });
       if (error) throw error;
     } catch (err) {

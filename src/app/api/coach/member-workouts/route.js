@@ -2,6 +2,10 @@ import { NextResponse } from 'next/server';
 import { createClient as createServerSupabase } from '@/utils/supabase/server';
 import { createClient as createAdminSupabase } from '@supabase/supabase-js';
 import { isAdminUser, getAccessStatus } from '@/lib/access';
+import {
+  getUserCustomWorkouts,
+  saveUserCustomWorkouts,
+} from '@/lib/customWorkoutsStore';
 
 const supabaseAdmin = createAdminSupabase(
   process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://dummy.supabase.co',
@@ -14,14 +18,34 @@ const supabaseAdmin = createAdminSupabase(
   }
 );
 
-function formatMemberSummary(u) {
+function formatMemberSummary(u, customWorkoutsOverride = null) {
   const meta = u.user_metadata || {};
   const access = getAccessStatus(u);
-  const customWorkouts = meta.custom_workouts || {};
-  const customizedWeeks = Object.keys(customWorkouts)
-    .filter((wk) => Array.isArray(customWorkouts[wk]) && customWorkouts[wk].length > 0)
-    .map((wk) => Number(wk))
-    .sort((a, b) => a - b);
+
+  let customizedWeeks = [];
+  if (customWorkoutsOverride) {
+    customizedWeeks = Object.keys(customWorkoutsOverride)
+      .filter(
+        (wk) =>
+          Array.isArray(customWorkoutsOverride[wk]) &&
+          customWorkoutsOverride[wk].length > 0
+      )
+      .map((wk) => Number(wk))
+      .sort((a, b) => a - b);
+  } else if (Array.isArray(meta.customized_weeks)) {
+    customizedWeeks = [...meta.customized_weeks]
+      .map((wk) => Number(wk))
+      .sort((a, b) => a - b);
+  } else if (meta.custom_workouts && typeof meta.custom_workouts === 'object') {
+    customizedWeeks = Object.keys(meta.custom_workouts)
+      .filter(
+        (wk) =>
+          Array.isArray(meta.custom_workouts[wk]) &&
+          meta.custom_workouts[wk].length > 0
+      )
+      .map((wk) => Number(wk))
+      .sort((a, b) => a - b);
+  }
 
   return {
     id: u.id,
@@ -36,11 +60,12 @@ function formatMemberSummary(u) {
   };
 }
 
-function formatMemberDetail(u) {
+async function formatMemberDetail(u) {
   const meta = u.user_metadata || {};
+  const customWorkouts = await getUserCustomWorkouts(u);
   return {
-    ...formatMemberSummary(u),
-    customWorkouts: meta.custom_workouts || {},
+    ...formatMemberSummary(u, customWorkouts),
+    customWorkouts,
     weights: meta.weights || {},
     exerciseNotes: meta.exercise_notes || {},
     progress: meta.progress || {},
@@ -55,7 +80,10 @@ export async function GET(request) {
     } = await supabase.auth.getUser();
 
     if (!isAdminUser(user)) {
-      return NextResponse.json({ error: 'Unauthorized. Coach access only.' }, { status: 403 });
+      return NextResponse.json(
+        { error: 'Unauthorized. Coach access only.' },
+        { status: 403 }
+      );
     }
 
     const { searchParams } = new URL(request.url);
@@ -73,7 +101,14 @@ export async function GET(request) {
       (a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0)
     );
 
-    const members = sortedUsers.map(formatMemberSummary);
+    // Automatically migrate & clean any legacy user_metadata.custom_workouts so no user ever has a bloated JWT cookie
+    for (const u of sortedUsers) {
+      if (u.user_metadata?.custom_workouts) {
+        await getUserCustomWorkouts(u);
+      }
+    }
+
+    const members = sortedUsers.map((u) => formatMemberSummary(u));
 
     if (emailQuery) {
       const targetUser = sortedUsers.find(
@@ -85,9 +120,14 @@ export async function GET(request) {
           { status: 404 }
         );
       }
+      const memberDetail = await formatMemberDetail(targetUser);
       return NextResponse.json({
-        member: formatMemberDetail(targetUser),
-        members,
+        member: memberDetail,
+        members: members.map((m) =>
+          m.id === memberDetail.id
+            ? { ...m, customizedWeeks: memberDetail.customizedWeeks }
+            : m
+        ),
       });
     }
 
@@ -106,7 +146,10 @@ export async function POST(request) {
     } = await supabase.auth.getUser();
 
     if (!isAdminUser(user)) {
-      return NextResponse.json({ error: 'Unauthorized. Coach access only.' }, { status: 403 });
+      return NextResponse.json(
+        { error: 'Unauthorized. Coach access only.' },
+        { status: 403 }
+      );
     }
 
     const body = await request.json();
@@ -117,7 +160,10 @@ export async function POST(request) {
     const grantFullAccess = body.grantFullAccess;
 
     if (!email) {
-      return NextResponse.json({ error: 'Member email is required.' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Member email is required.' },
+        { status: 400 }
+      );
     }
 
     const { data: listData, error: listError } =
@@ -139,11 +185,11 @@ export async function POST(request) {
     }
 
     const existingMeta = targetUser.user_metadata || {};
-    const existingCustomWorkouts = { ...(existingMeta.custom_workouts || {}) };
 
     if (typeof grantFullAccess === 'boolean') {
       const updatedMeta = {
         ...existingMeta,
+        custom_workouts: null,
         full_access: grantFullAccess,
         is_trial_user: !grantFullAccess,
       };
@@ -153,12 +199,16 @@ export async function POST(request) {
         });
 
       if (updateError) {
-        return NextResponse.json({ error: updateError.message }, { status: 500 });
+        return NextResponse.json(
+          { error: updateError.message },
+          { status: 500 }
+        );
       }
 
+      const memberDetail = await formatMemberDetail(updatedData.user);
       return NextResponse.json({
         success: true,
-        member: formatMemberDetail(updatedData.user),
+        member: memberDetail,
       });
     }
 
@@ -169,33 +219,37 @@ export async function POST(request) {
       );
     }
 
+    // Load current custom workouts from Supabase Storage (and any legacy metadata)
+    const existingCustomWorkouts = {
+      ...(await getUserCustomWorkouts(targetUser)),
+    };
+
     weeks.forEach((wk) => {
       const wkKey = String(wk);
       if (reset) {
         delete existingCustomWorkouts[wkKey];
       } else if (Array.isArray(workouts)) {
-        // Deep copy so each week has its own clean array
         existingCustomWorkouts[wkKey] = JSON.parse(JSON.stringify(workouts));
       }
     });
 
-    const updatedMeta = {
-      ...existingMeta,
-      custom_workouts: existingCustomWorkouts,
-    };
-
-    const { data: updatedData, error: updateError } =
-      await supabaseAdmin.auth.admin.updateUserById(targetUser.id, {
-        user_metadata: updatedMeta,
-      });
-
-    if (updateError) {
-      return NextResponse.json({ error: updateError.message }, { status: 500 });
-    }
+    // Save to Supabase Storage bucket & keep user_metadata tiny (custom_workouts: null)
+    const { customWorkouts, customizedWeeks } = await saveUserCustomWorkouts(
+      targetUser.id,
+      existingCustomWorkouts,
+      existingMeta
+    );
 
     return NextResponse.json({
       success: true,
-      member: formatMemberDetail(updatedData.user),
+      member: {
+        ...formatMemberSummary(targetUser, customWorkouts),
+        customizedWeeks,
+        customWorkouts,
+        weights: existingMeta.weights || {},
+        exerciseNotes: existingMeta.exercise_notes || {},
+        progress: existingMeta.progress || {},
+      },
     });
   } catch (err) {
     console.error('[Coach API POST Error]:', err);
