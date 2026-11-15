@@ -140,7 +140,7 @@ export default function WorkoutTabs({
               <h3 style={{ margin: 0 }}>{currentWorkout?.title}</h3>
               {selectedTrack === 'machines' && (
                 <span className={styles.machineModeBadge}>
-                  ⚙️ Machine-Based Track
+                  ⚙️ Machine-Based Track (Straight Sets A, B, C...)
                 </span>
               )}
               {isCustomized && (
@@ -198,6 +198,12 @@ export default function WorkoutTabs({
             )}
           </div>
 
+          {selectedTrack === 'machines' && (
+            <div className={styles.machineTrackNotice}>
+              <strong>Gym Etiquette &amp; Flow:</strong> Complete all sets on each machine (<strong>A, B, C, D...</strong>) before moving to the next machine so you don&apos;t lose your spot.
+            </div>
+          )}
+
           <table>
             <thead>
               <tr>
@@ -213,6 +219,7 @@ export default function WorkoutTabs({
               {currentWorkout?.exercises?.map((ex, i) => {
                 const workoutId = currentWorkout.id;
                 const weightKey = `${weekNumber}-${workoutId}-${ex.name}`;
+                const orderLetter = ex.label || String.fromCharCode(65 + i);
                 return (
                   <tr key={i} className={styles.exerciseRow}>
                     <td className={styles.demoCell} data-label="Demo">
@@ -252,7 +259,12 @@ export default function WorkoutTabs({
                     </td>
                     <td className={styles.movementName} data-label="Movement">
                       <div className={styles.movementHeaderMobile}>
-                        <span className={styles.movementTitleText}>{ex.name}</span>
+                        <span className={styles.movementTitleText}>
+                          <span className={styles.exerciseOrderLetter}>
+                            {orderLetter}
+                          </span>
+                          {ex.name}
+                        </span>
                         <span className={styles.mobilePrescriptionBadge}>
                           {ex.sets} Sets &times; {ex.reps}
                           {/^\d+(?:-\d+)?$/.test(String(ex.reps).trim())
