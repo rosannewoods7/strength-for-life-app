@@ -35,10 +35,24 @@ export default function GettingStartedPage() {
         </ol>
 
         <div style={{ backgroundColor: 'var(--color-sand)', padding: '1.5rem', borderRadius: '8px', marginBottom: '1.5rem', borderLeft: '4px solid var(--color-deep-espresso)' }}>
-          <h3 style={{ fontSize: '1.1rem', color: 'var(--color-deep-espresso)', marginBottom: '0.5rem', marginTop: 0 }}>Equipment Note</h3>
-          <p style={{ fontSize: '0.95rem', margin: 0, color: 'var(--color-deep-espresso)', lineHeight: '1.5' }}>
-            All workouts in this program can be completed using only dumbbells (DBs). For optimal training progression, it is highly recommended that you have access to at least one lighter set and one heavier set of DBs.
+          <h3 style={{ fontSize: '1.1rem', color: 'var(--color-deep-espresso)', marginBottom: '0.65rem', marginTop: 0 }}>Equipment &amp; Choosing Your Workout Track</h3>
+          <p style={{ fontSize: '0.95rem', margin: '0 0 0.75rem 0', color: 'var(--color-deep-espresso)', lineHeight: '1.55' }}>
+            At the top of every weekly workout page, you can choose the training style that best fits your environment, comfort level, and joints:
           </p>
+          <ul style={{ paddingLeft: '1.35rem', margin: 0, color: 'var(--color-deep-espresso)', fontSize: '0.95rem', lineHeight: '1.6' }}>
+            <li style={{ marginBottom: '0.55rem' }}>
+              <strong>🏋️ Free Weights &amp; Cables (Home or Gym):</strong>{' '}
+              <strong>Months 1–3</strong> can be completed at home or in the gym using just dumbbells and a resistance band (at least one lighter set and one heavier set of dumbbells is recommended). <strong>Months 4–6</strong> incorporate dumbbells, trap bars, cables, and conditioning finishers (with band alternatives included for cable exercises).
+            </li>
+            <li style={{ marginBottom: '0.55rem' }}>
+              <strong>⚙️ Gym Machines (Joint-Friendly):</strong>{' '}
+              A guided, floor-free machine workout track ideal if you train at a gym and prefer the stability and confidence of selectorized machines, or if you are working around joint sensitivities or injuries. Complete all sets on each machine (<strong>A, B, C...</strong>) before moving to the next station.
+            </li>
+            <li>
+              <strong>✨ Personalized Adjustments:</strong>{' '}
+              If you ever need an exercise modified for your specific equipment or an injury, your coach can customize your plan directly inside your account.
+            </li>
+          </ul>
         </div>
 
         <div style={{ backgroundColor: 'var(--color-sand)', padding: '1.5rem', borderRadius: '8px', marginBottom: '2rem', borderLeft: '4px solid var(--color-deep-plum)' }}>
