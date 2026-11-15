@@ -214,6 +214,56 @@
   margin: 0;
 }
 
+.trackControlBox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.9rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.trackControlItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.trackControlItem label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-soft-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.trackSelect {
+  padding: 0.4rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background-color: var(--color-white);
+  color: var(--color-deep-espresso);
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+.loadTemplateBtn {
+  background-color: #e0f2fe;
+  color: #075985;
+  border: 1px solid #38bdf8;
+  border-radius: 8px;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.loadTemplateBtn:hover {
+  background-color: #bae6fd;
+}
+
 .grantAccessBtn {
   background-color: var(--color-soft-gold);
   color: var(--color-deep-espresso);

@@ -1,7 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { getWorkoutsForWeek, EXERCISE_VIDEO_LIBRARY } from '@/lib/workoutData';
+import {
+  getWorkoutsForWeek,
+  getMachineWorkoutsForWeek,
+  EXERCISE_VIDEO_LIBRARY,
+} from '@/lib/workoutData';
 import styles from './page.module.css';
 
 function getPhaseWeeks(weekNum) {
@@ -224,6 +228,49 @@ export default function CoachPortalPage() {
     }
   };
 
+  const handleUpdateTrackSettings = async (newDefaultTrack, newTrackMode) => {
+    if (!selectedMember?.email) return;
+    setSaving(true);
+    setErrorMsg(null);
+    setStatusMsg(null);
+
+    try {
+      const res = await fetch('/api/coach/member-workouts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: selectedMember.email,
+          defaultTrack: newDefaultTrack,
+          trackMode: newTrackMode,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setErrorMsg(data.error || 'Could not update member track settings.');
+      } else {
+        setSelectedMember(data.member);
+        setMembers((prev) =>
+          prev.map((m) => (m.id === data.member.id ? data.member : m))
+        );
+        setStatusMsg(
+          `Updated equipment track settings for ${data.member.email}!`
+        );
+      }
+    } catch (err) {
+      setErrorMsg('Network error updating track settings.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleLoadMachineTemplate = () => {
+    const machineTemplate = getMachineWorkoutsForWeek(selectedWeek);
+    setEditableWorkouts(JSON.parse(JSON.stringify(machineTemplate)));
+    setStatusMsg(
+      `Loaded Week ${selectedWeek} Gym Machines template into editor. Click "Save" below to assign it to ${selectedMember?.email}.`
+    );
+  };
+
   const phaseWeeks = getPhaseWeeks(selectedWeek);
   const currentWorkout = editableWorkouts[activeTab] || editableWorkouts[0];
   const isCurrentWeekCustomized = Boolean(
@@ -341,6 +388,55 @@ export default function CoachPortalPage() {
                   </>
                 )}
               </p>
+
+              <div className={styles.trackControlBox}>
+                <div className={styles.trackControlItem}>
+                  <label>Default Track:</label>
+                  <select
+                    className={styles.trackSelect}
+                    value={selectedMember.defaultTrack || 'free_weights'}
+                    disabled={saving}
+                    onChange={(e) =>
+                      handleUpdateTrackSettings(
+                        e.target.value,
+                        selectedMember.trackMode || 'both'
+                      )
+                    }
+                  >
+                    <option value="free_weights">
+                      🏋️ Free Weights &amp; Cables
+                    </option>
+                    <option value="machines">
+                      ⚙️ Gym Machines (Joint-Friendly)
+                    </option>
+                  </select>
+                </div>
+
+                <div className={styles.trackControlItem}>
+                  <label>Machine Toggle Access:</label>
+                  <select
+                    className={styles.trackSelect}
+                    value={selectedMember.trackMode || 'both'}
+                    disabled={saving}
+                    onChange={(e) =>
+                      handleUpdateTrackSettings(
+                        selectedMember.defaultTrack || 'free_weights',
+                        e.target.value
+                      )
+                    }
+                  >
+                    <option value="both">
+                      Show Both (Allow Member to Toggle)
+                    </option>
+                    <option value="machines_only">
+                      Lock to Gym Machines Only
+                    </option>
+                    <option value="free_weights_only">
+                      Toggle Off Machine Option (Free Weights Only)
+                    </option>
+                  </select>
+                </div>
+              </div>
             </div>
             <div>
               {!selectedMember.hasFullAccess && (
@@ -364,11 +460,20 @@ export default function CoachPortalPage() {
                   Weeks with a gold star (✨) have custom workouts saved for this member.
                 </p>
               </div>
-              {isCurrentWeekCustomized && (
-                <span className={styles.customActiveTag}>
-                  ✨ Week {selectedWeek} has custom modifications
-                </span>
-              )}
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                <button
+                  type="button"
+                  className={styles.loadTemplateBtn}
+                  onClick={handleLoadMachineTemplate}
+                >
+                  ⚙️ Load Week {selectedWeek} Machine Template into Editor
+                </button>
+                {isCurrentWeekCustomized && (
+                  <span className={styles.customActiveTag}>
+                    ✨ Week {selectedWeek} has custom modifications
+                  </span>
+                )}
+              </div>
             </div>
 
             <div className={styles.weekGrid}>

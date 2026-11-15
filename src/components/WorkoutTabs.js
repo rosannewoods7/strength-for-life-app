@@ -1,19 +1,70 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useProgress } from '@/hooks/useProgress';
+import { getMachineWorkoutsForWeek } from '@/lib/workoutData';
 import styles from './WorkoutTabs.module.css';
 
 export default function WorkoutTabs({
   workouts,
-  weekNumber,
+  machineWorkouts = null,
+  weekNumber = 1,
   initialTab = 0,
   fullPage = false,
   isCustomized = false,
+  defaultTrack = 'free_weights',
+  trackMode = 'both', // 'both' | 'free_weights_only' | 'machines_only'
 }) {
+  const resolvedMachineWorkouts =
+    machineWorkouts || getMachineWorkoutsForWeek(weekNumber);
+
+  const initialTrackState =
+    trackMode === 'machines_only'
+      ? 'machines'
+      : trackMode === 'free_weights_only'
+      ? 'free_weights'
+      : defaultTrack || 'free_weights';
+
+  const [selectedTrack, setSelectedTrack] = useState(initialTrackState);
+
+  useEffect(() => {
+    if (trackMode === 'machines_only') {
+      setSelectedTrack('machines');
+      return;
+    }
+    if (trackMode === 'free_weights_only') {
+      setSelectedTrack('free_weights');
+      return;
+    }
+    try {
+      const savedTrack = localStorage.getItem('sfl_workout_track');
+      if (savedTrack === 'machines' || savedTrack === 'free_weights') {
+        setSelectedTrack(savedTrack);
+      } else if (defaultTrack) {
+        setSelectedTrack(defaultTrack);
+      }
+    } catch {
+      // ignore localStorage errors
+    }
+  }, [trackMode, defaultTrack]);
+
+  const handleTrackSwitch = (newTrack) => {
+    setSelectedTrack(newTrack);
+    try {
+      localStorage.setItem('sfl_workout_track', newTrack);
+    } catch {
+      // ignore
+    }
+  };
+
+  const activeWorkoutsList =
+    selectedTrack === 'machines' && resolvedMachineWorkouts?.length > 0
+      ? resolvedMachineWorkouts
+      : workouts;
+
   const safeInitialTab =
-    initialTab >= 0 && initialTab < workouts.length ? initialTab : 0;
+    initialTab >= 0 && initialTab < activeWorkoutsList.length ? initialTab : 0;
   const [activeTab, setActiveTab] = useState(safeInitialTab);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const {
@@ -29,13 +80,45 @@ export default function WorkoutTabs({
   const openVideo = (url) => setSelectedVideo(url);
   const closeVideo = () => setSelectedVideo(null);
 
+  const currentWorkout =
+    activeWorkoutsList[activeTab] || activeWorkoutsList[0];
+
   return (
     <div className={`${styles.container} print-workout-container`}>
+      {/* Track Toggle Bar (shown when trackMode === 'both') */}
+      {trackMode === 'both' && resolvedMachineWorkouts?.length > 0 && (
+        <div className={styles.trackToggleBar}>
+          <span className={styles.trackToggleLabel}>Training Equipment:</span>
+          <div className={styles.trackTogglePills}>
+            <button
+              type="button"
+              className={`${styles.trackPill} ${
+                selectedTrack === 'free_weights' ? styles.trackPillActive : ''
+              }`}
+              onClick={() => handleTrackSwitch('free_weights')}
+            >
+              🏋️ Free Weights &amp; Cables
+            </button>
+            <button
+              type="button"
+              className={`${styles.trackPill} ${
+                selectedTrack === 'machines' ? styles.trackPillActive : ''
+              }`}
+              onClick={() => handleTrackSwitch('machines')}
+            >
+              ⚙️ Gym Machines (Joint-Friendly)
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className={styles.tabsHeader}>
-        {workouts.map((workout, index) => (
+        {activeWorkoutsList.map((workout, index) => (
           <button
             key={workout.id}
-            className={`${styles.tabButton} ${activeTab === index ? styles.activeTab : ''}`}
+            className={`${styles.tabButton} ${
+              activeTab === index ? styles.activeTab : ''
+            }`}
             onClick={() => setActiveTab(index)}
           >
             {workout.title}
@@ -46,8 +129,20 @@ export default function WorkoutTabs({
       <div className={styles.tabContent}>
         <div className={styles.prescriptionTable}>
           <div className={styles.topActionBar}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
-              <h3 style={{ margin: 0 }}>{workouts[activeTab].title}</h3>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.6rem',
+                flexWrap: 'wrap',
+              }}
+            >
+              <h3 style={{ margin: 0 }}>{currentWorkout?.title}</h3>
+              {selectedTrack === 'machines' && (
+                <span className={styles.machineModeBadge}>
+                  ⚙️ Machine-Based Track
+                </span>
+              )}
               {isCustomized && (
                 <span
                   style={{
@@ -87,7 +182,12 @@ export default function WorkoutTabs({
                     type="checkbox"
                     checked={progress[weekNumber]?.strength[activeTab] || false}
                     onChange={(e) =>
-                      updateProgress(weekNumber, 'strength', activeTab, e.target.checked)
+                      updateProgress(
+                        weekNumber,
+                        'strength',
+                        activeTab,
+                        e.target.checked
+                      )
                     }
                     className={styles.logCheckbox}
                   />
@@ -110,14 +210,20 @@ export default function WorkoutTabs({
               </tr>
             </thead>
             <tbody>
-              {workouts[activeTab].exercises.map((ex, i) => {
-                const workoutId = workouts[activeTab].id;
+              {currentWorkout?.exercises?.map((ex, i) => {
+                const workoutId = currentWorkout.id;
                 const weightKey = `${weekNumber}-${workoutId}-${ex.name}`;
                 return (
                   <tr key={i} className={styles.exerciseRow}>
                     <td className={styles.demoCell} data-label="Demo">
                       {ex.videoUrl ? (
-                        <div style={{ display: 'inline-flex', gap: '4px', alignItems: 'center' }}>
+                        <div
+                          style={{
+                            display: 'inline-flex',
+                            gap: '4px',
+                            alignItems: 'center',
+                          }}
+                        >
                           <button
                             className={styles.demoButton}
                             title="Watch exercise demo"
@@ -136,7 +242,10 @@ export default function WorkoutTabs({
                           )}
                         </div>
                       ) : (
-                        <span className={styles.demoPlaceholder} title="Demo coming soon">
+                        <span
+                          className={styles.demoPlaceholder}
+                          title="Demo coming soon"
+                        >
                           -
                         </span>
                       )}
@@ -146,7 +255,9 @@ export default function WorkoutTabs({
                         <span className={styles.movementTitleText}>{ex.name}</span>
                         <span className={styles.mobilePrescriptionBadge}>
                           {ex.sets} Sets &times; {ex.reps}
-                          {/^\d+(?:-\d+)?$/.test(String(ex.reps).trim()) ? ' Reps' : ''}
+                          {/^\d+(?:-\d+)?$/.test(String(ex.reps).trim())
+                            ? ' Reps'
+                            : ''}
                         </span>
                       </div>
                     </td>
@@ -163,7 +274,12 @@ export default function WorkoutTabs({
                         placeholder="e.g. 15 lbs"
                         value={weights?.[weightKey] || ''}
                         onChange={(e) =>
-                          updateWeight(weekNumber, workoutId, ex.name, e.target.value)
+                          updateWeight(
+                            weekNumber,
+                            workoutId,
+                            ex.name,
+                            e.target.value
+                          )
                         }
                         disabled={isLoading}
                       />
@@ -175,7 +291,9 @@ export default function WorkoutTabs({
                             const colonIdx = line.indexOf(':');
                             const hasTrackLabel =
                               colonIdx > -1 &&
-                              /^(Foundational|Standard|Advanced)/i.test(line.trim());
+                              /^(Foundational|Standard|Advanced)/i.test(
+                                line.trim()
+                              );
                             return (
                               <div
                                 key={lineIdx}
@@ -225,7 +343,10 @@ export default function WorkoutTabs({
 
       {selectedVideo && (
         <div className={styles.modalOverlay} onClick={closeVideo}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+          <div
+            className={styles.modalContent}
+            onClick={(e) => e.stopPropagation()}
+          >
             <button className={styles.closeButton} onClick={closeVideo}>
               &times;
             </button>

@@ -56,6 +56,8 @@ function formatMemberSummary(u, customWorkoutsOverride = null) {
     isTrialActive: access.isTrialActive,
     daysRemaining: access.daysRemaining,
     isSubscribed: meta.subscription_status === 'active',
+    defaultTrack: meta.default_workout_track || 'free_weights',
+    trackMode: meta.workout_track_mode || 'both',
     customizedWeeks,
   };
 }
@@ -158,6 +160,8 @@ export async function POST(request) {
     const workouts = body.workouts;
     const reset = Boolean(body.reset);
     const grantFullAccess = body.grantFullAccess;
+    const defaultTrack = body.defaultTrack;
+    const trackMode = body.trackMode;
 
     if (!email) {
       return NextResponse.json(
@@ -185,6 +189,32 @@ export async function POST(request) {
     }
 
     const existingMeta = targetUser.user_metadata || {};
+
+    if (defaultTrack || trackMode) {
+      const updatedMeta = {
+        ...existingMeta,
+        custom_workouts: null,
+        ...(defaultTrack ? { default_workout_track: defaultTrack } : {}),
+        ...(trackMode ? { workout_track_mode: trackMode } : {}),
+      };
+      const { data: updatedData, error: updateError } =
+        await supabaseAdmin.auth.admin.updateUserById(targetUser.id, {
+          user_metadata: updatedMeta,
+        });
+
+      if (updateError) {
+        return NextResponse.json(
+          { error: updateError.message },
+          { status: 500 }
+        );
+      }
+
+      const memberDetail = await formatMemberDetail(updatedData.user);
+      return NextResponse.json({
+        success: true,
+        member: memberDetail,
+      });
+    }
 
     if (typeof grantFullAccess === 'boolean') {
       const updatedMeta = {

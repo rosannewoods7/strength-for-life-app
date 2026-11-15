@@ -44,6 +44,8 @@ export default async function DedicatedWorkoutPage({ params, searchParams }) {
       customWorkouts[weekNumber].length > 0
   );
   const workouts = getWorkoutsForWeek(weekNumber, customWorkouts);
+  const defaultTrack = user?.user_metadata?.default_workout_track || 'free_weights';
+  const trackMode = user?.user_metadata?.workout_track_mode || 'both';
 
   return (
     <div className={styles.container} style={{ gap: '1rem' }}>
@@ -79,6 +81,8 @@ export default async function DedicatedWorkoutPage({ params, searchParams }) {
         initialTab={initialTab}
         fullPage={true}
         isCustomized={isCustomized}
+        defaultTrack={defaultTrack}
+        trackMode={trackMode}
       />
     </div>
   );

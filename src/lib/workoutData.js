@@ -49,6 +49,214 @@ export const EXERCISE_VIDEO_LIBRARY = [
   { name: 'Cable Rotational Chop', videoUrl: 'https://player.vimeo.com/video/1246949944' },
 ];
 
+export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = null) => {
+  if (
+    customMachineWorkouts &&
+    Array.isArray(customMachineWorkouts[weekNumber]) &&
+    customMachineWorkouts[weekNumber].length > 0
+  ) {
+    return customMachineWorkouts[weekNumber];
+  }
+
+  // ---------------------------------------------------------
+  // MONTHS 1-3 (WEEKS 1-12) — GYM MACHINES TRACK
+  // ---------------------------------------------------------
+  if (weekNumber <= 12) {
+    const phaseNum = weekNumber <= 4 ? 1 : weekNumber <= 8 ? 2 : 3;
+    const setsCount = phaseNum === 1 ? 2 : 3;
+    const repsRange = phaseNum === 1 ? '12-15' : phaseNum === 2 ? '8-12' : '6-8';
+
+    return [
+      {
+        id: 'A',
+        title: 'Workout A: Machine Foundational Reset',
+        exercises: [
+          { name: 'Leg Press Machine', sets: setsCount, reps: repsRange, notes: 'Feet hip-width on sled. Lower under control to a comfortable 90° knee bend.' },
+          { name: 'Seated or Lying Leg Curl Machine', sets: setsCount, reps: repsRange, notes: 'Control the return (3-second eccentric). Keep hips pressed against pad.' },
+          { name: 'Seated Machine Chest Press', sets: setsCount, reps: repsRange, notes: 'Set handles at mid-chest height. Keep shoulders down away from ears.' },
+          { name: 'Seated Cable Row', sets: setsCount, reps: repsRange, notes: 'Sit tall, pull handle to lower ribs, squeeze shoulder blades together.', videoUrl: 'https://player.vimeo.com/video/1246932766' },
+          { name: 'Seated Machine Shoulder Press', sets: setsCount, reps: repsRange, notes: 'Press smoothly overhead while keeping back supported against pad.' },
+          { name: 'Cable or Band Pallof Press', sets: setsCount, reps: '10-12/side', notes: 'Stand tall, press handle straight out from chest and resist rotation.', videoUrl: 'https://player.vimeo.com/video/1246923135' },
+          { name: 'Seated Cat-Cow & Spinal Mobility', sets: 2, reps: '10', notes: 'Floor-free spinal flexion and extension seated tall on a bench.', videoUrl: 'https://player.vimeo.com/video/1199964093' },
+        ],
+      },
+      {
+        id: 'B',
+        title: 'Workout B: Machine Structural Balance',
+        exercises: [
+          { name: 'Seated Leg Extension Machine', sets: setsCount, reps: repsRange, notes: 'Pause 1 second at the top to strengthen quadriceps and knee stability.' },
+          { name: 'Cable Lat Pulldown', sets: setsCount, reps: repsRange, notes: 'Pull bar to upper chest, driving elbows down and back.', videoUrl: 'https://player.vimeo.com/video/1246920969' },
+          { name: 'Incline Machine Chest Press (or Pec Deck)', sets: setsCount, reps: repsRange, notes: 'Controlled stretch, smooth press without locking out elbows.' },
+          { name: 'Cable Pull-Through (or Glute Bridge Machine)', sets: setsCount, reps: repsRange, notes: 'Hinge at hips and squeeze glutes at the top.', videoUrl: 'https://player.vimeo.com/video/1246920972' },
+          { name: 'Chest-Supported Machine Row (or One-Arm Cable Row)', sets: setsCount, reps: repsRange, notes: 'Keep torso braced, drive elbows back.', videoUrl: 'https://player.vimeo.com/video/1246932766' },
+          { name: 'Cable Anti-Rotation Hold', sets: setsCount, reps: '20-30 Sec/side', notes: 'Brace core and hold cable handle steady in front of sternum.', videoUrl: 'https://player.vimeo.com/video/1246949254' },
+          { name: 'Seated Figure-4 Hip Stretch', sets: 2, reps: '45 Sec/side', notes: 'Floor-free hip mobility stretch seated on bench.', videoUrl: 'https://player.vimeo.com/video/1200629533' },
+        ],
+      },
+      {
+        id: 'C',
+        title: 'Workout C: Machine Dynamic Strength',
+        exercises: [
+          { name: 'Wide-Stance Leg Press', sets: setsCount, reps: repsRange, notes: 'Wider foot placement with toes turned out 15° to target glutes and hips.' },
+          { name: 'Seated Leg Curl Machine', sets: setsCount, reps: repsRange, notes: 'Drive heels back smoothly, pause briefly, and control the return.' },
+          { name: 'Staggered-Stance Cable Chest Press', sets: setsCount, reps: repsRange, notes: 'Split stance for balance, press cables forward with control.', videoUrl: 'https://player.vimeo.com/video/1246920964' },
+          { name: 'Straight-Arm Cable Pulldown', sets: setsCount, reps: repsRange, notes: 'Keep arms straight, sweep bar down to thighs using lats.', videoUrl: 'https://player.vimeo.com/video/1246935268' },
+          { name: 'Cable or Band Face Pull', sets: setsCount, reps: repsRange, notes: 'Pull rope toward forehead, finishing in a double bicep pose.', videoUrl: 'https://player.vimeo.com/video/1200243512' },
+          { name: 'Standing Cable Woodchop', sets: setsCount, reps: '10-12/side', notes: 'Rotate smoothly through core and hips.', videoUrl: 'https://player.vimeo.com/video/1246920962', secondaryVideoUrl: 'https://player.vimeo.com/video/1246949944' },
+          { name: 'Seated Thoracic Rotations', sets: 2, reps: '8/side', notes: 'Floor-free upper back mobility finisher.', videoUrl: 'https://player.vimeo.com/video/1200629767' },
+        ],
+      },
+    ];
+  }
+
+  // ---------------------------------------------------------
+  // MONTH 4: BUILD (WEEKS 13-16) — GYM MACHINES TRACK
+  // ---------------------------------------------------------
+  if (weekNumber >= 13 && weekNumber <= 16) {
+    const sets = weekNumber <= 14 ? '2-3' : weekNumber === 15 ? '3' : '3-4';
+    const rpe = weekNumber <= 14 ? 'RPE 7' : weekNumber === 15 ? 'RPE 8' : 'RPE 8-9 (final set)';
+
+    return [
+      {
+        id: 'A',
+        title: 'Workout A: Machine Squat + Horizontal Push/Pull',
+        exercises: [
+          { name: 'Leg Press Machine', sets, reps: '12-15', notes: rpe },
+          { name: 'Seated Machine Chest Press', sets, reps: '10-15', notes: rpe },
+          { name: 'Seated Cable Row', sets, reps: '12-15', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246932766' },
+          { name: 'Seated or Lying Leg Curl Machine', sets: '3', reps: '12', notes: rpe },
+          { name: 'Seated Leg Extension Machine', sets: '3', reps: '12', notes: rpe },
+          { name: 'Cable Pallof Press', sets: '3', reps: '10-12/side', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246923135' },
+          { name: 'Finisher: Rower or SkiErg', sets: '5', reps: '30 sec', notes: '30 sec purposeful / 30 sec easy.', videoUrl: 'https://player.vimeo.com/video/1246920976', secondaryVideoUrl: 'https://player.vimeo.com/video/1246920963' },
+        ],
+      },
+      {
+        id: 'B',
+        title: 'Workout B: Machine Unilateral + Vertical Push/Pull',
+        exercises: [
+          { name: 'Single-Leg Press (or Assisted Step-Up)', sets: '3', reps: '10-12/side', notes: rpe },
+          { name: 'Half-Kneeling or Seated Single-Arm Cable Pulldown', sets: '3', reps: '12/side', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246920975' },
+          { name: 'Seated Machine Shoulder Press', sets: '3', reps: '10-12', notes: rpe },
+          { name: 'Glute Bridge Machine (or Cable Pull-Through)', sets: '3', reps: '12-15', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246920972' },
+          { name: 'One-Arm Cable Row', sets: '3', reps: '12/side', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246932766' },
+          { name: 'Cable Anti-Rotation Hold', sets: '3', reps: '25 sec/side', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246949254' },
+          { name: 'Finisher: Stationary Bike or Incline Walk', sets: '5', reps: '30 sec', notes: '30 sec brisk effort / 30 sec easy recovery.' },
+        ],
+      },
+      {
+        id: 'C',
+        title: 'Workout C: Machine Total-Body Capacity',
+        exercises: [
+          { name: 'Wide-Stance Leg Press', sets: '3', reps: '15', notes: rpe },
+          { name: 'Incline Machine Chest Press', sets: '3', reps: '12', notes: rpe },
+          { name: 'Cable Lat Pulldown', sets: '3', reps: '12', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246920969' },
+          { name: 'Seated Leg Curl Machine', sets: '3', reps: '12', notes: rpe },
+          { name: 'Seated Hip Abduction / Adduction Machine', sets: '3', reps: '12-15', notes: rpe },
+          { name: 'Cable Rotational Chop', sets: '3', reps: '10/side', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246949944', secondaryVideoUrl: 'https://player.vimeo.com/video/1246920962' },
+          { name: 'Finisher: Battle Ropes or SkiErg', sets: '6', reps: '20 sec', notes: '40 sec recovery.', videoUrl: 'https://player.vimeo.com/video/1246920979', secondaryVideoUrl: 'https://player.vimeo.com/video/1246920963' },
+        ],
+      },
+    ];
+  }
+
+  // ---------------------------------------------------------
+  // MONTH 5: INTENSIFY (WEEKS 17-20) — GYM MACHINES TRACK
+  // ---------------------------------------------------------
+  if (weekNumber >= 17 && weekNumber <= 20) {
+    const sets = weekNumber === 20 ? '3-4' : '4';
+    const reps = weekNumber === 17 ? '6-8' : weekNumber === 18 ? '6' : '5-6';
+    const rpe = weekNumber === 17 ? 'RPE 7-8' : weekNumber === 18 ? 'RPE 8' : 'RPE 8-9';
+
+    return [
+      {
+        id: 'A',
+        title: 'Workout A: Machine Lower & Push Strength',
+        exercises: [
+          { name: 'Leg Press Machine', sets, reps, notes: `Primary Lift. ${rpe}. Rest 2-3 mins.` },
+          { name: 'Seated Machine Chest Press', sets, reps, notes: `Primary Lift. ${rpe}. Rest 2-3 mins.` },
+          { name: 'Seated Cable Row', sets, reps: '6-8', notes: 'Accessory. Rest 90-120s.', videoUrl: 'https://player.vimeo.com/video/1246932766' },
+          { name: 'Seated or Lying Leg Curl Machine', sets: '3', reps: '6-8', notes: 'Accessory. Rest 90-120s.' },
+          { name: 'Seated Leg Extension Machine', sets: '3', reps: '8', notes: 'Accessory. Rest 90-120s.' },
+          { name: 'Cable Pallof Press', sets: '3', reps: '8/side', notes: 'Accessory. Rest 90-120s.', videoUrl: 'https://player.vimeo.com/video/1246923135' },
+        ],
+      },
+      {
+        id: 'B',
+        title: 'Workout B: Machine Posterior & Overhead Strength',
+        exercises: [
+          { name: 'Glute Drive Machine (or Heavy Cable Pull-Through)', sets, reps, notes: `Primary Lift. ${rpe}. Rest 2-3 mins.`, videoUrl: 'https://player.vimeo.com/video/1246920972' },
+          { name: 'Seated Machine Shoulder Press', sets, reps: '6-8', notes: `Primary Lift. ${rpe}. Rest 2-3 mins.` },
+          { name: 'Cable Lat Pulldown', sets: '4', reps: '6-8', notes: 'Accessory. Rest 90-120s.', videoUrl: 'https://player.vimeo.com/video/1246920969' },
+          { name: 'Single-Leg Press', sets: '3', reps: '6-8/side', notes: 'Accessory. Rest 90-120s.' },
+          { name: 'One-Arm Cable Row', sets: '3', reps: '6-8/side', notes: 'Accessory. Rest 90-120s.', videoUrl: 'https://player.vimeo.com/video/1246932766' },
+          { name: 'Cable Anti-Rotation Hold', sets: '3', reps: '20-30 sec/side', notes: 'Accessory. Rest 90-120s.', videoUrl: 'https://player.vimeo.com/video/1246949254' },
+        ],
+      },
+      {
+        id: 'C',
+        title: 'Workout C: Machine Total-Body Strength',
+        exercises: [
+          { name: 'Wide-Stance Leg Press', sets: '4', reps: '6-8', notes: `Primary Lift. ${rpe}. Rest 2-3 mins.` },
+          { name: 'Incline Machine Chest Press', sets: '4', reps: '6-8', notes: `Primary Lift. ${rpe}. Rest 2-3 mins.` },
+          { name: 'Straight-Arm Cable Pulldown', sets: '3', reps: '8', notes: 'Accessory. Rest 90-120s.', videoUrl: 'https://player.vimeo.com/video/1246935268' },
+          { name: 'Seated Leg Curl Machine', sets: '3', reps: '6-8', notes: 'Accessory. Rest 90-120s.' },
+          { name: 'Cable Face Pull', sets: '3', reps: '8-10', notes: 'Accessory. Rest 90-120s.', videoUrl: 'https://player.vimeo.com/video/1200243512' },
+          { name: 'Cable Rotational Chop', sets: '3', reps: '8/side', notes: 'Accessory. Rest 90-120s.', videoUrl: 'https://player.vimeo.com/video/1246949944' },
+        ],
+      },
+    ];
+  }
+
+  // ---------------------------------------------------------
+  // MONTH 6: EXPRESS (WEEKS 21-24) — GYM MACHINES TRACK
+  // ---------------------------------------------------------
+  if (weekNumber >= 21 && weekNumber <= 24) {
+    const powerSets = weekNumber === 24 ? '3-4' : weekNumber === 21 ? '3' : '4';
+    const powerReps = weekNumber === 24 ? '4-5' : '5';
+
+    return [
+      {
+        id: 'A',
+        title: 'Workout A: Machine Lower-Body & Push Power',
+        exercises: [
+          { name: 'POWER 1 — Fast Leg Press Drive (Control down, fast push up)', sets: powerSets, reps: powerReps, notes: 'Moderate load (50-60%). Explode smoothly through mid-foot without locking knees.' },
+          { name: 'POWER 2 — Staggered-Stance Fast Cable Chest Press', sets: powerSets, reps: powerReps, notes: 'Punch handles forward rapidly, return slowly under control.', videoUrl: 'https://player.vimeo.com/video/1246920964' },
+          { name: 'Leg Press Machine (Strength Load)', sets: '4', reps: '5-6', notes: 'Strength. Controlled descent, strong drive up.' },
+          { name: 'Seated Cable Row', sets: '3', reps: '6-8', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1246932766' },
+          { name: 'Seated Leg Curl Machine', sets: '3', reps: '6-8', notes: 'Strength.' },
+          { name: 'Cable Pallof Press', sets: '3', reps: '8/side', notes: 'Core stability.', videoUrl: 'https://player.vimeo.com/video/1246923135' },
+        ],
+      },
+      {
+        id: 'B',
+        title: 'Workout B: Machine Hip & Vertical Power',
+        exercises: [
+          { name: 'POWER 1 — Fast Cable Pull-Through', sets: powerSets, reps: powerReps, notes: 'Crisp hip extension snap, controlled hinge back.', videoUrl: 'https://player.vimeo.com/video/1246920972' },
+          { name: 'POWER 2 — Fast Straight-Arm Cable Lat Pulldown', sets: powerSets, reps: powerReps, notes: 'Explosive lat sweep down to thighs, 2-second return.', videoUrl: 'https://player.vimeo.com/video/1246935268' },
+          { name: 'Seated Machine Shoulder Press', sets: '3', reps: '6-8', notes: 'Strength.' },
+          { name: 'Cable Lat Pulldown', sets: '3', reps: '6-8', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1246920969' },
+          { name: 'Seated Leg Extension Machine', sets: '3', reps: '8', notes: 'Strength.' },
+          { name: 'Cable Anti-Rotation Hold', sets: '3', reps: '25 sec/side', notes: 'Core stability.', videoUrl: 'https://player.vimeo.com/video/1246949254' },
+        ],
+      },
+      {
+        id: 'C',
+        title: 'Workout C: Machine Rotational Power & Total-Body Strength',
+        exercises: [
+          { name: 'POWER 1 — Fast Cable Woodchop', sets: powerSets, reps: `${powerReps}/side`, notes: 'Fast rotational drive, slow controlled return.', videoUrl: 'https://player.vimeo.com/video/1246920962' },
+          { name: 'POWER 2 — Fast Cable Rotational Chop', sets: powerSets, reps: `${powerReps}/side`, notes: 'Pivot smoothly through hips and core.', videoUrl: 'https://player.vimeo.com/video/1246949944' },
+          { name: 'Wide-Stance Leg Press', sets: '3', reps: '6-8', notes: 'Strength.' },
+          { name: 'Seated Machine Chest Press', sets: '3', reps: '6-8', notes: 'Strength.' },
+          { name: 'One-Arm Cable Row', sets: '3', reps: '6-8/side', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1246932766' },
+          { name: 'Seated Leg Curl Machine', sets: '3', reps: '8', notes: 'Strength.' },
+        ],
+      },
+    ];
+  }
+
+  return [];
+};
+
 export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
   if (
     customWorkouts &&
