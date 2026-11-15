@@ -222,7 +222,12 @@ export default function WorkoutTabs({
                 const orderLetter = ex.label || String.fromCharCode(65 + i);
                 return (
                   <tr key={i} className={styles.exerciseRow}>
-                    <td className={styles.demoCell} data-label="Demo">
+                    <td
+                      className={`${styles.demoCell} ${
+                        !ex.videoUrl ? styles.demoCellEmpty : ''
+                      }`}
+                      data-label="Demo"
+                    >
                       {ex.videoUrl ? (
                         <div
                           style={{
@@ -248,14 +253,7 @@ export default function WorkoutTabs({
                             </button>
                           )}
                         </div>
-                      ) : (
-                        <span
-                          className={styles.demoPlaceholder}
-                          title="Demo coming soon"
-                        >
-                          -
-                        </span>
-                      )}
+                      ) : null}
                     </td>
                     <td className={styles.movementName} data-label="Movement">
                       <div className={styles.movementHeaderMobile}>

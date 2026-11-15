@@ -106,7 +106,7 @@ export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = nu
         exercises: [
           { label: 'A', name: 'Glute Extension Machine', sets: setsCount, reps: repsRange, notes: 'Complete all sets on machine. Brace core, drive heel back and squeeze glute at full extension.' },
           { label: 'B', name: 'Seated Cable Lat Pulldown', sets: setsCount, reps: repsRange, notes: 'Pull bar to upper chest, driving elbows down and back.', videoUrl: 'https://player.vimeo.com/video/1246920969' },
-          { label: 'C', name: 'Single-Leg Press (or Assisted Step-Up)', sets: setsCount, reps: `${repsRange}/side`, notes: 'Drive evenly through mid-foot and heel. Complete all sets.', videoUrl: 'https://player.vimeo.com/video/1246920966' },
+          { label: 'C', name: 'Single-Leg Press', sets: setsCount, reps: `${repsRange}/side`, notes: 'Drive evenly through mid-foot and heel. Complete all sets.' },
           { label: 'D', name: 'Seated Cable Row Machine', sets: setsCount, reps: repsRange, notes: 'Sit tall, pull handle to lower ribs, squeeze shoulder blades together.', videoUrl: 'https://player.vimeo.com/video/1246932766' },
           { label: 'E', name: 'Seated Hip Abduction Machine', sets: setsCount, reps: accRepsRange, notes: 'Sit tall against pad, press knees outward with a 1-second pause.' },
           { label: 'F', name: 'Seated Hip Adduction Machine', sets: setsCount, reps: accRepsRange, notes: 'Control the inward squeeze and return slowly without letting the stack slam.' },
@@ -119,13 +119,13 @@ export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = nu
         title: 'Workout C: Full-Body Strength & Multi-Hip (Machines)',
         exercises: [
           { label: 'A', name: 'Seated Leg Extension Machine', sets: setsCount, reps: repsRange, notes: 'Complete all sets on machine. Pause 1 second at the top to strengthen quads and knee stability.' },
-          { label: 'B', name: 'Incline Chest Press Machine (or Staggered Cable Chest Press)', sets: setsCount, reps: repsRange, notes: 'Controlled stretch, smooth press forward without locking elbows.', videoUrl: 'https://player.vimeo.com/video/1246920964' },
+          { label: 'B', name: 'Incline Chest Press Machine', sets: setsCount, reps: repsRange, notes: 'Controlled stretch, smooth press forward without locking elbows.' },
           { label: 'C', name: 'Seated Leg Curl Machine', sets: setsCount, reps: repsRange, notes: 'Drive heels back smoothly, pause briefly, and control the return.' },
           { label: 'D', name: 'Straight-Arm Cable Pulldown', sets: setsCount, reps: repsRange, notes: 'Keep arms straight, sweep bar down to thighs using lats.', videoUrl: 'https://player.vimeo.com/video/1246935268' },
           { label: 'E', name: 'Standing Hip Flexion Machine', sets: setsCount, reps: `${accRepsRange}/side`, notes: 'Stand tall holding handles, drive working knee upward against roller pad with control.' },
           { label: 'F', name: 'Standing Hip Extension Machine', sets: setsCount, reps: `${accRepsRange}/side`, notes: 'Keep torso upright, sweep working leg straight back squeezing glute.' },
           { label: 'G', name: 'Standing Cable Woodchop', sets: setsCount, reps: '10-12/side', notes: 'Rotate smoothly through core and hips.', videoUrl: 'https://player.vimeo.com/video/1246920962', secondaryVideoUrl: 'https://player.vimeo.com/video/1246949944' },
-          { label: 'H', name: 'Low-Impact Cardio Machine (Recumbent Bike or Rower)', sets: 1, reps: '5-8 Mins', notes: 'Steady, purposeful pace to finish.', videoUrl: 'https://player.vimeo.com/video/1246920976', secondaryVideoUrl: 'https://player.vimeo.com/video/1246920963' },
+          { label: 'H', name: 'Low-Impact Cardio Machine (Recumbent Bike or Rower)', sets: 1, reps: '5-8 Mins', notes: 'Steady, purposeful pace to finish.' },
         ],
       },
     ];
@@ -151,7 +151,7 @@ export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = nu
           { label: 'F', name: 'Rear Delt Fly Machine', sets: '3', reps: '12-15', notes: rpe },
           { label: 'G', name: 'Seated Tricep Extension Machine', sets: '3', reps: '12-15', notes: rpe },
           { label: 'H', name: 'Standing Cable Pallof Press', sets: '3', reps: '10-12/side', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246923135' },
-          { label: 'I', name: 'Finisher: Rower or SkiErg', sets: '5', reps: '30 sec', notes: '30 sec purposeful / 30 sec easy.', videoUrl: 'https://player.vimeo.com/video/1246920976', secondaryVideoUrl: 'https://player.vimeo.com/video/1246920963' },
+          { label: 'I', name: 'Finisher: Rower or SkiErg', sets: '5', reps: '30 sec', notes: '30 sec purposeful / 30 sec easy.' },
         ],
       },
       {
@@ -160,7 +160,7 @@ export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = nu
         exercises: [
           { label: 'A', name: 'Glute Extension Machine', sets, reps: '12-15/side', notes: `${rpe}. Complete all sets before leaving machine.` },
           { label: 'B', name: 'Seated Cable Lat Pulldown', sets: '3', reps: '12', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246920969' },
-          { label: 'C', name: 'Single-Leg Press (or Assisted Step-Up)', sets: '3', reps: '10-12/side', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246920966' },
+          { label: 'C', name: 'Single-Leg Press', sets: '3', reps: '10-12/side', notes: rpe },
           { label: 'D', name: 'Seated Cable Row Machine', sets: '3', reps: '12', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246932766' },
           { label: 'E', name: 'Seated Hip Abduction Machine', sets: '3', reps: '12-15', notes: rpe },
           { label: 'F', name: 'Seated Hip Adduction Machine', sets: '3', reps: '12-15', notes: rpe },
@@ -173,13 +173,13 @@ export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = nu
         title: 'Workout C: Full-Body Strength & Multi-Hip (Machines)',
         exercises: [
           { label: 'A', name: 'Seated Leg Extension Machine', sets: '3', reps: '12-15', notes: `${rpe}. Complete all sets before leaving machine.` },
-          { label: 'B', name: 'Incline Chest Press Machine (or Staggered Cable Chest Press)', sets: '3', reps: '12', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246920964' },
+          { label: 'B', name: 'Incline Chest Press Machine', sets: '3', reps: '12', notes: rpe },
           { label: 'C', name: 'Seated Leg Curl Machine', sets: '3', reps: '12', notes: rpe },
           { label: 'D', name: 'Straight-Arm Cable Pulldown', sets: '3', reps: '12', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246935268' },
           { label: 'E', name: 'Standing Hip Flexion Machine', sets: '3', reps: '12/side', notes: rpe },
           { label: 'F', name: 'Standing Hip Extension Machine', sets: '3', reps: '12/side', notes: rpe },
           { label: 'G', name: 'Standing Cable Woodchop', sets: '3', reps: '10/side', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246920962', secondaryVideoUrl: 'https://player.vimeo.com/video/1246949944' },
-          { label: 'H', name: 'Finisher: Recumbent Bike, Rower, or Battle Ropes', sets: '6', reps: '20 sec', notes: '40 sec recovery.', videoUrl: 'https://player.vimeo.com/video/1246920976', secondaryVideoUrl: 'https://player.vimeo.com/video/1246920979' },
+          { label: 'H', name: 'Low-Impact Cardio Machine (Recumbent Bike or Rower)', sets: '6', reps: '20 sec', notes: '40 sec recovery.' },
         ],
       },
     ];
@@ -214,7 +214,7 @@ export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = nu
         exercises: [
           { label: 'A', name: 'Glute Extension Machine', sets, reps: '8/side', notes: `Primary Lift. ${rpe}. Complete all sets on machine.` },
           { label: 'B', name: 'Seated Cable Lat Pulldown', sets: '4', reps: '6-8', notes: `Primary Lift. ${rpe}.`, videoUrl: 'https://player.vimeo.com/video/1246920969' },
-          { label: 'C', name: 'Single-Leg Press (or Assisted Step-Up)', sets: '3', reps: '6-8/side', notes: 'Accessory. Rest 90s.', videoUrl: 'https://player.vimeo.com/video/1246920966' },
+          { label: 'C', name: 'Single-Leg Press', sets: '3', reps: '6-8/side', notes: 'Accessory. Rest 90s.' },
           { label: 'D', name: 'Seated Cable Row Machine', sets: '3', reps: '6-8', notes: 'Accessory. Rest 90s.', videoUrl: 'https://player.vimeo.com/video/1246932766' },
           { label: 'E', name: 'Seated Hip Abduction Machine', sets: '3', reps: '10', notes: 'Accessory. Rest 60-90s.' },
           { label: 'F', name: 'Seated Hip Adduction Machine', sets: '3', reps: '10', notes: 'Accessory. Rest 60-90s.' },
@@ -227,7 +227,7 @@ export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = nu
         title: 'Workout C: Full-Body & Multi-Hip Strength (Machines)',
         exercises: [
           { label: 'A', name: 'Seated Leg Extension Machine', sets: '4', reps: '8', notes: `Primary Lift. ${rpe}. Complete all sets on machine.` },
-          { label: 'B', name: 'Incline Chest Press Machine (or Staggered Cable Chest Press)', sets: '4', reps: '6-8', notes: `Primary Lift. ${rpe}.`, videoUrl: 'https://player.vimeo.com/video/1246920964' },
+          { label: 'B', name: 'Incline Chest Press Machine', sets: '4', reps: '6-8', notes: `Primary Lift. ${rpe}.` },
           { label: 'C', name: 'Seated Leg Curl Machine', sets: '3', reps: '6-8', notes: 'Accessory. Rest 90s.' },
           { label: 'D', name: 'Straight-Arm Cable Pulldown', sets: '3', reps: '8', notes: 'Accessory. Rest 90s.', videoUrl: 'https://player.vimeo.com/video/1246935268' },
           { label: 'E', name: 'Standing Hip Flexion Machine', sets: '3', reps: '8-10/side', notes: 'Accessory. Rest 60-90s.' },
@@ -265,7 +265,7 @@ export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = nu
         exercises: [
           { label: 'A', name: 'Glute Extension Machine', sets: powerSets, reps: '8/side', notes: 'Complete all sets on machine. Crisp glute drive, controlled return.' },
           { label: 'B', name: 'Seated Cable Lat Pulldown', sets: '3', reps: '6-8', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1246920969' },
-          { label: 'C', name: 'Single-Leg Press (or Assisted Step-Up)', sets: '3', reps: '8/side', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1246920966' },
+          { label: 'C', name: 'Single-Leg Press', sets: '3', reps: '8/side', notes: 'Strength.' },
           { label: 'D', name: 'Seated Cable Row Machine', sets: '3', reps: '6-8', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1246932766' },
           { label: 'E', name: 'Seated Hip Abduction Machine', sets: '3', reps: '10-12', notes: 'Hip stability.' },
           { label: 'F', name: 'Seated Hip Adduction Machine', sets: '3', reps: '10-12', notes: 'Hip stability.' },
@@ -278,13 +278,13 @@ export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = nu
         title: 'Workout C: Full-Body & Multi-Hip Power + Strength (Machines)',
         exercises: [
           { label: 'A', name: 'Seated Leg Extension Machine', sets: '3', reps: '8-10', notes: 'Complete all sets on machine.' },
-          { label: 'B', name: 'Incline Chest Press Machine (or Staggered Cable Chest Press)', sets: '3', reps: '6-8', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1246920964' },
+          { label: 'B', name: 'Incline Chest Press Machine', sets: '3', reps: '6-8', notes: 'Strength.' },
           { label: 'C', name: 'Seated Leg Curl Machine', sets: '3', reps: '8', notes: 'Strength.' },
           { label: 'D', name: 'Straight-Arm Cable Pulldown', sets: '3', reps: '8', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1246935268' },
           { label: 'E', name: 'Standing Hip Flexion Machine', sets: '3', reps: '10/side', notes: 'Hip strength & balance.' },
           { label: 'F', name: 'Standing Hip Extension Machine', sets: '3', reps: '10/side', notes: 'Glute & hip extension.' },
           { label: 'G', name: 'Standing Cable Woodchop', sets: powerSets, reps: '6-8/side', notes: 'Fast rotational drive, slow controlled return.', videoUrl: 'https://player.vimeo.com/video/1246920962', secondaryVideoUrl: 'https://player.vimeo.com/video/1246949944' },
-          { label: 'H', name: 'Low-Impact Cardio Machine (Recumbent Bike or Rower)', sets: 1, reps: '5-8 Mins', notes: 'Steady cooldown or intervals.', videoUrl: 'https://player.vimeo.com/video/1246920976', secondaryVideoUrl: 'https://player.vimeo.com/video/1246920963' },
+          { label: 'H', name: 'Low-Impact Cardio Machine (Recumbent Bike or Rower)', sets: 1, reps: '5-8 Mins', notes: 'Steady cooldown or intervals.' },
         ],
       },
     ];

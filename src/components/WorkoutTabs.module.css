@@ -413,6 +413,14 @@
     min-width: 0;
   }
 
+  .demoCellEmpty {
+    display: none !important;
+  }
+
+  .demoCellEmpty + .movementName {
+    grid-column: 1 / -1;
+  }
+
   .movementHeaderMobile {
     flex-wrap: wrap;
     gap: 0.3rem 0.5rem;
