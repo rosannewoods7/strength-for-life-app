@@ -117,13 +117,24 @@ export default function WorkoutTabs({
                   <tr key={i} className={styles.exerciseRow}>
                     <td className={styles.demoCell} data-label="Demo">
                       {ex.videoUrl ? (
-                        <button
-                          className={styles.demoButton}
-                          title="Watch exercise demo"
-                          onClick={() => openVideo(ex.videoUrl)}
-                        >
-                          <span className={styles.demoIcon}>▶</span>
-                        </button>
+                        <div style={{ display: 'inline-flex', gap: '4px', alignItems: 'center' }}>
+                          <button
+                            className={styles.demoButton}
+                            title="Watch exercise demo"
+                            onClick={() => openVideo(ex.videoUrl)}
+                          >
+                            <span className={styles.demoIcon}>▶</span>
+                          </button>
+                          {ex.secondaryVideoUrl && (
+                            <button
+                              className={styles.demoButton}
+                              title="Watch alternate variation demo"
+                              onClick={() => openVideo(ex.secondaryVideoUrl)}
+                            >
+                              <span className={styles.demoIcon}>▶</span>
+                            </button>
+                          )}
+                        </div>
                       ) : (
                         <span className={styles.demoPlaceholder} title="Demo coming soon">
                           -

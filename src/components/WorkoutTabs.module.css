@@ -259,7 +259,7 @@
   /* Compact grid card per exercise on mobile */
   .prescriptionTable tr.exerciseRow {
     display: grid;
-    grid-template-columns: 28px minmax(0, 1fr);
+    grid-template-columns: auto minmax(0, 1fr);
     column-gap: 0.55rem;
     row-gap: 0.4rem;
     align-items: start;
@@ -287,7 +287,7 @@
   .demoCell {
     grid-column: 1;
     grid-row: 1;
-    width: 28px;
+    width: auto;
     display: flex;
     align-items: center;
     padding-top: 2px;
