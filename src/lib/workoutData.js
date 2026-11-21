@@ -41,6 +41,7 @@ export const EXERCISE_VIDEO_LIBRARY = [
   { name: 'Incline DB Chest Press', videoUrl: 'https://player.vimeo.com/video/1246920974' },
   { name: 'Rowing (Rower Finisher)', videoUrl: 'https://player.vimeo.com/video/1246920976' },
   { name: 'SkiErg (Finisher)', videoUrl: 'https://player.vimeo.com/video/1246920963' },
+  { name: 'Finisher: Rower or SkiErg', videoUrl: 'https://player.vimeo.com/video/1248990425' },
   { name: 'Battle Ropes (Finisher)', videoUrl: 'https://player.vimeo.com/video/1246920979' },
   { name: 'Step-Up + Knee Drive', videoUrl: 'https://player.vimeo.com/video/1246920966' },
   { name: 'DB Dead Bug', videoUrl: 'https://player.vimeo.com/video/1246920978' },
@@ -72,6 +73,71 @@ export const EXERCISE_VIDEO_LIBRARY = [
   { name: 'Standing Hip Flexion Machine', videoUrl: '' },
   { name: 'Standing Hip Extension Machine', videoUrl: '' },
 ];
+
+const enrichWorkoutsWithLatestVideos = (customWeekWorkouts, defaultWeekWorkouts) => {
+  if (!Array.isArray(customWeekWorkouts)) return customWeekWorkouts;
+
+  const defaultByName = new Map();
+  if (Array.isArray(defaultWeekWorkouts)) {
+    defaultWeekWorkouts.forEach((w) => {
+      (w.exercises || []).forEach((ex) => {
+        if (ex.name && ex.videoUrl) {
+          defaultByName.set(ex.name.trim().toLowerCase(), {
+            videoUrl: ex.videoUrl,
+            secondaryVideoUrl: ex.secondaryVideoUrl,
+          });
+        }
+      });
+    });
+  }
+
+  const libraryByName = new Map();
+  EXERCISE_VIDEO_LIBRARY.forEach((item) => {
+    if (item.name && item.videoUrl) {
+      libraryByName.set(item.name.trim().toLowerCase(), item.videoUrl);
+    }
+  });
+
+  // Explicit alias map for common exercise name variations
+  const aliasMap = {
+    'reverse lunge': 'https://player.vimeo.com/video/1246920973',
+    'reverse lunges': 'https://player.vimeo.com/video/1246920973',
+    'finisher: rower or skierg': 'https://player.vimeo.com/video/1248990425',
+    'finisher: rower or ski erg': 'https://player.vimeo.com/video/1248990425',
+    'seated cable row': 'https://player.vimeo.com/video/1246920967',
+    'seated row': 'https://player.vimeo.com/video/1246920967',
+    'pallof press': 'https://player.vimeo.com/video/1246920968',
+    'cable pallof press': 'https://player.vimeo.com/video/1246920968',
+  };
+
+  return customWeekWorkouts.map((workout) => ({
+    ...workout,
+    exercises: (workout.exercises || []).map((ex) => {
+      const key = (ex.name || '').trim().toLowerCase();
+      if (key === 'finisher: rower or skierg' || key === 'finisher: rower or ski erg') {
+        return {
+          ...ex,
+          videoUrl: 'https://player.vimeo.com/video/1248990425',
+          secondaryVideoUrl: undefined,
+        };
+      }
+      if (ex.videoUrl) return ex;
+      const fromDefault = defaultByName.get(key);
+      if (fromDefault) {
+        return {
+          ...ex,
+          videoUrl: fromDefault.videoUrl,
+          secondaryVideoUrl: ex.secondaryVideoUrl || fromDefault.secondaryVideoUrl,
+        };
+      }
+      const fromLibrary = libraryByName.get(key) || aliasMap[key];
+      if (fromLibrary) {
+        return { ...ex, videoUrl: fromLibrary };
+      }
+      return ex;
+    }),
+  }));
+};
 
 export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = null) => {
   if (
@@ -307,7 +373,10 @@ export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
     Array.isArray(customWorkouts[weekNumber]) &&
     customWorkouts[weekNumber].length > 0
   ) {
-    return customWorkouts[weekNumber];
+    return enrichWorkoutsWithLatestVideos(
+      customWorkouts[weekNumber],
+      getWorkoutsForWeek(weekNumber, null)
+    );
   }
 
   // ---------------------------------------------------------
@@ -393,7 +462,7 @@ export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
           { name: 'Reverse Lunge', sets: '3', reps: '10/side', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1246920973' },
           { name: 'Pallof Press', sets: '3', reps: '10-12/side', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1246920968', secondaryVideoUrl: 'https://player.vimeo.com/video/1246923135' },
           { name: 'Farmer Carry', sets: '3', reps: '30-45 sec', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1200235585' },
-          { name: 'Finisher: Rower or SkiErg', sets: '5', reps: '30 sec', notes: '30 sec purposeful / 30 sec easy.', videoUrl: 'https://player.vimeo.com/video/1246920976', secondaryVideoUrl: 'https://player.vimeo.com/video/1246920963' }
+          { name: 'Finisher: Rower or SkiErg', sets: '5', reps: '30 sec', notes: '30 sec purposeful / 30 sec easy.', videoUrl: 'https://player.vimeo.com/video/1248990425' }
         ]
       },
       {
