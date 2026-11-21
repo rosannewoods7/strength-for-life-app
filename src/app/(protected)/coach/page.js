@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import {
   getWorkoutsForWeek,
   getMachineWorkoutsForWeek,
+  getHomeWorkoutsForWeek,
   EXERCISE_VIDEO_LIBRARY,
 } from '@/lib/workoutData';
 import styles from './page.module.css';
@@ -271,6 +272,14 @@ export default function CoachPortalPage() {
     );
   };
 
+  const handleLoadHomeTemplate = () => {
+    const homeTemplate = getHomeWorkoutsForWeek(selectedWeek);
+    setEditableWorkouts(JSON.parse(JSON.stringify(homeTemplate)));
+    setStatusMsg(
+      `Loaded Week ${selectedWeek} Home (Dumbbells & Bench) template into editor. Click "Save" below to assign it to ${selectedMember?.email}.`
+    );
+  };
+
   const phaseWeeks = getPhaseWeeks(selectedWeek);
   const currentWorkout = editableWorkouts[activeTab] || editableWorkouts[0];
   const isCurrentWeekCustomized = Boolean(
@@ -404,7 +413,10 @@ export default function CoachPortalPage() {
                     }
                   >
                     <option value="free_weights">
-                      🏋️ Free Weights &amp; Cables
+                      🏋️ Gym Free Weights &amp; Cables
+                    </option>
+                    <option value="home">
+                      🏠 Home (Dumbbells &amp; Bench)
                     </option>
                     <option value="machines">
                       ⚙️ Gym Machines (Joint-Friendly)
@@ -413,7 +425,7 @@ export default function CoachPortalPage() {
                 </div>
 
                 <div className={styles.trackControlItem}>
-                  <label>Machine Toggle Access:</label>
+                  <label>Workout Version Access:</label>
                   <select
                     className={styles.trackSelect}
                     value={selectedMember.trackMode || 'both'}
@@ -426,13 +438,16 @@ export default function CoachPortalPage() {
                     }
                   >
                     <option value="both">
-                      Show Both (Allow Member to Toggle)
+                      Show All Versions (Allow Member to Toggle)
+                    </option>
+                    <option value="home_only">
+                      Lock to Home (Dumbbells &amp; Bench) Only
                     </option>
                     <option value="machines_only">
                       Lock to Gym Machines Only
                     </option>
                     <option value="free_weights_only">
-                      Toggle Off Machine Option (Free Weights Only)
+                      Lock to Gym Free Weights &amp; Cables Only
                     </option>
                   </select>
                 </div>
@@ -464,9 +479,16 @@ export default function CoachPortalPage() {
                 <button
                   type="button"
                   className={styles.loadTemplateBtn}
+                  onClick={handleLoadHomeTemplate}
+                >
+                  🏠 Load Week {selectedWeek} Home (DBs &amp; Bench) Template
+                </button>
+                <button
+                  type="button"
+                  className={styles.loadTemplateBtn}
                   onClick={handleLoadMachineTemplate}
                 >
-                  ⚙️ Load Week {selectedWeek} Machine Template into Editor
+                  ⚙️ Load Week {selectedWeek} Machine Template
                 </button>
                 {isCurrentWeekCustomized && (
                   <span className={styles.customActiveTag}>

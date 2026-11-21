@@ -367,6 +367,226 @@ export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = nu
   return [];
 };
 
+export const getHomeWorkoutsForWeek = (weekNumber, customHomeWorkouts = null) => {
+  if (
+    customHomeWorkouts &&
+    Array.isArray(customHomeWorkouts[weekNumber]) &&
+    customHomeWorkouts[weekNumber].length > 0
+  ) {
+    return enrichWorkoutsWithLatestVideos(
+      customHomeWorkouts[weekNumber],
+      getHomeWorkoutsForWeek(weekNumber, null)
+    );
+  }
+
+  // Months 1-3 are already 100% home-friendly (Dumbbells & Bench/Floor)
+  if (weekNumber <= 12) {
+    return getWorkoutsForWeek(weekNumber, null);
+  }
+
+  // ---------------------------------------------------------
+  // MONTH 4: BUILD (WEEKS 13-16) — HOME TRACK (DUMBBELLS & BENCH)
+  // No cable machines, leg press, sleds, or cardio machines required
+  // ---------------------------------------------------------
+  if (weekNumber >= 13 && weekNumber <= 16) {
+    const sets = weekNumber <= 14 ? '2-3' : weekNumber === 15 ? '3' : '3-4';
+    const rpe = weekNumber <= 14 ? 'RPE 7' : weekNumber === 15 ? 'RPE 8' : 'RPE 8-9 (final set)';
+
+    return [
+      {
+        id: 'A',
+        title: 'Workout A: Squat + Horizontal Push/Pull (Home: DBs & Bench)',
+        exercises: [
+          { name: 'DB Front/Goblet Squat', sets, reps: '12-15', notes: `${rpe}. Dumbbells at shoulders or goblet hold.`, videoUrl: 'https://player.vimeo.com/video/1246920977', secondaryVideoUrl: 'https://player.vimeo.com/video/1200233550' },
+          { name: 'DB Flat Bench Press', sets, reps: '10-15', notes: `${rpe}. Tuck elbows ~45 degrees.`, videoUrl: 'https://player.vimeo.com/video/1246944078' },
+          { name: 'Bench-Supported One-Arm DB Row', sets, reps: '12-15/side', notes: `${rpe}. Place hand and knee on bench, pull elbow toward hip.`, videoUrl: 'https://player.vimeo.com/video/1200241458' },
+          { name: 'DB Romanian Deadlift', sets: '3', reps: '12', notes: `${rpe}. Hinge at hips, keep dumbbells close to thighs.`, videoUrl: 'https://player.vimeo.com/video/1200235000' },
+          { name: 'DB Reverse Lunge', sets: '3', reps: '10/side', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246920973' },
+          { name: 'Plank Shoulder Taps (or Band Pallof Press)', sets: '3', reps: '10-12/side', notes: `${rpe}. Elevate hands on bench if needed to keep hips still.`, videoUrl: 'https://player.vimeo.com/video/1199963557', secondaryVideoUrl: 'https://player.vimeo.com/video/1246923135' },
+          { name: 'DB Farmer Carry', sets: '3', reps: '30-45 sec', notes: `${rpe}. Walk tall with heavy dumbbells.`, videoUrl: 'https://player.vimeo.com/video/1200235585' },
+          { name: 'Finisher: Bodyweight Squats or Bench Step-Ups', sets: '5', reps: '30 sec', notes: '30 sec purposeful pace / 30 sec easy recovery.', videoUrl: 'https://player.vimeo.com/video/1200233550', secondaryVideoUrl: 'https://player.vimeo.com/video/1246920966' },
+        ],
+      },
+      {
+        id: 'B',
+        title: 'Workout B: Unilateral + Vertical Push/Pull (Home: DBs & Bench)',
+        exercises: [
+          { name: 'DB Bench Step-Up', sets: '3', reps: '10-12/side', notes: `${rpe}. Step onto bench or sturdy step, 3-second lower.`, videoUrl: 'https://player.vimeo.com/video/1200628797' },
+          { name: 'Dumbbell Pullover on Bench', sets: '3', reps: '12', notes: `${rpe}. Lie across or along bench, stretch lats overhead and pull back over chest.`, videoUrl: 'https://player.vimeo.com/video/1200242299' },
+          { name: 'Seated or Standing DB Shoulder Press', sets: '3', reps: '10-12', notes: `${rpe}. Brace core, press dumbbells overhead.`, videoUrl: 'https://player.vimeo.com/video/1200241899' },
+          { name: 'Bench DB Hip Thrust (or Weighted Glute Bridge)', sets: '3', reps: '12-15', notes: `${rpe}. Upper back against bench edge, dumbbell on hips.`, videoUrl: 'https://player.vimeo.com/video/1246920971', secondaryVideoUrl: 'https://player.vimeo.com/video/1200236672' },
+          { name: 'Supported Single-Arm DB Row', sets: '3', reps: '12/side', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1200241458' },
+          { name: 'DB Dead Bug with Pullover', sets: '3', reps: '8-10/side', notes: `${rpe}. Keep lower back pressed flat.`, videoUrl: 'https://player.vimeo.com/video/1246920978' },
+          { name: 'DB Suitcase Carry', sets: '3', reps: '30 sec/side', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246920970' },
+          { name: 'Finisher: Step-Up Knee Drives (or Alternating Reverse Lunges)', sets: '5', reps: '30 sec', notes: '30 sec purposeful effort / 30 sec easy recovery.', videoUrl: 'https://player.vimeo.com/video/1246920966', secondaryVideoUrl: 'https://player.vimeo.com/video/1246920973' },
+        ],
+      },
+      {
+        id: 'C',
+        title: 'Workout C: Total-Body Capacity (Home: DBs & Bench)',
+        exercises: [
+          { name: 'DB Sumo Squat (or Heavy Goblet Squat)', sets: '3', reps: '15', notes: `${rpe}. Wide stance holding heavy dumbbell.`, videoUrl: 'https://player.vimeo.com/video/1200628467', secondaryVideoUrl: 'https://player.vimeo.com/video/1200233550' },
+          { name: 'Incline DB Chest Press (or Flat DB Press)', sets: '3', reps: '12', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246920974', secondaryVideoUrl: 'https://player.vimeo.com/video/1246944078' },
+          { name: 'Dumbbell Pullover (or Dual-Arm Bent-Over DB Row)', sets: '3', reps: '12', notes: `${rpe}. Lat and upper-back focus.`, videoUrl: 'https://player.vimeo.com/video/1200242299', secondaryVideoUrl: 'https://player.vimeo.com/video/1200241458' },
+          { name: 'DB Suitcase Deadlift (Dumbbells at Sides)', sets: '3', reps: '12', notes: `${rpe}. Hinge and bend knees to drive through mid-foot.`, videoUrl: 'https://player.vimeo.com/video/1200235000' },
+          { name: 'DB Lateral Lunge', sets: '3', reps: '10/side', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246928840' },
+          { name: 'Weighted DB Russian Twists', sets: '3', reps: '10-12/side', notes: `${rpe}. Sit tall, rotate shoulders and torso with control.`, videoUrl: 'https://player.vimeo.com/video/1199965229' },
+          { name: 'DB Front-Rack Carry', sets: '3', reps: '30 sec', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246934103' },
+          { name: 'Finisher: Light DB Shadow Punches or Fast Step-Ups', sets: '6', reps: '20 sec', notes: '20 sec brisk pace / 40 sec recovery.', videoUrl: 'https://player.vimeo.com/video/1246920966' },
+        ],
+      },
+    ];
+  }
+
+  // ---------------------------------------------------------
+  // MONTH 5: INTENSIFY (WEEKS 17-20) — HOME TRACK (DUMBBELLS & BENCH)
+  // ---------------------------------------------------------
+  if (weekNumber >= 17 && weekNumber <= 20) {
+    const getSets = () => (weekNumber === 20 ? '3-4' : '4');
+    const getPrimaryReps = () => {
+      if (weekNumber === 17) return '6-8';
+      if (weekNumber === 18) return '6';
+      if (weekNumber === 19) return '5-6';
+      return '5';
+    };
+    const getRPE = () => {
+      if (weekNumber === 17) return 'RPE 7-8';
+      if (weekNumber === 18) return 'RPE 8';
+      return 'RPE 8-9';
+    };
+
+    return [
+      {
+        id: 'A',
+        title: 'Workout A: Squat & Push Strength (Home: DBs & Bench)',
+        exercises: [
+          { name: 'DB Front Squat (or Heavy Goblet Squat)', sets: getSets(), reps: getPrimaryReps(), notes: `Primary Lift. ${getRPE()}. Use 3-second lowering tempo if limited by DB weight. Rest 2 mins.`, videoUrl: 'https://player.vimeo.com/video/1246920977', secondaryVideoUrl: 'https://player.vimeo.com/video/1200233550' },
+          { name: 'DB Flat Bench Press', sets: getSets(), reps: getPrimaryReps(), notes: `Primary Lift. ${getRPE()}. Rest 2 mins.`, videoUrl: 'https://player.vimeo.com/video/1246944078' },
+          { name: 'Bench-Supported Single-Arm DB Row', sets: getSets(), reps: '6-8/side', notes: 'Accessory. Pause 1 sec at top. Rest 90s.', videoUrl: 'https://player.vimeo.com/video/1200241458' },
+          { name: 'DB Romanian Deadlift', sets: '3', reps: '6-8', notes: 'Accessory. 3-second eccentric lower. Rest 90s.', videoUrl: 'https://player.vimeo.com/video/1200235000' },
+          { name: 'Bulgarian Split Squat (Rear-Foot Elevated on Bench)', sets: '3', reps: '6-8/side', notes: 'Accessory. Rest 90s.', videoUrl: 'https://player.vimeo.com/video/1246926982' },
+          { name: 'Plank Shoulder Taps (or Band Pallof Press)', sets: '3', reps: '8-10/side', notes: 'Core stability. Rest 60-90s.', videoUrl: 'https://player.vimeo.com/video/1199963557', secondaryVideoUrl: 'https://player.vimeo.com/video/1246923135' },
+          { name: 'Heavy DB Farmer Carry', sets: '3', reps: '30-45 sec', notes: 'Accessory. Rest 90s.', videoUrl: 'https://player.vimeo.com/video/1200235585' },
+        ],
+      },
+      {
+        id: 'B',
+        title: 'Workout B: Hinge & Overhead Strength (Home: DBs & Bench)',
+        exercises: [
+          { name: 'Heavy DB Suitcase Deadlift (or Tempo DB RDL)', sets: getSets(), reps: getPrimaryReps(), notes: `Primary Lift. ${getRPE()}. Dumbbells at sides, drive through floor. Rest 2 mins.`, videoUrl: 'https://player.vimeo.com/video/1200235000' },
+          { name: 'Seated or Standing DB Shoulder Press', sets: getSets(), reps: '6', notes: `Primary Lift. ${getRPE()}. Rest 2 mins.`, videoUrl: 'https://player.vimeo.com/video/1200241899' },
+          { name: 'Dumbbell Pullover on Bench', sets: '4', reps: '6-8', notes: 'Accessory. 3-second stretch overhead. Rest 90s.', videoUrl: 'https://player.vimeo.com/video/1200242299' },
+          { name: 'Bench DB Hip Thrust', sets: '4', reps: '6-8', notes: 'Accessory. 2-second pause at top glute squeeze. Rest 90s.', videoUrl: 'https://player.vimeo.com/video/1246920971' },
+          { name: 'Weighted DB Bench Step-Up', sets: '3', reps: '6-8/side', notes: 'Accessory. Rest 90s.', videoUrl: 'https://player.vimeo.com/video/1200628797' },
+          { name: 'Weighted DB Dead Bug', sets: '3', reps: '8/side', notes: 'Accessory. Rest 60-90s.', videoUrl: 'https://player.vimeo.com/video/1246920978' },
+          { name: 'Heavy DB Suitcase Carry', sets: '3', reps: '30-45 sec/side', notes: 'Accessory. Rest 90s.', videoUrl: 'https://player.vimeo.com/video/1246920970' },
+        ],
+      },
+      {
+        id: 'C',
+        title: 'Workout C: Total-Body Strength (Home: DBs & Bench)',
+        exercises: [
+          { name: 'DB Front/Goblet Squat', sets: '4', reps: '6', notes: `Primary Lift. ${getRPE()}. Rest 2 mins.`, videoUrl: 'https://player.vimeo.com/video/1246920977' },
+          { name: 'Incline DB Bench Press', sets: '4', reps: '6', notes: `Primary Lift. ${getRPE()}. Rest 2 mins.`, videoUrl: 'https://player.vimeo.com/video/1246920974' },
+          { name: 'Single-Arm DB Row', sets: '4', reps: '6-8/side', notes: 'Accessory. Rest 90s.', videoUrl: 'https://player.vimeo.com/video/1200241458' },
+          { name: 'Single-Leg DB RDL', sets: '3', reps: '6-8/side', notes: 'Accessory. Hold bench lightly for balance if needed. Rest 90s.', videoUrl: 'https://player.vimeo.com/video/1200236229' },
+          { name: 'DB Reverse Lunge', sets: '3', reps: '6-8/side', notes: 'Accessory. Rest 90s.', videoUrl: 'https://player.vimeo.com/video/1246920973' },
+          { name: 'Supine Weighted 90° Toe Touches (or Bird-Dog)', sets: '3', reps: '10-12', notes: 'Core stability. Rest 60-90s.', videoUrl: 'https://player.vimeo.com/video/1199965056', secondaryVideoUrl: 'https://player.vimeo.com/video/1199964747' },
+          { name: 'DB Front-Rack Carry', sets: '3', reps: '30-45 sec', notes: 'Accessory. Rest 90s.', videoUrl: 'https://player.vimeo.com/video/1246934103' },
+        ],
+      },
+    ];
+  }
+
+  // ---------------------------------------------------------
+  // MONTH 6: EXPRESS (WEEKS 21-24) — HOME TRACK (DUMBBELLS & BENCH)
+  // ---------------------------------------------------------
+  if (weekNumber >= 21 && weekNumber <= 24) {
+    const powerSets = weekNumber === 24 ? '3-4' : weekNumber === 21 ? '3' : '4';
+    const powerReps = weekNumber === 24 ? '3-4' : '3-5';
+
+    return [
+      {
+        id: 'A',
+        title: 'Workout A: Lower-Body & Push Power (Home: DBs & Bench)',
+        exercises: [
+          {
+            name: 'POWER 1 — Lower Vertical (Home Options):',
+            sets: powerSets,
+            reps: powerReps,
+            notes: `Foundational: Fast Sit-to-Stand from Bench (Stand rapidly, lower under control)\nStandard: Pogo Hops or Small Squat Jump (Stick landing)\nAdvanced: Countermovement Jump or Broad Jump + Stick`,
+            videoUrl: 'https://player.vimeo.com/video/1248974462',
+          },
+          {
+            name: 'POWER 2 — Upper Push (Home Options):',
+            sets: weekNumber === 21 ? '3' : '4',
+            reps: weekNumber === 21 ? '5' : '4-5',
+            notes: `Foundational: Fast Incline Push-Up (Hands on bench, fast push up, slow lower)\nStandard: Explosive Bench Push-Up (Light hand release at top)\nAdvanced: Fast Floor or Low-Incline Plyo Push-Up`,
+            videoUrl: 'https://player.vimeo.com/video/1248974461',
+          },
+          { name: 'DB Front/Goblet Squat', sets: '4', reps: '5-6', notes: 'Strength. FAST drive up, 3-second CONTROL down.', videoUrl: 'https://player.vimeo.com/video/1246920977' },
+          { name: 'Bench-Supported Single-Arm DB Row', sets: '3', reps: '6-8/side', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1200241458' },
+          { name: 'DB Romanian Deadlift', sets: '3', reps: '6-8', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1200235000' },
+          { name: 'DB Reverse Lunge', sets: '3', reps: '6/side', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1246920973' },
+          { name: 'DB Farmer Carry', sets: '3', reps: '30-45 sec', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1200235585' },
+        ],
+      },
+      {
+        id: 'B',
+        title: 'Workout B: Hip & Overhead Power (Home: DBs & Bench)',
+        exercises: [
+          {
+            name: 'POWER 1 — Hip Hinge (Home Options):',
+            sets: weekNumber === 21 ? '4' : '5',
+            reps: weekNumber === 21 ? '6' : '5',
+            notes: `Foundational: Fast Glute Bridge Drive or Fast DB Hip Hinge Snap\nStandard: Dumbbell Hike-to-Deadlift (Crisp hip snap)\nAdvanced: Two-Hand Dumbbell Swing or Broad Jump + Stick`,
+            videoUrl: 'https://player.vimeo.com/video/1248974460',
+          },
+          {
+            name: 'POWER 2 — Vertical/Overhead (Home Options):',
+            sets: weekNumber === 21 ? '3' : '4',
+            reps: weekNumber === 21 ? '5' : '4',
+            notes: `Foundational: Fast Light DB Push Press (Use slight knee dip & drive overhead)\nStandard: Crisp Dual-DB Push Press\nAdvanced: Split-Stance DB Push Press or Explosive DB Thruster`,
+            videoUrl: 'https://player.vimeo.com/video/1248974463',
+          },
+          { name: 'Heavy DB Suitcase Deadlift', sets: '3', reps: '5-6', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1200235000' },
+          { name: 'Dumbbell Pullover on Bench', sets: '3', reps: '6-8', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1200242299' },
+          { name: 'Bench Step-Up + Knee Drive', sets: '3', reps: '6/side', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1246920966' },
+          { name: 'Plank Shoulder Taps (or Band Pallof Press)', sets: '3', reps: '8/side', notes: 'Core stability.', videoUrl: 'https://player.vimeo.com/video/1199963557', secondaryVideoUrl: 'https://player.vimeo.com/video/1246923135' },
+          { name: 'DB Suitcase Carry', sets: '3', reps: '30-45 sec/side', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1246920970' },
+        ],
+      },
+      {
+        id: 'C',
+        title: 'Workout C: Multidirectional & Rotational Power (Home: DBs & Bench)',
+        exercises: [
+          {
+            name: 'POWER 1 — Lateral (Home Options):',
+            sets: weekNumber === 21 ? '3' : '4',
+            reps: weekNumber === 21 ? '5/side' : '4/side',
+            notes: `Foundational: Quick Lateral Step + Stick (or Lateral Bench Step-Up)\nStandard: Low Lateral Line Hops (Soft, controlled contacts)\nAdvanced: Lateral Bound (Skater) + 2-Sec Stick`,
+            videoUrl: 'https://player.vimeo.com/video/1248982623',
+          },
+          {
+            name: 'POWER 2 — Rotational (Home Options):',
+            sets: weekNumber === 21 ? '3' : '4',
+            reps: weekNumber === 21 ? '5/side' : '4/side',
+            notes: `Foundational: Fast Low-to-High Light DB Diagonal Lift (Pivot back foot)\nStandard: Standing Light DB Rotational Chop (Fast drive, controlled brake)\nAdvanced: Dynamic Split-Stance DB Rotational Chop`,
+            videoUrl: 'https://player.vimeo.com/video/1248982626',
+          },
+          { name: 'DB Goblet/Front Squat', sets: '3', reps: '5-6', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1246920977' },
+          { name: 'DB Flat Bench Press', sets: '3', reps: '5-6', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1246944078' },
+          { name: 'Single-Arm DB Row', sets: '3', reps: '6/side', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1200241458' },
+          { name: 'Single-Leg DB RDL', sets: '3', reps: '6/side', notes: 'Strength.', videoUrl: 'https://player.vimeo.com/video/1200236229' },
+          { name: 'Weighted DB Russian Twists', sets: '3', reps: '8-10/side', notes: 'Core rotational strength.', videoUrl: 'https://player.vimeo.com/video/1199965229' },
+        ],
+      },
+    ];
+  }
+
+  return [];
+};
+
 export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
   if (
     customWorkouts &&

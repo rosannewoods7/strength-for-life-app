@@ -3,25 +3,33 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useProgress } from '@/hooks/useProgress';
-import { getMachineWorkoutsForWeek } from '@/lib/workoutData';
+import {
+  getMachineWorkoutsForWeek,
+  getHomeWorkoutsForWeek,
+} from '@/lib/workoutData';
 import styles from './WorkoutTabs.module.css';
 
 export default function WorkoutTabs({
   workouts,
   machineWorkouts = null,
+  homeWorkouts = null,
   weekNumber = 1,
   initialTab = 0,
   fullPage = false,
   isCustomized = false,
   defaultTrack = 'free_weights',
-  trackMode = 'both', // 'both' | 'free_weights_only' | 'machines_only'
+  trackMode = 'both', // 'both' | 'free_weights_only' | 'machines_only' | 'home_only'
 }) {
   const resolvedMachineWorkouts =
     machineWorkouts || getMachineWorkoutsForWeek(weekNumber);
+  const resolvedHomeWorkouts =
+    homeWorkouts || getHomeWorkoutsForWeek(weekNumber);
 
   const initialTrackState =
     trackMode === 'machines_only'
       ? 'machines'
+      : trackMode === 'home_only'
+      ? 'home'
       : trackMode === 'free_weights_only'
       ? 'free_weights'
       : defaultTrack || 'free_weights';
@@ -33,13 +41,21 @@ export default function WorkoutTabs({
       setSelectedTrack('machines');
       return;
     }
+    if (trackMode === 'home_only') {
+      setSelectedTrack('home');
+      return;
+    }
     if (trackMode === 'free_weights_only') {
       setSelectedTrack('free_weights');
       return;
     }
     try {
       const savedTrack = localStorage.getItem('sfl_workout_track');
-      if (savedTrack === 'machines' || savedTrack === 'free_weights') {
+      if (
+        savedTrack === 'machines' ||
+        savedTrack === 'home' ||
+        savedTrack === 'free_weights'
+      ) {
         setSelectedTrack(savedTrack);
       } else if (defaultTrack) {
         setSelectedTrack(defaultTrack);
@@ -61,6 +77,8 @@ export default function WorkoutTabs({
   const activeWorkoutsList =
     selectedTrack === 'machines' && resolvedMachineWorkouts?.length > 0
       ? resolvedMachineWorkouts
+      : selectedTrack === 'home' && resolvedHomeWorkouts?.length > 0
+      ? resolvedHomeWorkouts
       : workouts;
 
   const safeInitialTab =
@@ -88,17 +106,35 @@ export default function WorkoutTabs({
       {/* Track Toggle Bar (shown when trackMode === 'both') */}
       {trackMode === 'both' && resolvedMachineWorkouts?.length > 0 && (
         <div className={styles.trackToggleBar}>
-          <span className={styles.trackToggleLabel}>Training Equipment:</span>
+          <span className={styles.trackToggleLabel}>
+            Choose Workout Version:
+          </span>
           <div className={styles.trackTogglePills}>
             <button
               type="button"
               className={`${styles.trackPill} ${
-                selectedTrack === 'free_weights' ? styles.trackPillActive : ''
+                selectedTrack === 'free_weights' ||
+                (weekNumber <= 12 && selectedTrack === 'home')
+                  ? styles.trackPillActive
+                  : ''
               }`}
               onClick={() => handleTrackSwitch('free_weights')}
             >
-              🏋️ Free Weights &amp; Cables
+              {weekNumber >= 13
+                ? '🏋️ Gym Free Weights & Cables'
+                : '🏋️🏠 Dumbbells & Free Weights (Home or Gym)'}
             </button>
+            {weekNumber >= 13 && resolvedHomeWorkouts?.length > 0 && (
+              <button
+                type="button"
+                className={`${styles.trackPill} ${
+                  selectedTrack === 'home' ? styles.trackPillActive : ''
+                }`}
+                onClick={() => handleTrackSwitch('home')}
+              >
+                🏠 Home (Dumbbells &amp; Bench)
+              </button>
+            )}
             <button
               type="button"
               className={`${styles.trackPill} ${
@@ -141,6 +177,11 @@ export default function WorkoutTabs({
               {selectedTrack === 'machines' && (
                 <span className={styles.machineModeBadge}>
                   ⚙️ Machine-Based Track (Straight Sets A, B, C...)
+                </span>
+              )}
+              {selectedTrack === 'home' && weekNumber >= 13 && (
+                <span className={styles.homeModeBadge}>
+                  🏠 Home Track (Dumbbells &amp; Bench Only)
                 </span>
               )}
               {isCustomized && (
@@ -201,6 +242,12 @@ export default function WorkoutTabs({
           {selectedTrack === 'machines' && (
             <div className={styles.machineTrackNotice}>
               <strong>Gym Etiquette &amp; Flow:</strong> Complete all sets on each machine (<strong>A, B, C, D...</strong>) before moving to the next machine so you don&apos;t lose your spot.
+            </div>
+          )}
+
+          {selectedTrack === 'home' && weekNumber >= 13 && (
+            <div className={styles.homeTrackNotice}>
+              <strong>🏠 Home Workout Version:</strong> All exercises in this track use only <strong>dumbbells and a bench</strong> — no cable machines, leg press, or cardio machines required.
             </div>
           )}
 

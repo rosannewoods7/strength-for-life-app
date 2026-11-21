@@ -41,8 +41,12 @@ export default function GettingStartedPage() {
           </p>
           <ul style={{ paddingLeft: '1.35rem', margin: 0, color: 'var(--color-deep-espresso)', fontSize: '0.95rem', lineHeight: '1.6' }}>
             <li style={{ marginBottom: '0.55rem' }}>
-              <strong>🏋️ Free Weights &amp; Cables (Home or Gym):</strong>{' '}
-              <strong>Months 1–3</strong> can be completed at home or in the gym using just dumbbells and a resistance band (at least one lighter set and one heavier set of dumbbells is recommended). <strong>Months 4–6</strong> incorporate dumbbells, trap bars, cables, and conditioning finishers (with band alternatives included for cable exercises).
+              <strong>🏠 Home (Dumbbells &amp; Bench):</strong>{' '}
+              Complete the entire program (Weeks 1–24) at home using only dumbbells and a bench (at least one lighter set and one heavier set of dumbbells is recommended). No cable machines or gym equipment required.
+            </li>
+            <li style={{ marginBottom: '0.55rem' }}>
+              <strong>🏋️ Gym Free Weights &amp; Cables:</strong>{' '}
+              Incorporates dumbbells, barbells/trap bars, cable machines, and conditioning finishers (Months 4–6).
             </li>
             <li style={{ marginBottom: '0.55rem' }}>
               <strong>⚙️ Gym Machines (Joint-Friendly):</strong>{' '}
