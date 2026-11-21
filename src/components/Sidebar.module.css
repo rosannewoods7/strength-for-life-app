@@ -16,26 +16,22 @@
 }
 
 .logoContainer {
-  margin-bottom: 2.25rem;
-  padding-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
   border-bottom: 1px solid rgba(232, 221, 229, 0.1);
   width: 100%;
+  text-decoration: none;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-white);
-  letter-spacing: 0.05em;
-  margin-bottom: 0.25rem;
-}
-
-.logoSubtitle {
-  font-size: 0.85rem;
-  color: var(--color-lavender-grey);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 500;
+.logoImage {
+  width: 175px;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .mobileToggleBtn {
@@ -112,15 +108,12 @@
     padding-bottom: 0;
     border-bottom: none;
     width: auto;
+    justify-content: flex-start;
   }
 
-  .logo {
-    font-size: 1.3rem;
-    margin-bottom: 0.1rem;
-  }
-
-  .logoSubtitle {
-    font-size: 0.72rem;
+  .logoImage {
+    width: 64px;
+    border-radius: 6px;
   }
 
   .mobileToggleBtn {

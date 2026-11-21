@@ -58,10 +58,13 @@ export default function Sidebar() {
   return (
     <aside className={styles.sidebar}>
       <div className={styles.topBar}>
-        <div className={styles.logoContainer}>
-          <h2 className={styles.logo}>Strength for Life</h2>
-          <span className={styles.logoSubtitle}>Strength &amp; Longevity</span>
-        </div>
+        <Link href="/dashboard" className={styles.logoContainer}>
+          <img
+            src="/icon-512x512.png"
+            alt="Strength for Life — Built for Strength, Built for Life"
+            className={styles.logoImage}
+          />
+        </Link>
 
         <button
           type="button"
