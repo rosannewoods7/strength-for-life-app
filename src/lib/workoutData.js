@@ -24,6 +24,7 @@ export const EXERCISE_VIDEO_LIBRARY = [
   { name: 'Band Lat Pulldown', videoUrl: 'https://player.vimeo.com/video/1246920957' },
   { name: 'Band Pull Through', videoUrl: 'https://player.vimeo.com/video/1246923400' },
   { name: 'Band Pallof Press', videoUrl: 'https://player.vimeo.com/video/1246923135' },
+  { name: 'Cable Pallof Press', videoUrl: 'https://player.vimeo.com/video/1246920968' },
   { name: 'Bulgarian Split Squat (Rear-Foot Elevated)', videoUrl: 'https://player.vimeo.com/video/1246926982' },
   { name: 'Lateral Lunge', videoUrl: 'https://player.vimeo.com/video/1246928840' },
   { name: 'Seated Cable Row', videoUrl: 'https://player.vimeo.com/video/1246920967' },
@@ -104,7 +105,7 @@ export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = nu
           { label: 'F', name: 'Rear Delt Fly Machine', sets: setsCount, reps: accRepsRange, notes: 'Face the pad, sweep arms straight back to target upper back and rear shoulders.' },
           { label: 'G', name: 'Seated Tricep Extension Machine', sets: setsCount, reps: accRepsRange, notes: 'Keep elbows tucked against pads and extend forearms smoothly.' },
           { label: 'H', name: 'Standing Calf Raise Machine', sets: setsCount, reps: '12-15', notes: 'Rise onto balls of feet, pause 1 second at the top, and lower with control.' },
-          { label: 'I', name: 'Standing Cable Pallof Press', sets: setsCount, reps: '10-12/side', notes: 'Stand tall, press handle straight out from chest and resist rotation.', videoUrl: 'https://player.vimeo.com/video/1246923135' },
+          { label: 'I', name: 'Standing Cable Pallof Press', sets: setsCount, reps: '10-12/side', notes: 'Stand tall, press handle straight out from chest and resist rotation.', videoUrl: 'https://player.vimeo.com/video/1246920968' },
         ],
       },
       {
@@ -157,7 +158,7 @@ export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = nu
           { label: 'E', name: 'Seated Pec Fly Machine', sets: '3', reps: '12-15', notes: rpe },
           { label: 'F', name: 'Rear Delt Fly Machine', sets: '3', reps: '12-15', notes: rpe },
           { label: 'G', name: 'Seated Tricep Extension Machine', sets: '3', reps: '12-15', notes: rpe },
-          { label: 'H', name: 'Standing Cable Pallof Press', sets: '3', reps: '10-12/side', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246923135' },
+          { label: 'H', name: 'Standing Cable Pallof Press', sets: '3', reps: '10-12/side', notes: rpe, videoUrl: 'https://player.vimeo.com/video/1246920968' },
           { label: 'I', name: 'Finisher: Rower or SkiErg', sets: '5', reps: '30 sec', notes: '30 sec purposeful / 30 sec easy.' },
         ],
       },
@@ -212,7 +213,7 @@ export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = nu
           { label: 'E', name: 'Seated Pec Fly Machine', sets: '3', reps: '8-10', notes: 'Accessory. Rest 60-90s.' },
           { label: 'F', name: 'Rear Delt Fly Machine', sets: '3', reps: '8-10', notes: 'Accessory. Rest 60-90s.' },
           { label: 'G', name: 'Seated Tricep Extension Machine', sets: '3', reps: '8-10', notes: 'Accessory. Rest 60-90s.' },
-          { label: 'H', name: 'Standing Cable Pallof Press', sets: '3', reps: '8/side', notes: 'Core stability.', videoUrl: 'https://player.vimeo.com/video/1246923135' },
+          { label: 'H', name: 'Standing Cable Pallof Press', sets: '3', reps: '8/side', notes: 'Core stability.', videoUrl: 'https://player.vimeo.com/video/1246920968' },
         ],
       },
       {
@@ -263,7 +264,7 @@ export const getMachineWorkoutsForWeek = (weekNumber, customMachineWorkouts = nu
           { label: 'E', name: 'Seated Pec Fly Machine', sets: '3', reps: '10', notes: 'Accessory.' },
           { label: 'F', name: 'Rear Delt Fly Machine', sets: '3', reps: '10', notes: 'Accessory.' },
           { label: 'G', name: 'Seated Tricep Extension Machine', sets: '3', reps: '10', notes: 'Accessory.' },
-          { label: 'H', name: 'Standing Cable Pallof Press', sets: '3', reps: '8/side', notes: 'Core stability.', videoUrl: 'https://player.vimeo.com/video/1246923135' },
+          { label: 'H', name: 'Standing Cable Pallof Press', sets: '3', reps: '8/side', notes: 'Core stability.', videoUrl: 'https://player.vimeo.com/video/1246920968' },
         ],
       },
       {
@@ -390,7 +391,7 @@ export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
           { name: 'Seated Cable Row', sets: getSets(), reps: '12-15', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1246920967' },
           { name: 'DB Romanian Deadlift', sets: '3', reps: '12', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1200235000' },
           { name: 'Reverse Lunge', sets: '3', reps: '10/side', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1246920973' },
-          { name: 'Pallof Press', sets: '3', reps: '10-12/side', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1246923135' },
+          { name: 'Pallof Press', sets: '3', reps: '10-12/side', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1246920968', secondaryVideoUrl: 'https://player.vimeo.com/video/1246923135' },
           { name: 'Farmer Carry', sets: '3', reps: '30-45 sec', notes: getRPE(), videoUrl: 'https://player.vimeo.com/video/1200235585' },
           { name: 'Finisher: Rower or SkiErg', sets: '5', reps: '30 sec', notes: '30 sec purposeful / 30 sec easy.', videoUrl: 'https://player.vimeo.com/video/1246920976', secondaryVideoUrl: 'https://player.vimeo.com/video/1246920963' }
         ]
@@ -458,7 +459,7 @@ export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
           { name: 'Seated Cable Row', sets: getSets(), reps: '5-6', notes: `Accessory. Rest 90-120s.`, videoUrl: 'https://player.vimeo.com/video/1246920967' },
           { name: 'Romanian Deadlift', sets: '3', reps: '6', notes: `Accessory. Rest 90-120s.`, videoUrl: 'https://player.vimeo.com/video/1200235000' },
           { name: 'Rear-Foot Elevated Split Squat', sets: '3', reps: '6-8/side', notes: `Accessory. Rest 90-120s.`, videoUrl: 'https://player.vimeo.com/video/1246926982' },
-          { name: 'Pallof Press', sets: '3', reps: '8/side', notes: `Accessory. Rest 90-120s.`, videoUrl: 'https://player.vimeo.com/video/1246923135' },
+          { name: 'Pallof Press', sets: '3', reps: '8/side', notes: `Accessory. Rest 90-120s.`, videoUrl: 'https://player.vimeo.com/video/1246920968', secondaryVideoUrl: 'https://player.vimeo.com/video/1246923135' },
           { name: 'Heavy Farmer Carry', sets: '3', reps: '20-30 m', notes: `Accessory. Rest 90-120s.`, videoUrl: 'https://player.vimeo.com/video/1200235585' }
         ]
       },
@@ -560,7 +561,7 @@ export const getWorkoutsForWeek = (weekNumber, customWorkouts = null) => {
           { name: 'Trap-Bar/DB Deadlift', sets: '3', reps: '4-5', notes: `Strength.`, videoUrl: 'https://player.vimeo.com/video/1246920965' },
           { name: 'Lat Pulldown', sets: '3', reps: '6', notes: `Strength.`, videoUrl: 'https://player.vimeo.com/video/1246920969', secondaryVideoUrl: 'https://player.vimeo.com/video/1246920957' },
           { name: 'Step-Up + Knee Drive', sets: '3', reps: '6/side', notes: `Strength.`, videoUrl: 'https://player.vimeo.com/video/1246920966' },
-          { name: 'Pallof Press', sets: '3', reps: '8/side', notes: `Strength.`, videoUrl: 'https://player.vimeo.com/video/1246923135' },
+          { name: 'Pallof Press', sets: '3', reps: '8/side', notes: `Strength.`, videoUrl: 'https://player.vimeo.com/video/1246920968', secondaryVideoUrl: 'https://player.vimeo.com/video/1246923135' },
           { name: 'Suitcase Carry', sets: '3', reps: '30 m/side', notes: `Strength.`, videoUrl: 'https://player.vimeo.com/video/1246920970' }
         ]
       },
