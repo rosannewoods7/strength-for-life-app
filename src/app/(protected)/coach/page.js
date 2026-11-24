@@ -14,6 +14,15 @@ function getPhaseWeeks(weekNum) {
   return [phaseStart, phaseStart + 1, phaseStart + 2, phaseStart + 3];
 }
 
+const ALL_PHASES = [
+  { id: 1, label: 'Phase 1 (Weeks 1–4)', weeks: [1, 2, 3, 4] },
+  { id: 2, label: 'Phase 2 (Weeks 5–8)', weeks: [5, 6, 7, 8] },
+  { id: 3, label: 'Phase 3 (Weeks 9–12)', weeks: [9, 10, 11, 12] },
+  { id: 4, label: 'Phase 4 (Weeks 13–16)', weeks: [13, 14, 15, 16] },
+  { id: 5, label: 'Phase 5 (Weeks 17–20)', weeks: [17, 18, 19, 20] },
+  { id: 6, label: 'Phase 6 (Weeks 21–24)', weeks: [21, 22, 23, 24] },
+];
+
 export default function CoachPortalPage() {
   const [members, setMembers] = useState([]);
   const [emailInput, setEmailInput] = useState('');
@@ -27,6 +36,12 @@ export default function CoachPortalPage() {
   const [saving, setSaving] = useState(false);
   const [statusMsg, setStatusMsg] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+
+  // Copy Exercise Panel State
+  const [copyingExIndex, setCopyingExIndex] = useState(null);
+  const [copyTargetWorkouts, setCopyTargetWorkouts] = useState(['A']);
+  const [copyTargetWeeks, setCopyTargetWeeks] = useState([1]);
+  const [copyMode, setCopyMode] = useState('append'); // 'append' | 'replace_slot'
 
   // Load initial roster of members
   useEffect(() => {
@@ -58,6 +73,7 @@ export default function CoachPortalPage() {
     );
     setEditableWorkouts(JSON.parse(JSON.stringify(sourceWorkouts)));
     setActiveTab(0);
+    setCopyingExIndex(null);
   }, [selectedMember, selectedWeek]);
 
   const handleLookupByEmail = async (targetEmail) => {
@@ -149,6 +165,144 @@ export default function CoachPortalPage() {
       });
       return next;
     });
+  };
+
+  const handleOpenCopyPanel = (exIndex) => {
+    if (copyingExIndex === exIndex) {
+      setCopyingExIndex(null);
+      return;
+    }
+    const currWorkoutId = editableWorkouts[activeTab]?.id || 'A';
+    setCopyingExIndex(exIndex);
+    setCopyTargetWorkouts([currWorkoutId]);
+    setCopyTargetWeeks(getPhaseWeeks(selectedWeek));
+    setCopyMode('append');
+  };
+
+  const handleToggleCopyWorkout = (workoutId) => {
+    setCopyTargetWorkouts((prev) =>
+      prev.includes(workoutId)
+        ? prev.filter((id) => id !== workoutId)
+        : [...prev, workoutId]
+    );
+  };
+
+  const handleToggleCopyWeeks = (weeksArr) => {
+    setCopyTargetWeeks((prev) => {
+      const allPresent = weeksArr.every((w) => prev.includes(w));
+      if (allPresent) {
+        return prev.filter((w) => !weeksArr.includes(w));
+      }
+      const merged = new Set([...prev, ...weeksArr]);
+      return Array.from(merged).sort((a, b) => a - b);
+    });
+  };
+
+  const getBaseWorkoutsForMemberWeek = (wk) => {
+    if (wk === selectedWeek) {
+      return JSON.parse(JSON.stringify(editableWorkouts));
+    }
+    const savedCustom = selectedMember?.customWorkouts?.[wk];
+    if (Array.isArray(savedCustom) && savedCustom.length > 0) {
+      return JSON.parse(JSON.stringify(savedCustom));
+    }
+    const track = selectedMember?.defaultTrack || 'free_weights';
+    if (track === 'machines') {
+      return JSON.parse(JSON.stringify(getMachineWorkoutsForWeek(wk)));
+    }
+    if (track === 'home') {
+      return JSON.parse(JSON.stringify(getHomeWorkoutsForWeek(wk)));
+    }
+    return JSON.parse(JSON.stringify(getWorkoutsForWeek(wk)));
+  };
+
+  const handleApplyCopyExercise = async (exIndex) => {
+    if (!selectedMember?.email) return;
+    const sourceExercise = editableWorkouts[activeTab]?.exercises?.[exIndex];
+    if (!sourceExercise) return;
+
+    if (copyTargetWorkouts.length === 0) {
+      setErrorMsg('Please select at least one target workout (A, B, or C).');
+      return;
+    }
+    if (copyTargetWeeks.length === 0) {
+      setErrorMsg('Please select at least one target week or phase.');
+      return;
+    }
+
+    setSaving(true);
+    setErrorMsg(null);
+    setStatusMsg(null);
+
+    try {
+      const workoutsByWeek = {};
+      const sortedWeeks = [...copyTargetWeeks].sort((a, b) => a - b);
+
+      sortedWeeks.forEach((wk) => {
+        const wkWorkouts = getBaseWorkoutsForMemberWeek(wk);
+        wkWorkouts.forEach((w) => {
+          if (!copyTargetWorkouts.includes(w.id)) return;
+          const exerciseClone = JSON.parse(JSON.stringify(sourceExercise));
+          if (!Array.isArray(w.exercises)) {
+            w.exercises = [];
+          }
+
+          if (copyMode === 'replace_slot') {
+            if (exIndex < w.exercises.length) {
+              w.exercises[exIndex] = exerciseClone;
+            } else {
+              w.exercises.push(exerciseClone);
+            }
+          } else {
+            // Check if an exercise with the exact same name already exists in that target workout
+            const existingIdx = w.exercises.findIndex(
+              (item) =>
+                (item.name || '').trim().toLowerCase() ===
+                (exerciseClone.name || '').trim().toLowerCase()
+            );
+            if (existingIdx > -1) {
+              w.exercises[existingIdx] = exerciseClone;
+            } else {
+              w.exercises.push(exerciseClone);
+            }
+          }
+        });
+        workoutsByWeek[String(wk)] = wkWorkouts;
+      });
+
+      // If current week was among target weeks, also update the active editor immediately
+      if (workoutsByWeek[String(selectedWeek)]) {
+        setEditableWorkouts(
+          JSON.parse(JSON.stringify(workoutsByWeek[String(selectedWeek)]))
+        );
+      }
+
+      const res = await fetch('/api/coach/member-workouts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: selectedMember.email,
+          workoutsByWeek,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setErrorMsg(data.error || 'Failed to copy exercise across weeks.');
+      } else {
+        setSelectedMember(data.member);
+        setMembers((prev) =>
+          prev.map((m) => (m.id === data.member.id ? data.member : m))
+        );
+        setCopyingExIndex(null);
+        setStatusMsg(
+          `Copied "${sourceExercise.name}" to Workout ${copyTargetWorkouts.join(', ')} across Week${sortedWeeks.length > 1 ? 's' : ''} ${sortedWeeks.join(', ')} for ${data.member.email}!`
+        );
+      }
+    } catch (err) {
+      setErrorMsg('Network error copying exercise.');
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleSaveWorkouts = async (weeksToUpdate, resetToDefault = false) => {
@@ -559,6 +713,16 @@ export default function CoachPortalPage() {
                       <div className={styles.exerciseOrderBtns}>
                         <button
                           type="button"
+                          className={`${styles.smallIconBtn} ${
+                            copyingExIndex === idx ? styles.copyBtnActive : styles.copyBtn
+                          }`}
+                          onClick={() => handleOpenCopyPanel(idx)}
+                          title="Copy this exercise to other workouts or phases"
+                        >
+                          📋 Copy Exercise to...
+                        </button>
+                        <button
+                          type="button"
                           className={styles.smallIconBtn}
                           onClick={() => handleMoveExercise(idx, -1)}
                           disabled={idx === 0}
@@ -585,6 +749,162 @@ export default function CoachPortalPage() {
                         </button>
                       </div>
                     </div>
+
+                    {copyingExIndex === idx && (
+                      <div className={styles.copyExercisePanel}>
+                        <div className={styles.copyPanelHeader}>
+                          <strong>
+                            📋 Copy &ldquo;{ex.name}&rdquo; ({ex.sets} &times; {ex.reps}) to:
+                          </strong>
+                          <button
+                            type="button"
+                            className={styles.copyPanelCloseBtn}
+                            onClick={() => setCopyingExIndex(null)}
+                          >
+                            ✕ Close
+                          </button>
+                        </div>
+
+                        <div className={styles.copySection}>
+                          <label className={styles.copySectionLabel}>
+                            1. Select Target Workout(s):
+                          </label>
+                          <div className={styles.copyCheckRow}>
+                            {['A', 'B', 'C'].map((wId) => (
+                              <label key={wId} className={styles.copyCheckLabel}>
+                                <input
+                                  type="checkbox"
+                                  checked={copyTargetWorkouts.includes(wId)}
+                                  onChange={() => handleToggleCopyWorkout(wId)}
+                                />
+                                Workout {wId}
+                              </label>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className={styles.copySection}>
+                          <label className={styles.copySectionLabel}>
+                            2. Select Target Week(s) / Phase(s):
+                          </label>
+                          <div className={styles.copyQuickBtns}>
+                            <button
+                              type="button"
+                              className={`${styles.copyQuickPill} ${
+                                copyTargetWeeks.length === 1 &&
+                                copyTargetWeeks[0] === selectedWeek
+                                  ? styles.copyQuickPillActive
+                                  : ''
+                              }`}
+                              onClick={() => setCopyTargetWeeks([selectedWeek])}
+                            >
+                              Current Week Only (Week {selectedWeek})
+                            </button>
+                            <button
+                              type="button"
+                              className={`${styles.copyQuickPill} ${
+                                phaseWeeks.every((w) =>
+                                  copyTargetWeeks.includes(w)
+                                ) && copyTargetWeeks.length === 4
+                                  ? styles.copyQuickPillActive
+                                  : ''
+                              }`}
+                              onClick={() => setCopyTargetWeeks([...phaseWeeks])}
+                            >
+                              Current Phase (Weeks {phaseWeeks[0]}–{phaseWeeks[3]})
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.copyQuickPill}
+                              onClick={() =>
+                                setCopyTargetWeeks(
+                                  Array.from({ length: 12 }, (_, i) => i + 1)
+                                )
+                              }
+                            >
+                              All Months 1–3 (Weeks 1–12)
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.copyQuickPill}
+                              onClick={() =>
+                                setCopyTargetWeeks(
+                                  Array.from({ length: 12 }, (_, i) => i + 13)
+                                )
+                              }
+                            >
+                              All Months 4–6 (Weeks 13–24)
+                            </button>
+                          </div>
+
+                          <div className={styles.copyPhaseCheckGrid}>
+                            {ALL_PHASES.map((ph) => {
+                              const allChecked = ph.weeks.every((w) =>
+                                copyTargetWeeks.includes(w)
+                              );
+                              return (
+                                <label
+                                  key={ph.id}
+                                  className={styles.copyCheckLabel}
+                                >
+                                  <input
+                                    type="checkbox"
+                                    checked={allChecked}
+                                    onChange={() =>
+                                      handleToggleCopyWeeks(ph.weeks)
+                                    }
+                                  />
+                                  {ph.label}
+                                </label>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        <div className={styles.copySection}>
+                          <label className={styles.copySectionLabel}>
+                            3. Placement in Target Workout(s):
+                          </label>
+                          <div className={styles.copyCheckRow}>
+                            <label className={styles.copyCheckLabel}>
+                              <input
+                                type="radio"
+                                name={`copyMode-${idx}`}
+                                checked={copyMode === 'append'}
+                                onChange={() => setCopyMode('append')}
+                              />
+                              Add to end of workout (or update if same exercise name exists)
+                            </label>
+                            <label className={styles.copyCheckLabel}>
+                              <input
+                                type="radio"
+                                name={`copyMode-${idx}`}
+                                checked={copyMode === 'replace_slot'}
+                                onChange={() => setCopyMode('replace_slot')}
+                              />
+                              Replace Exercise #{idx + 1} (same position slot)
+                            </label>
+                          </div>
+                        </div>
+
+                        <div className={styles.copyPanelActions}>
+                          <button
+                            type="button"
+                            className={styles.copyApplyBtn}
+                            disabled={
+                              saving ||
+                              copyTargetWorkouts.length === 0 ||
+                              copyTargetWeeks.length === 0
+                            }
+                            onClick={() => handleApplyCopyExercise(idx)}
+                          >
+                            {saving
+                              ? 'Copying & Saving...'
+                              : `📋 Copy & Save to Workout ${copyTargetWorkouts.join(', ')} (${copyTargetWeeks.length} week${copyTargetWeeks.length > 1 ? 's' : ''})`}
+                          </button>
+                        </div>
+                      </div>
+                    )}
 
                     <div className={styles.exerciseFieldsGrid}>
                       <div className={styles.fieldGroupWide}>

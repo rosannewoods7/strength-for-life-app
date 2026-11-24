@@ -158,6 +158,7 @@ export async function POST(request) {
     const email = (body.email || '').trim().toLowerCase();
     const weeks = Array.isArray(body.weeks) ? body.weeks : [];
     const workouts = body.workouts;
+    const workoutsByWeek = body.workoutsByWeek;
     const reset = Boolean(body.reset);
     const grantFullAccess = body.grantFullAccess;
     const defaultTrack = body.defaultTrack;
@@ -242,7 +243,10 @@ export async function POST(request) {
       });
     }
 
-    if (weeks.length === 0) {
+    if (
+      weeks.length === 0 &&
+      (!workoutsByWeek || typeof workoutsByWeek !== 'object')
+    ) {
       return NextResponse.json(
         { error: 'Please specify at least one week to update.' },
         { status: 400 }
@@ -254,14 +258,24 @@ export async function POST(request) {
       ...(await getUserCustomWorkouts(targetUser)),
     };
 
-    weeks.forEach((wk) => {
-      const wkKey = String(wk);
-      if (reset) {
-        delete existingCustomWorkouts[wkKey];
-      } else if (Array.isArray(workouts)) {
-        existingCustomWorkouts[wkKey] = JSON.parse(JSON.stringify(workouts));
-      }
-    });
+    if (workoutsByWeek && typeof workoutsByWeek === 'object') {
+      Object.entries(workoutsByWeek).forEach(([wkKey, wkWorkouts]) => {
+        if (Array.isArray(wkWorkouts)) {
+          existingCustomWorkouts[String(wkKey)] = JSON.parse(
+            JSON.stringify(wkWorkouts)
+          );
+        }
+      });
+    } else {
+      weeks.forEach((wk) => {
+        const wkKey = String(wk);
+        if (reset) {
+          delete existingCustomWorkouts[wkKey];
+        } else if (Array.isArray(workouts)) {
+          existingCustomWorkouts[wkKey] = JSON.parse(JSON.stringify(workouts));
+        }
+      });
+    }
 
     // Save to Supabase Storage bucket & keep user_metadata tiny (custom_workouts: null)
     const { customWorkouts, customizedWeeks } = await saveUserCustomWorkouts(
