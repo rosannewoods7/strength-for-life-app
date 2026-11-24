@@ -153,16 +153,21 @@ export default function CoachPortalPage() {
     });
   };
 
-  const handleAddExercise = () => {
+  const handleAddExercise = (atStart = false) => {
+    const newEx = {
+      name: atStart ? 'New Warm-Up Exercise' : 'New Custom Exercise',
+      sets: atStart ? '2' : '3',
+      reps: '10-12',
+      notes: 'Focus on controlled tempo and pain-free range of motion.',
+      videoUrl: '',
+    };
     setEditableWorkouts((prev) => {
       const next = JSON.parse(JSON.stringify(prev));
-      next[activeTab].exercises.push({
-        name: 'New Custom Exercise',
-        sets: '3',
-        reps: '10-12',
-        notes: 'Focus on controlled tempo and pain-free range of motion.',
-        videoUrl: '',
-      });
+      if (atStart) {
+        next[activeTab].exercises.unshift(newEx);
+      } else {
+        next[activeTab].exercises.push(newEx);
+      }
       return next;
     });
   };
@@ -176,7 +181,7 @@ export default function CoachPortalPage() {
     setCopyingExIndex(exIndex);
     setCopyTargetWorkouts([currWorkoutId]);
     setCopyTargetWeeks(getPhaseWeeks(selectedWeek));
-    setCopyMode('append');
+    setCopyMode(exIndex === 0 ? 'prepend' : 'append');
   };
 
   const handleToggleCopyWorkout = (workoutId) => {
@@ -253,6 +258,16 @@ export default function CoachPortalPage() {
             } else {
               w.exercises.push(exerciseClone);
             }
+          } else if (copyMode === 'prepend') {
+            const existingIdx = w.exercises.findIndex(
+              (item) =>
+                (item.name || '').trim().toLowerCase() ===
+                (exerciseClone.name || '').trim().toLowerCase()
+            );
+            if (existingIdx > -1) {
+              w.exercises.splice(existingIdx, 1);
+            }
+            w.exercises.unshift(exerciseClone);
           } else {
             // Check if an exercise with the exact same name already exists in that target workout
             const existingIdx = w.exercises.findIndex(
@@ -697,6 +712,15 @@ export default function CoachPortalPage() {
               />
             </div>
 
+            <button
+              type="button"
+              className={styles.addExerciseBtn}
+              style={{ marginTop: 0, marginBottom: '1rem' }}
+              onClick={() => handleAddExercise(true)}
+            >
+              + Add Warm-Up / Exercise to Start of {currentWorkout?.title}
+            </button>
+
             {/* Exercises List Editor */}
             <div className={styles.exercisesList}>
               {currentWorkout?.exercises?.map((ex, idx) => {
@@ -870,6 +894,15 @@ export default function CoachPortalPage() {
                               <input
                                 type="radio"
                                 name={`copyMode-${idx}`}
+                                checked={copyMode === 'prepend'}
+                                onChange={() => setCopyMode('prepend')}
+                              />
+                              Add to start of workout (Warm-Up / Exercise #1)
+                            </label>
+                            <label className={styles.copyCheckLabel}>
+                              <input
+                                type="radio"
+                                name={`copyMode-${idx}`}
                                 checked={copyMode === 'append'}
                                 onChange={() => setCopyMode('append')}
                               />
@@ -1006,9 +1039,9 @@ export default function CoachPortalPage() {
             <button
               type="button"
               className={styles.addExerciseBtn}
-              onClick={handleAddExercise}
+              onClick={() => handleAddExercise(false)}
             >
-              + Add Another Exercise to {currentWorkout?.title}
+              + Add Another Exercise to End of {currentWorkout?.title}
             </button>
 
             {/* SAVE & RESET BAR */}
